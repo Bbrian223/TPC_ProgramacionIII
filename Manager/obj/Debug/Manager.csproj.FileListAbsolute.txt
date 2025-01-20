@@ -1,0 +1,33 @@
+C:\Users\aapan\Downloads\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Manager.dll
+C:\Users\aapan\Downloads\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Manager.pdb
+C:\Users\aapan\Downloads\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.csproj.AssemblyReference.cache
+C:\Users\aapan\Downloads\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.csproj.CoreCompileInputs.cache
+C:\Users\aapan\Downloads\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.dll
+C:\Users\aapan\Downloads\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.pdb
+C:\Users\usuario\Desktop\Nueva carpeta\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Manager.dll
+C:\Users\usuario\Desktop\Nueva carpeta\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Manager.pdb
+C:\Users\usuario\Desktop\Nueva carpeta\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.csproj.AssemblyReference.cache
+C:\Users\usuario\Desktop\Nueva carpeta\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.csproj.CoreCompileInputs.cache
+C:\Users\usuario\Desktop\Nueva carpeta\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.dll
+C:\Users\usuario\Desktop\Nueva carpeta\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.pdb
+C:\Users\usuario\Desktop\Nueva carpeta (2)\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Manager.dll
+C:\Users\usuario\Desktop\Nueva carpeta (2)\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Manager.pdb
+C:\Users\usuario\Desktop\Nueva carpeta (2)\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Dominio.dll
+C:\Users\usuario\Desktop\Nueva carpeta (2)\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Dominio.pdb
+C:\Users\usuario\Desktop\Nueva carpeta (2)\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.csproj.AssemblyReference.cache
+C:\Users\usuario\Desktop\Nueva carpeta (2)\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.csproj.CoreCompileInputs.cache
+C:\Users\usuario\Desktop\Nueva carpeta (2)\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.csproj.Up2Date
+C:\Users\usuario\Desktop\Nueva carpeta (2)\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.dll
+C:\Users\usuario\Desktop\Nueva carpeta (2)\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.pdb
+C:\Users\aapan\Downloads\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Dominio.dll
+C:\Users\aapan\Downloads\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Dominio.pdb
+C:\Users\aapan\Downloads\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.csproj.Up2Date
+C:\Users\BBARRERA\Documents\GitHub\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Manager.dll
+C:\Users\BBARRERA\Documents\GitHub\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Manager.pdb
+C:\Users\BBARRERA\Documents\GitHub\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Dominio.dll
+C:\Users\BBARRERA\Documents\GitHub\TPOCuatrimestral_Grupo3B\Manager\bin\Debug\Dominio.pdb
+C:\Users\BBARRERA\Documents\GitHub\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.csproj.AssemblyReference.cache
+C:\Users\BBARRERA\Documents\GitHub\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.csproj.CoreCompileInputs.cache
+C:\Users\BBARRERA\Documents\GitHub\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.csproj.Up2Date
+C:\Users\BBARRERA\Documents\GitHub\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.dll
+C:\Users\BBARRERA\Documents\GitHub\TPOCuatrimestral_Grupo3B\Manager\obj\Debug\Manager.pdb
