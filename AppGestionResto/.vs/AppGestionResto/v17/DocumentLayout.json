@@ -6,16 +6,16 @@
       "AbsoluteMoniker": "D:0:0:{8F412F60-D94E-48C6-B86E-4A3A91D71576}|..\\Manager\\Manager.csproj|c:\\users\\bbarrera\\documents\\github\\tpc_programacioniii\\manager\\script_db\\resto_db.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9591A576-B149-4439-8718-D63490C6E7CC}|..\\Dominio\\Dominio.csproj|c:\\users\\bbarrera\\documents\\github\\tpc_programacioniii\\dominio\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8F412F60-D94E-48C6-B86E-4A3A91D71576}|..\\Manager\\Manager.csproj|c:\\users\\bbarrera\\documents\\github\\tpc_programacioniii\\manager\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F412F60-D94E-48C6-B86E-4A3A91D71576}|..\\Manager\\Manager.csproj|c:\\users\\bbarrera\\documents\\github\\tpc_programacioniii\\manager\\accesodatos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9591A576-B149-4439-8718-D63490C6E7CC}|..\\Dominio\\Dominio.csproj|c:\\users\\bbarrera\\documents\\github\\tpc_programacioniii\\dominio\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9591A576-B149-4439-8718-D63490C6E7CC}|..\\Dominio\\Dominio.csproj|c:\\users\\bbarrera\\documents\\github\\tpc_programacioniii\\dominio\\pedido.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9591A576-B149-4439-8718-D63490C6E7CC}|..\\Dominio\\Dominio.csproj|c:\\users\\bbarrera\\documents\\github\\tpc_programacioniii\\dominio\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9591A576-B149-4439-8718-D63490C6E7CC}|..\\Dominio\\Dominio.csproj|c:\\users\\bbarrera\\documents\\github\\tpc_programacioniii\\dominio\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8F412F60-D94E-48C6-B86E-4A3A91D71576}|..\\Manager\\Manager.csproj|c:\\users\\bbarrera\\documents\\github\\tpc_programacioniii\\manager\\script_db\\resto_db.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
@@ -52,7 +52,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "AccesoDatos.cs",
               "DocumentMoniker": "C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\Manager\\AccesoDatos.cs",
               "RelativeDocumentMoniker": "..\\Manager\\AccesoDatos.cs",
@@ -67,7 +67,7 @@
         },
         {
           "DockedWidth": 195,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -77,26 +77,27 @@
               "RelativeDocumentMoniker": "..\\Dominio\\Pedido.cs",
               "ToolTip": "C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\Dominio\\Pedido.cs",
               "RelativeToolTip": "..\\Dominio\\Pedido.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAAFAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAxwBAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-20T10:19:47.233Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Producto.cs",
               "DocumentMoniker": "C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\Dominio\\Producto.cs",
               "RelativeDocumentMoniker": "..\\Dominio\\Producto.cs",
               "ToolTip": "C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\Dominio\\Producto.cs",
               "RelativeToolTip": "..\\Dominio\\Producto.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-20T10:15:20.363Z"
+              "WhenOpened": "2025-01-20T10:15:20.363Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Venta.cs",
               "DocumentMoniker": "C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\Dominio\\Venta.cs",
               "RelativeDocumentMoniker": "..\\Dominio\\Venta.cs",

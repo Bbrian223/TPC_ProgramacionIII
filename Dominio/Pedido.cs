@@ -11,7 +11,7 @@ namespace Dominio
         public int IdPedido { get; set; }
         public Mesa Mesa { get; set; }
         public Usuario Empleado { get; set; }
-        public List<ItemsPedidos> ListaProductos { get; set; }
+        public List<ItemsPedidos> ListaItems { get; set; }
 
     }
 
