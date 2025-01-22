@@ -11,5 +11,7 @@ namespace Dominio
         public int IdMozo { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
+
+        //mesas asignadas
     }
 }

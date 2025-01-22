@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1
+namespace WebApplication1.ViewsStaff
 {
 
 
-    public partial class _Default
+    public partial class Home
     {
     }
 }

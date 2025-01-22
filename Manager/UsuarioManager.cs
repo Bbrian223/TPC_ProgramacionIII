@@ -10,23 +10,27 @@ namespace Manager
 {
     public class UsuarioManager
     {
-        public static UserType ObtenerNivelAcceso(string user, string pass)
+        public Usuario ObtenerUsuario(string user, string pass)
         {
             AccesoDatos datos = new AccesoDatos();
-            int id_usuario = 0;
+            Usuario aux = new Usuario();
             try
             {
-                datos.SetearConsulta("SELECT IDUSUARIO FROM Usuarios WHERE NOMBRE = @NOM AND CONTRASENIA = @CONTRA AND ESTADO = 1");
+                datos.SetearConsulta("SELECT IDUSUARIO,NOMBRE,CONTRASENIA,IDROL FROM Usuarios WHERE NOMBRE = @NOM AND CONTRASENIA = @CONTRA AND ESTADO = 1");
                 datos.SetearParametro("@NOM", user);
                 datos.SetearParametro("@CONTRA", pass);
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
                 {
-                    id_usuario = (int)datos.Lector["IDUSUARIO"];
+                    aux.idusuario = (long)datos.Lector["IDUSUARIO"];
+                    aux.nombreusuario = (string)datos.Lector["NOMBRE"];
+                    aux.clave = (string)datos.Lector["CONTRASENIA"];
+                    aux.rol = (UserType)datos.Lector["IDROL"];
+                    aux.estado = true;
                 }
 
-                return (UserType)id_usuario;
+                return aux;
             }
             catch (Exception ex)
             {

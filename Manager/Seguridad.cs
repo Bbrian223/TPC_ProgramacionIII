@@ -21,12 +21,10 @@ namespace Dominio
         public static bool sesionActiva(object user)
         {
             Usuario usuario = user != null ? (Usuario)user : new Usuario();
-            nivelAcceso = usuario.Rol;
+            nivelAcceso = usuario.rol;
             
-            return usuario.Estado;
+            return usuario.estado;
         }
-
-
 
 
     }

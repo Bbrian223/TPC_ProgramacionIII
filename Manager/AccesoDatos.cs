@@ -26,7 +26,7 @@ namespace Manager
 
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CLINICA_DB; integrated security=true");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=RESTO_DB; integrated security=true");
             comando = new SqlCommand();
         }
 

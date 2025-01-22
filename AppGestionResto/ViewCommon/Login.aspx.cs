@@ -20,8 +20,29 @@ namespace WebApplication1.ViewCommon
 
         protected void btnValidate_Click(object sender, EventArgs e)
         {
+            UsuarioManager manager = new UsuarioManager();
 
+            try
+            {
+                nuevoUsuario = manager.ObtenerUsuario(txtUsuario.Text, txtPassword.Text);
 
+                if (nuevoUsuario.rol == UserType.Gerente) 
+                {
+                    ObtenerDatosGerente();
+                }
+                else if (nuevoUsuario.rol == UserType.Mozo) 
+                {
+                    ObtenerDatosMozo();
+                }
+                else InputError();
+
+                Session.Add("User", nuevoUsuario);
+            }
+            catch (Exception ex)
+            {
+                // colocar pop up con el error
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+            }
         }
 
         private void InputError()
@@ -32,9 +53,17 @@ namespace WebApplication1.ViewCommon
             errorMessage.Style["display"] = "block";
         }
 
-        private void ObtenerDatosUsuario()
+        private void ObtenerDatosGerente()
         {
+            //traer datos del Gerente
+            Response.Redirect("~/ViewsManagment/HomeManagment.aspx",false);
 
+        }
+
+        private void ObtenerDatosMozo() 
+        {
+            //trer datos del Mozo
+            Response.Redirect("~/ViewsStaff/HomeStaff.aspx",false);
         }
     }
 }
