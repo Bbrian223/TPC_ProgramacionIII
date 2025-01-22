@@ -1,24 +1,57 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Dominio
 {   
+    public enum UserType 
+    { 
+        invalid = 0,
+        Gerente = 1,
+        Mozo = 2
+    }
+
     public class Usuario
     {
-        public int IdUsuario { get; set; }
-        public string NombreUsuario { get; set; }
-        public string Clave { get; set; }
-        public bool Estado { get; set; }
-        //momentaneo
-        public string Rol { get; set; }
+        private int idusuario;
+        private string nombreusuario;
+        private string clave;
+        private bool estado;
+        private UserType rol;
 
-
-        public void CambiarClave(string contra)
+        public int IdUsuario 
         {
-            //cambio de contrasenia del usuario
+            get { return idusuario;} 
         }
+        public string NombreUsuario 
+        {
+            get { return nombreusuario; } 
+        }
+        public string Clave 
+        {
+            get { return clave; } 
+        }
+        public bool Estado 
+        {
+            get { return estado; } 
+        }
+        public UserType Rol 
+        {
+            get { return rol; } 
+        }
+
+        public Usuario() 
+        { 
+            idusuario = 0;
+            nombreusuario = string.Empty;
+            clave = string.Empty;
+            estado = false;
+            rol = UserType.invalid;
+        }
+
     }
 }
