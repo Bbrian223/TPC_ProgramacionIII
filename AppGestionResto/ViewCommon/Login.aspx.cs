@@ -26,15 +26,21 @@ namespace WebApplication1.ViewCommon
             {
                 nuevoUsuario = manager.ObtenerUsuario(txtUsuario.Text, txtPassword.Text);
 
-                if (nuevoUsuario.rol == UserType.Gerente) 
+                switch (nuevoUsuario.rol)
                 {
-                    ObtenerDatosGerente();
+                    case UserType.invalid:
+
+                        InputError();
+                        break;
+                    case UserType.Gerente:
+
+                        Response.Redirect("~/ViewsManagment/HomeManagment.aspx", false);
+                        break;
+                    case UserType.Mozo:
+
+                        Response.Redirect("~/ViewsStaff/HomeStaff.aspx", false);
+                        break;
                 }
-                else if (nuevoUsuario.rol == UserType.Mozo) 
-                {
-                    ObtenerDatosMozo();
-                }
-                else InputError();
 
                 Session.Add("User", nuevoUsuario);
             }
@@ -53,17 +59,5 @@ namespace WebApplication1.ViewCommon
             errorMessage.Style["display"] = "block";
         }
 
-        private void ObtenerDatosGerente()
-        {
-            //traer datos del Gerente
-            Response.Redirect("~/ViewsManagment/HomeManagment.aspx",false);
-
-        }
-
-        private void ObtenerDatosMozo() 
-        {
-            //trer datos del Mozo
-            Response.Redirect("~/ViewsStaff/HomeStaff.aspx",false);
-        }
     }
 }

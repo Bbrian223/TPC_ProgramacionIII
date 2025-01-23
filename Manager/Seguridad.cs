@@ -26,6 +26,11 @@ namespace Dominio
             return usuario.estado;
         }
 
+        public static void CerrarSesion() 
+        {
+            nivelAcceso = UserType.invalid;
+        }
+
 
     }
 }

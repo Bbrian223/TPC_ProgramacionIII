@@ -18,5 +18,13 @@ namespace WebApplication1
                 Response.Redirect("~/ViewCommon/Login.aspx",false);
             }
         }
+
+        protected void btnCerrarSesion_OnClick(object sender, EventArgs e)
+        {
+            Seguridad.CerrarSesion();
+            Session.Clear();
+
+            Response.Redirect("~/ViewCommon/Login.aspx",false);
+        }
     }
 }
