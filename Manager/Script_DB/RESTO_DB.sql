@@ -147,4 +147,3 @@ VALUES
 (1,1,'Brian','Barrera','42832435','2000/08/02','Master@gmail.com','1167624662'),
 (2,2,'Doris','Gomez','94256338','1969/04/24','Test@gmial.com','1138833931')
 
-Select* from Empleados

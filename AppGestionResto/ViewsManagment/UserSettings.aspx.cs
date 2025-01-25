@@ -71,5 +71,9 @@ namespace WebApplication1.ViewsManagment
             }
         }
 
+        protected void Unnamed_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ViewsManagment/newUser.aspx",false);
+        }
     }
 }

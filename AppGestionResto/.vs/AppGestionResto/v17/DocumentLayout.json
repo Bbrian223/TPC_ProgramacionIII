@@ -3,12 +3,19 @@
   "WorkspaceRootPath": "C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\AppGestionResto\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|c:\\users\\bbarrera\\documents\\github\\tpc_programacioniii\\appgestionresto\\viewcommon\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|solutionrelative:viewcommon\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|c:\\users\\bbarrera\\documents\\github\\tpc_programacioniii\\appgestionresto\\viewsmanagment\\usersettings.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|solutionrelative:viewsmanagment\\usersettings.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\AppGestionResto\\viewsmanagment\\usersettings.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|solutionrelative:viewsmanagment\\usersettings.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9591A576-B149-4439-8718-D63490C6E7CC}|..\\Dominio\\Dominio.csproj|c:\\users\\bbarrera\\documents\\github\\tpc_programacioniii\\dominio\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -36,20 +43,46 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "Empleado.cs",
+              "DocumentMoniker": "C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\Dominio\\Empleado.cs",
+              "RelativeDocumentMoniker": "..\\Dominio\\Empleado.cs",
+              "ToolTip": "C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\Dominio\\Empleado.cs",
+              "RelativeToolTip": "..\\Dominio\\Empleado.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABMAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-25T02:52:19.012Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Site.Master",
+              "DocumentMoniker": "C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\AppGestionResto\\ViewCommon\\Site.Master",
+              "RelativeDocumentMoniker": "ViewCommon\\Site.Master",
+              "ToolTip": "C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\AppGestionResto\\ViewCommon\\Site.Master",
+              "RelativeToolTip": "ViewCommon\\Site.Master",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-01-25T02:32:11.452Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "UserSettings.aspx.cs",
               "DocumentMoniker": "C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\UserSettings.aspx.cs",
               "RelativeDocumentMoniker": "ViewsManagment\\UserSettings.aspx.cs",
               "ToolTip": "C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\UserSettings.aspx.cs",
               "RelativeToolTip": "ViewsManagment\\UserSettings.aspx.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAswDQAAAAJAAAA",
+              "ViewState": "AQIAADgAAAAAAAAAAAAWwE4AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-24T03:04:34.907Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UserSettings.aspx",
               "DocumentMoniker": "C:\\Users\\BBARRERA\\Documents\\GitHub\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\UserSettings.aspx",
               "RelativeDocumentMoniker": "ViewsManagment\\UserSettings.aspx",

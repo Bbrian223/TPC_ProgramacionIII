@@ -2,6 +2,19 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <style>
+        .image-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            background-color: #f8f9fa;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+
+
     <h2>Lista de Usuarios</h2>
 
     <hr class="my-4" />
@@ -46,7 +59,9 @@
 
                 <!--Boton de Alta Empleado-->
                 <div class="button" style="margin-bottom: 20px;">
-                    <asp:Button class="btn btn-primary btn-sm" Text="+ Nuevo Empleado" runat="server" />
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#nuevoUsuario">
+                        + Agregar Empleado
+                    </button>
                 </div>
 
                 <asp:Repeater ID="repeaterEmpleados" runat="server">
@@ -94,6 +109,77 @@
 
 
                 <!--Fin tabla-->
+
+
+                <!-- Inicio Pop Up -->
+                <div class="modal fade" id="nuevoUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Nuevo Empleado</h5>
+                            </div>
+                            <div class="modal-body text-center">
+
+                                <div id="imagePreview" class="image-circle mx-auto mb-3"></div>
+                                <asp:FileUpload ID="fileUploadImagen" runat="server" CssClass="form-control-file mx-auto d-block" />
+
+                                <div class="row justify-content-center" style="margin-top: 20px">
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre"></asp:TextBox>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Apellido"></asp:TextBox>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtDocumento" runat="server" CssClass="form-control" placeholder="Documento"></asp:TextBox>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtFechaNac" runat="server" CssClass="form-control" placeholder="Fecha Nac"></asp:TextBox>
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-center" style="margin-top: 20px">
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtCalle" runat="server" CssClass="form-control" placeholder="Calle"></asp:TextBox>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtNumDir" runat="server" CssClass="form-control" placeholder="Numero"></asp:TextBox>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtLocalidad" runat="server" CssClass="form-control" placeholder="Localidad"></asp:TextBox>
+                                    </div>
+                                    <div class="col-3">
+                                        <asp:TextBox ID="txtCodPostal" runat="server" CssClass="form-control" placeholder="Cod Postal"></asp:TextBox>
+                                    </div>
+                                </div>
+
+
+                                <div class="row justify-content-center" style="margin-top: 20px">
+                                    <div class="col-4">
+                                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Email"></asp:TextBox>
+                                    </div>
+                                    <div class="col-4">
+                                        <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" placeholder="Telefono"></asp:TextBox>
+                                    </div>
+                                    <div class="col-4">
+                                        <asp:DropDownList ID="ddlOpciones" runat="server" CssClass="form-select">
+                                            <asp:ListItem Text="Seleccione una opcion" Value="0" />
+                                            <asp:ListItem Text="Gerente" Value="1" />
+                                            <asp:ListItem Text="Mozo" Value="2" />
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin Pop Up -->
 
 
 
