@@ -17,11 +17,11 @@ namespace Dominio
 
     public class Usuario
     {
-        public long idusuario;
-        public string nombreusuario;
-        public string clave;
-        public bool estado;
-        public UserType rol;
+        public long idusuario { get; set; }
+        public string nombreusuario { get; set; }
+        public string clave { get; set; }
+        public UserType rol { get; set; }
+        public bool estado { get; set; }
 
         public Usuario() 
         { 

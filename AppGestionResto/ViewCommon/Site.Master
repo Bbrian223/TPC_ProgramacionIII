@@ -10,7 +10,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
-        /* Estilos para el navbar vertical */
+        /* navbar vertical */
         .vertical-navbar {
             width: 250px;
             height: 100vh;
@@ -21,45 +21,71 @@
             color: white;
         }
 
-        /* Estilos para el contenido */
+        /* contenido */
         .content-wrapper {
-            margin-left: 250px; /* Margen igual al ancho del navbar */
+            margin-left: 250px; 
             padding: 20px;
         }
 
-        /* Estilo para enlaces */
+        /* Navbar horizontal */
+        .horizontal-navbar {
+            background-color: #343a40;
+        }
+
+        .horizontal-navbar .navbar-nav.ml-auto {
+            margin-left: auto;
+        }
+
         .vertical-navbar .nav-link {
             color: white;
         }
 
-            .vertical-navbar .nav-link:hover {
-                color: #ccc;
-            }
-
-        /* Estilo del botón cerrar sesión */
-        .vertical-navbar .btn-danger {
-            width: calc(100% - 30px); /* Ajustar al ancho del contenedor */
-            margin: auto 15px 15px;
+        .vertical-navbar .nav-link:hover {
+            color: #ccc;
         }
 
-        /* Estilos para íconos de colapso */
-        .vertical-navbar .collapse.show + .nav-link {
-            font-weight: bold;
+        /* botón cerrar sesión */
+        .vertical-navbar .btn-danger {
+            width: calc(100% - 30px); 
+            margin: auto 15px 15px;
         }
     </style>
 </head>
 <body>
     <form runat="server">
+        <!-- Navbar horizontal -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark horizontal-navbar">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Servicios</a>
+                        </li>
+                    </ul>
+                    <!-- Mi perfil -->
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Mi Perfil</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <!-- Navbar vertical -->
         <nav class="vertical-navbar d-flex flex-column">
-            <h5 class="p-3">Menú de Navegación</h5>
+            <h3 class="p-3">Resto Bar</h3>
             <ul class="nav flex-column">
                 <!-- Salon -->
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Salón</a>
                 </li>
-
-                <!-- Opción Administracion -->
 
                 <%if (Dominio.Seguridad.NivelAcceso == Dominio.UserType.Gerente)
                     { %>
@@ -69,18 +95,16 @@
                     </a>
                     <div class="collapse" id="collapseAdministracion">
                         <ul class="nav flex-column ps-3">
-                            <li><a class="nav-link text-white" href="#">Usuarios</a></li>
+                            <li><a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/UserSettings.aspx") %>">Usuarios</a></li>
                             <li><a class="nav-link text-white" href="#">Salon</a></li>
                         </ul>
                     </div>
                 </li>
-
                 <%} %>
 
                 <!-- Opción Inventario -->
                 <li class="nav-item">
-                    <a class="nav-link text-white" data-bs-toggle="collapse" href="#collapseInventario" role="button" aria-expanded="false" aria-controls="collapseInventario">Inventario
-                    </a>
+                    <a class="nav-link text-white" data-bs-toggle="collapse" href="#collapseInventario" role="button" aria-expanded="false" aria-controls="collapseInventario">Inventario</a>
                     <div class="collapse" id="collapseInventario">
                         <ul class="nav flex-column ps-3">
                             <li><a class="nav-link text-white" href="#">Productos</a></li>
@@ -94,15 +118,9 @@
                     <a class="nav-link text-white" href="#">Pedidos</a>
                 </li>
 
-                <!-- Mi Perfil-->
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Mi Perfil</a>
-                </li>
             </ul>
             <asp:Button ID="btnCerrarSesion" class="btn btn-danger mt-auto" Text="Cerrar Sesión" runat="server" OnClick="btnCerrarSesion_OnClick" />
         </nav>
-
-
 
         <div class="content-wrapper">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
@@ -111,10 +129,12 @@
                     <p>Este es el contenido principal de tu página.</p>
                 </div>
             </asp:ContentPlaceHolder>
+            <!--
             <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
             </footer>
+            -->
         </div>
     </form>
 
