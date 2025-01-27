@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,7 +57,56 @@ namespace Manager
             }
         }
 
+        public void Agregar(Empleado empl) 
+        {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.SetearConsulta("EXEC sp_AgregarEmpleado @Nombre,@Apellido,@Documento,@FechaNac,@Calle,@NumDir,@Localidad,@CodPos,@Email,@Telefono,@Rol");
+                datos.SetearParametro("@Nombre", empl.Nombre);
+                datos.SetearParametro("@Apellido", empl.Apellido);
+                datos.SetearParametro("@Documento", empl.Documento);
+                datos.SetearParametro("@FechaNac", empl.FechaNac);
+                datos.SetearParametro("@Calle", empl.Direccion.Calle);
+                datos.SetearParametro("@NumDir", empl.Direccion.Numero);
+                datos.SetearParametro("@Localidad", empl.Direccion.Localidad);
+                datos.SetearParametro("@CodPos", empl.Direccion.CodPostal);
+                datos.SetearParametro("@Email", empl.Email);
+                datos.SetearParametro("@Telefono", empl.Telefono);
+                datos.SetearParametro("@Rol", (int)empl.rol);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally 
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public void Baja(int id) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("UPDATE Usuarios SET ESTADO = 0 WHERE IDUSUARIO = @Id");
+                datos.SetearParametro("@Id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally 
+            {
+                datos.CerrarConeccion();
+            }
+        }
 
     }
 }
