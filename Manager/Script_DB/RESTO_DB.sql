@@ -103,8 +103,9 @@ CREATE TABLE Cafeteria(
 GO
 
 CREATE TABLE Entradas(
-	IDPROCUTO BIGINT,
+	IDPRODUCTO BIGINT,
 	PORCIONES INT NOT NULL
+	--podria poner unidades
 )
 GO
 
