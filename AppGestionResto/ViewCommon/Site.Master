@@ -113,7 +113,7 @@
                     <a class="nav-link text-white" data-bs-toggle="collapse" href="#collapseInventario" role="button" aria-expanded="false" aria-controls="collapseInventario">Inventario</a>
                     <div class="collapse" id="collapseInventario">
                         <ul class="nav flex-column ps-3">
-                            <li><a class="nav-link text-white" href="#">Productos</a></li>
+                            <li><a class="nav-link text-white"  href="<%= ResolveUrl("~/ViewCommon/Products.aspx") %>">Productos</a></li>
                             <li><a class="nav-link text-white" href="#">Categorías</a></li>
                         </ul>
                     </div>
