@@ -28,3 +28,9 @@ C:\Users\BBARRERA\Documents\GitHub\TPC_ProgramacionIII\Dominio\obj\Debug\Dominio
 C:\Users\BBARRERA\Documents\GitHub\TPC_ProgramacionIII\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\BBARRERA\Documents\GitHub\TPC_ProgramacionIII\Dominio\obj\Debug\Dominio.dll
 C:\Users\BBARRERA\Documents\GitHub\TPC_ProgramacionIII\Dominio\obj\Debug\Dominio.pdb
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Dominio\bin\Debug\Dominio.dll
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Dominio\bin\Debug\Dominio.pdb
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Dominio\obj\Debug\Dominio.csproj.AssemblyReference.cache
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Dominio\obj\Debug\Dominio.dll
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Dominio\obj\Debug\Dominio.pdb

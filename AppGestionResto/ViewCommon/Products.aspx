@@ -64,7 +64,7 @@
                             <td><%# Eval("IdProducto") %></td>
                             <td><%# Eval("Nombre") %></td>
                             <td><%# Eval("Nombre") %></td>
-                            <td><%# Eval("Categoria") %></td>
+                            <td><%# Eval("Categoria.Nombre") %></td>
                             <td><%# Eval("Stock") %></td>
                             <td>
                                 <asp:Button ID="btnEditarEmpleado" class="btn btn-primary btn-sm" Text="Editar" runat="server"

@@ -13,9 +13,6 @@ INNER JOIN Usuarios U ON E.IDUSUARIO = U.IDUSUARIO
 INNER JOIN Direcciones D ON E.IDDIRECCION = D.IDDIRECCION
 GO
 
-SELECT * FROM vw_ListaEmpleados
-GO
-
 CREATE PROCEDURE sp_AgregarEmpleado(
 	@pNombre VARCHAR(100),
 	@pApellido VARCHAR(100),
@@ -57,47 +54,123 @@ GO
 
 /*		Productos		*/
 
-CREATE VIEW vwListaCafeteria
+-- Lista de productos de todas las categorias
+CREATE VIEW vw_ListaProductos
 AS
-SELECT P.IDPRODUCTO,P.IDCATEGORIA,P.NOMBRE,P.PRECIO,P.STOCK, 
-	   P.DESCRIPCION,C.TIPOCAFE,C.TAMANO,C.LECHE,C.LECHE_ALMENDRAS,P.ESTADO
-	   FROM Productos P
-INNER JOIN Cafeteria C ON P.IDPRODUCTO = C.IDPRODUCTO
+SELECT P.IDPRODUCTO,C.IDCATEGORIA AS IDCATEGORIA,C.NOMBRE AS CATEGORIA,P.NOMBRE,P.PRECIO,P.STOCK,P.DESCRIPCION,P.ESTADO FROM Productos P
+INNER JOIN Categorias C ON  P.IDCATEGORIA = C.IDCATEGORIA
 GO
 
-CREATE VIEW vwListaEntradas
-AS
-SELECT P.IDPRODUCTO,P.IDCATEGORIA,P.NOMBRE,P.PRECIO,P.STOCK, 
-	   P.DESCRIPCION,E.PORCIONES,P.ESTADO
-	   FROM Productos P
-INNER JOIN Entradas E ON P.IDPRODUCTO = E.IDPRODUCTO
+-- Agregar producto de cafeteria
+CREATE PROCEDURE sp_AgregarProdCafe(
+	@pNombre VARCHAR(100),
+	@pPrecio MONEY,
+	@pStock int,
+	@pDescripcion TEXT,
+	@pTipoCafe VARCHAR(100),
+	@pTamano VARCHAR(100),
+	@pTipoLeche VARCHAR(100)
+	)AS
+BEGIN 
+	DECLARE @IdProducto BIGINT
+
+	INSERT Productos (IDCATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION)
+	VALUES ('1',@pNombre,@pPrecio,@pStock,@pDescripcion)
+
+	SELECT @IdProducto = IDENT_CURRENT('Productos')
+
+	INSERT Cafeteria (IDPRODUCTO,TIPOCAFE,TAMANO,TIPOLECHE)
+	VALUES (@IdProducto,@pTipoCafe,@pTamano,@pTipoLeche)
+
+END
 GO
 
-CREATE VIEW vwListaComias
-AS
-SELECT P.IDPRODUCTO,P.IDCATEGORIA,P.NOMBRE,P.PRECIO,P.STOCK, 
-	   P.DESCRIPCION,C.GUARNICION,P.ESTADO
-	   FROM Productos P
-INNER JOIN Comidas C ON P.IDPRODUCTO = C.IDPRODUCTO
+-- Agregar producto de Entradas
+CREATE PROCEDURE sp_AgregarProdEntr(
+	@pNombre VARCHAR(100),
+	@pPrecio MONEY,
+	@pStock int,
+	@pDescripcion TEXT,
+	@pPorciones INT
+	)AS
+BEGIN 
+	DECLARE @IdProducto BIGINT
+
+	INSERT Productos (IDCATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION)
+	VALUES ('2',@pNombre,@pPrecio,@pStock,@pDescripcion)
+
+	SELECT @IdProducto = IDENT_CURRENT('Productos')
+
+	INSERT Entradas(IDPRODUCTO,PORCIONES)
+	VALUES (@IdProducto,@pPorciones)
+
+END
 GO
 
-CREATE VIEW vwListaPostres
-AS
-SELECT P.IDPRODUCTO,P.IDCATEGORIA,P.NOMBRE,P.PRECIO,P.STOCK, 
-	   P.DESCRIPCION,Po.AZUCAR,Po.GLUTEN,P.ESTADO
-	   FROM Productos P
-INNER JOIN Postres Po ON P.IDPRODUCTO = Po.IDPRODUCTO
+-- Agregar producto de Comidas
+CREATE PROCEDURE sp_AgregarProdCom(
+	@pNombre VARCHAR(100),
+	@pPrecio MONEY,
+	@pStock int,
+	@pDescripcion TEXT,
+	@pGuarnicion VARCHAR(100)
+	)AS
+BEGIN 
+	DECLARE @IdProducto BIGINT
+
+	INSERT Productos (IDCATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION)
+	VALUES ('3',@pNombre,@pPrecio,@pStock,@pDescripcion)
+
+	SELECT @IdProducto = IDENT_CURRENT('Productos')
+
+	INSERT Comidas(IDPRODUCTO,GUARNICION)
+	VALUES (@IdProducto,@pGuarnicion)
+
+END
 GO
 
-CREATE VIEW vwListaBebidas
-AS
-SELECT P.IDPRODUCTO,P.IDCATEGORIA,P.NOMBRE,P.PRECIO,P.STOCK, 
-	   P.DESCRIPCION,B.ALCOHOL,B.VOLUMEN,P.ESTADO
-	   FROM Productos P
-INNER JOIN Bebidas B ON P.IDPRODUCTO = B.IDPRODUCTO
+-- Agregar producto de Postres
+CREATE PROCEDURE sp_AgregarProdPost(
+	@pNombre VARCHAR(100),
+	@pPrecio MONEY,
+	@pStock int,
+	@pDescripcion TEXT,
+	@pAzucar BIT,
+	@pGluten BIT
+	)AS
+BEGIN 
+	DECLARE @IdProducto BIGINT
+
+	INSERT Productos (IDCATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION)
+	VALUES ('4',@pNombre,@pPrecio,@pStock,@pDescripcion)
+
+	SELECT @IdProducto = IDENT_CURRENT('Productos')
+
+	INSERT Postres(IDPRODUCTO,AZUCAR,GLUTEN)
+	VALUES (@IdProducto,@pAzucar,@pGluten)
+
+END
 GO
 
+-- Agregar producto de Bebidas
+CREATE PROCEDURE sp_AgregarProdBeb(
+	@pNombre VARCHAR(100),
+	@pPrecio MONEY,
+	@pStock int,
+	@pDescripcion TEXT,
+	@pAlcohol BIT,
+	@pVolumen INT
+	)AS
+BEGIN 
+	DECLARE @IdProducto BIGINT
 
+	INSERT Productos (IDCATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION)
+	VALUES ('5',@pNombre,@pPrecio,@pStock,@pDescripcion)
 
+	SELECT @IdProducto = IDENT_CURRENT('Productos')
 
+	INSERT Bebidas(IDPRODUCTO,ALCOHOL,VOLUMEN)
+	VALUES (@IdProducto,@pAlcohol,@pVolumen)
 
+END
+GO

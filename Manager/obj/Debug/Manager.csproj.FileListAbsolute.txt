@@ -40,3 +40,12 @@ C:\Users\BBARRERA\Documents\GitHub\TPC_ProgramacionIII\Manager\obj\Debug\Manager
 C:\Users\BBARRERA\Documents\GitHub\TPC_ProgramacionIII\Manager\obj\Debug\Manager.csproj.Up2Date
 C:\Users\BBARRERA\Documents\GitHub\TPC_ProgramacionIII\Manager\obj\Debug\Manager.dll
 C:\Users\BBARRERA\Documents\GitHub\TPC_ProgramacionIII\Manager\obj\Debug\Manager.pdb
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Manager\bin\Debug\Manager.dll
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Manager\bin\Debug\Manager.pdb
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Manager\bin\Debug\Dominio.dll
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Manager\bin\Debug\Dominio.pdb
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Manager\obj\Debug\Manager.csproj.AssemblyReference.cache
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Manager\obj\Debug\Manager.csproj.CoreCompileInputs.cache
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Manager\obj\Debug\Manager.csproj.Up2Date
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Manager\obj\Debug\Manager.dll
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\Manager\obj\Debug\Manager.pdb
