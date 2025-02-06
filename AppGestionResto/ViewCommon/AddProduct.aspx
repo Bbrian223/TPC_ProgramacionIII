@@ -89,51 +89,27 @@
 
 
         <div class="row justify-content-lg-start" style="margin-top: 20px">
-            <!--Cafeteria-->
-            <%if (string.Compare(ddlCategorias.SelectedValue, "1") == 0)
-                { %>
-
-            <div class="col-3">
-                <asp:TextBox ID="txtTipoCafe" runat="server" CssClass="form-control" placeholder="Tipo Cafe"></asp:TextBox>
-            </div>
-            <div class="col-3">
-                <asp:TextBox ID="txtTamano" runat="server" CssClass="form-control" placeholder="Tamaño"></asp:TextBox>
-                <!--Podria ser un ddl-->
-            </div>
-
-            <% } %>
-
 
             <!--Entradas-->
             <%if (string.Compare(ddlCategorias.SelectedValue, "2") == 0)
                 { %>
 
             <div class="col-3">
-                <asp:TextBox ID="txtPorciones" runat="server" CssClass="form-control" placeholder="Porciones"></asp:TextBox>
+                <asp:CheckBox ID="chkIndividual" runat="server" Text=" " CssClass="form-check-input form-control-lg" />
+                <label style="font-size: 20px">Individual</label>
             </div>
-
-            <% } %>
-
-            <!--Comidas-->
-            <%if (string.Compare(ddlCategorias.SelectedValue, "3") == 0)
-                { %>
-
-            <div class="col-3">
-                <asp:TextBox ID="txtGuarnicion" runat="server" CssClass="form-control" placeholder="Guarnicion"></asp:TextBox>
-            </div>
-
             <% } %>
 
             <!--Postres-->
             <%if (string.Compare(ddlCategorias.SelectedValue, "4") == 0)
                 { %>
             <div class="col-3">
-                <asp:CheckBox id="chkAzucar" runat="server" Text=" " CssClass="form-check-input form-control-lg" />
+                <asp:CheckBox ID="chkAzucar" runat="server" Text=" " CssClass="form-check-input form-control-lg" />
                 <label style="font-size: 20px">Azucar agregada</label>
             </div>
 
             <div class="col-3">
-                <asp:CheckBox id="chkGluten" runat="server" Text=" " CssClass="form-check-input form-control-lg" />
+                <asp:CheckBox ID="chkGluten" runat="server" Text=" " CssClass="form-check-input form-control-lg" />
                 <label style="font-size: 20px">Gluten</label>
             </div>
             <% } %>
@@ -144,10 +120,10 @@
 
             <div class="col-3">
                 <asp:TextBox ID="txtVolumen" runat="server" CssClass="form-control" placeholder="Volumen"
-                    onkeypress="return soloNumeros(event)" ></asp:TextBox>
+                    onkeypress="return soloNumeros(event)"></asp:TextBox>
             </div>
             <div class="col-3">
-                <asp:CheckBox id="chkAlcohol" runat="server" Text=" " CssClass="form-check-input form-control-lg" />
+                <asp:CheckBox ID="chkAlcohol" runat="server" Text=" " CssClass="form-check-input form-control-lg" />
                 <label style="font-size: 20px">Alcohol</label>
 
             </div>
@@ -159,8 +135,8 @@
             <!--Descripcion-->
             <div class="input-group">
                 <span class="input-group-text">Descripcion</span>
-                <asp:TextBox id="txtBxDescripcion" runat="server" CssClass="form-control" 
-                    Font-Names="Arial" Height="80px" TextMode="MultiLine"/>
+                <asp:TextBox ID="txtBxDescripcion" runat="server" CssClass="form-control"
+                    Font-Names="Arial" Height="80px" TextMode="MultiLine" />
             </div>
         </div>
 
@@ -169,11 +145,11 @@
         <div class="row" style="margin-top: 40px;">
             <div class="col-6">
                 <asp:Button ID="btnCancelar" Text="Cancelar" runat="server"
-                    CssClass="btn btn-danger w-100" OnClick="btnCancelar_Click"/>
+                    CssClass="btn btn-danger w-100" OnClick="btnCancelar_Click" />
             </div>
             <div class="col-6">
                 <asp:Button ID="btnGuardar" Text="Guardar" runat="server"
-                    CssClass="btn btn-primary w-100" OnClick="btnGuardar_Click"/>
+                    CssClass="btn btn-primary w-100" OnClick="btnGuardar_Click" />
             </div>
         </div>
 

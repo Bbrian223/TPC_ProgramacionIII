@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -43,7 +44,32 @@ namespace WebApplication1.ViewCommon
 
             try
             {
-                //obtener datos
+                decimal precio = Decimal.Parse(txtPrecio.Text, new CultureInfo("es-ES"));
+
+                nuevoProd.Nombre = txtNombre.Text;
+                nuevoProd.Precio = precio;
+                nuevoProd.stock = int.Parse(txtStock.Text); //validar
+                nuevoProd.Descripcion = txtBxDescripcion.Text;
+                nuevoProd.Categoria.IdCategoria = int.Parse(ddlCategorias.SelectedValue);
+
+                switch (ddlCategorias.SelectedValue)
+                {
+                    case "2":   //entradas
+                        manager.AgregarEntrada(nuevoProd,chkIndividual.Checked);
+                        break;
+
+                    case "4":   //postre
+                        manager.AgregarPostre(nuevoProd,chkAzucar.Checked,chkGluten.Checked);    
+                        break;
+                    
+                    case "5":   //bebida
+                        manager.AgregarBebida(nuevoProd,int.Parse(txtVolumen.Text),chkAlcohol.Checked);
+                        break;
+
+                    default:    // general
+                        manager.AgregarProd(nuevoProd);
+                        break;
+                }
 
             }
             catch (Exception ex)
@@ -63,16 +89,16 @@ namespace WebApplication1.ViewCommon
             txtNombre.Text = string.Empty;
             txtPrecio.Text = string.Empty;
             txtStock.Text = string.Empty;
-            txtTipoCafe.Text = string.Empty;
-            txtTamano.Text = string.Empty;
-            txtPorciones.Text = string.Empty;
-            txtGuarnicion.Text = string.Empty;
+            txtVolumen.Text = string.Empty;
+
+            chkIndividual.Checked = false;
             chkAzucar.Checked = false;
             chkGluten.Checked = false;
-            txtVolumen.Text = string.Empty;
             chkAlcohol.Checked = false;
+
             ddlCategorias.SelectedValue = "0";
             lblErrores.Visible = false;
+            txtBxDescripcion.Text = string.Empty;
         }
 
         private bool ValidarCampos()
@@ -99,30 +125,6 @@ namespace WebApplication1.ViewCommon
                 esValido = false;
             }
 
-            if (string.IsNullOrWhiteSpace(txtTipoCafe.Text) && int.Parse(categoria) == 1)
-            {
-                txtTipoCafe.CssClass += " error";
-                esValido = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtTamano.Text) && int.Parse(categoria) == 1)
-            {
-                txtTamano.CssClass += " error";
-                esValido = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtPorciones.Text) && int.Parse(categoria) == 2)
-            {
-                txtPorciones.CssClass += " error";
-                esValido = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtGuarnicion.Text) && int.Parse(categoria) == 3)
-            {
-                txtGuarnicion.CssClass += " error";
-                esValido = false;
-            }
-
             if (string.IsNullOrWhiteSpace(txtVolumen.Text) && int.Parse(categoria) == 5)
             {
                 txtVolumen.CssClass += " error";
@@ -143,11 +145,8 @@ namespace WebApplication1.ViewCommon
             txtNombre.CssClass = txtNombre.CssClass.Replace("error", "").Trim();
             txtPrecio.CssClass = txtPrecio.CssClass.Replace("error", "").Trim();
             txtStock.CssClass = txtStock.CssClass.Replace("error", "").Trim();
-            txtTipoCafe.CssClass = txtTipoCafe.CssClass.Replace("error", "").Trim();
-            txtTamano.CssClass = txtTamano.CssClass.Replace("error", "").Trim();
-            txtPorciones.CssClass = txtPorciones.CssClass.Replace("error", "").Trim();
-            txtGuarnicion.CssClass = txtGuarnicion.CssClass.Replace("error", "").Trim();
             txtVolumen.CssClass = txtVolumen.CssClass.Replace("error", "").Trim();
+            chkIndividual.CssClass = chkIndividual.CssClass.Replace("error", "").Trim();
             ddlCategorias.CssClass = ddlCategorias.CssClass.Replace("error", "").Trim();
         }
 

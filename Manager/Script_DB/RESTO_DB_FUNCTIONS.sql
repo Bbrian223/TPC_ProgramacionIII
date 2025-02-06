@@ -61,26 +61,19 @@ SELECT P.IDPRODUCTO,C.IDCATEGORIA AS IDCATEGORIA,C.NOMBRE AS CATEGORIA,P.NOMBRE,
 INNER JOIN Categorias C ON  P.IDCATEGORIA = C.IDCATEGORIA
 GO
 
--- Agregar producto de cafeteria
-CREATE PROCEDURE sp_AgregarProdCafe(
+-- Agregar producto
+CREATE PROCEDURE sp_AgregarProd(
+	@pIdCategoria BIGINT,
 	@pNombre VARCHAR(100),
 	@pPrecio MONEY,
 	@pStock int,
-	@pDescripcion TEXT,
-	@pTipoCafe VARCHAR(100),
-	@pTamano VARCHAR(100),
-	@pTipoLeche VARCHAR(100)
+	@pDescripcion TEXT
 	)AS
 BEGIN 
 	DECLARE @IdProducto BIGINT
 
 	INSERT Productos (IDCATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION)
-	VALUES ('1',@pNombre,@pPrecio,@pStock,@pDescripcion)
-
-	SELECT @IdProducto = IDENT_CURRENT('Productos')
-
-	INSERT Cafeteria (IDPRODUCTO,TIPOCAFE,TAMANO,TIPOLECHE)
-	VALUES (@IdProducto,@pTipoCafe,@pTamano,@pTipoLeche)
+	VALUES (@pIdCategoria,@pNombre,@pPrecio,@pStock,@pDescripcion)
 
 END
 GO
@@ -91,7 +84,7 @@ CREATE PROCEDURE sp_AgregarProdEntr(
 	@pPrecio MONEY,
 	@pStock int,
 	@pDescripcion TEXT,
-	@pPorciones INT
+	@pIndividual BIT
 	)AS
 BEGIN 
 	DECLARE @IdProducto BIGINT
@@ -101,33 +94,12 @@ BEGIN
 
 	SELECT @IdProducto = IDENT_CURRENT('Productos')
 
-	INSERT Entradas(IDPRODUCTO,PORCIONES)
-	VALUES (@IdProducto,@pPorciones)
+	INSERT Entradas(IDPRODUCTO,INDIVIDUAL)
+	VALUES (@IdProducto,@pIndividual)
 
 END
 GO
 
--- Agregar producto de Comidas
-CREATE PROCEDURE sp_AgregarProdCom(
-	@pNombre VARCHAR(100),
-	@pPrecio MONEY,
-	@pStock int,
-	@pDescripcion TEXT,
-	@pGuarnicion VARCHAR(100)
-	)AS
-BEGIN 
-	DECLARE @IdProducto BIGINT
-
-	INSERT Productos (IDCATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION)
-	VALUES ('3',@pNombre,@pPrecio,@pStock,@pDescripcion)
-
-	SELECT @IdProducto = IDENT_CURRENT('Productos')
-
-	INSERT Comidas(IDPRODUCTO,GUARNICION)
-	VALUES (@IdProducto,@pGuarnicion)
-
-END
-GO
 
 -- Agregar producto de Postres
 CREATE PROCEDURE sp_AgregarProdPost(
