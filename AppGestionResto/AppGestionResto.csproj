@@ -151,12 +151,13 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
-    <Content Include="ViewCommon\AddProduct.aspx" />
+    <Content Include="ViewsManagment\AddProduct.aspx" />
     <Content Include="ViewCommon\Login.aspx" />
-    <Content Include="ViewCommon\Products.aspx" />
+    <Content Include="ViewsManagment\ProductSettings.aspx" />
     <Content Include="ViewCommon\Site.Master" />
     <Content Include="ViewsManagment\AddUser.aspx" />
     <Content Include="ViewsManagment\HomeManagment.aspx" />
+    <Content Include="ViewsManagment\MesaDetalle.aspx" />
     <Content Include="ViewsManagment\UserSettings.aspx" />
     <Content Include="ViewsStaff\HomeStaff.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -171,11 +172,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewCommon\AddProduct.aspx.cs">
+    <Compile Include="ViewsManagment\AddProduct.aspx.cs">
       <DependentUpon>AddProduct.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ViewCommon\AddProduct.aspx.designer.cs">
+    <Compile Include="ViewsManagment\AddProduct.aspx.designer.cs">
       <DependentUpon>AddProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewCommon\Login.aspx.cs">
@@ -185,12 +186,12 @@
     <Compile Include="ViewCommon\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ViewCommon\Products.aspx.cs">
-      <DependentUpon>Products.aspx</DependentUpon>
+    <Compile Include="ViewsManagment\ProductSettings.aspx.cs">
+      <DependentUpon>ProductSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ViewCommon\Products.aspx.designer.cs">
-      <DependentUpon>Products.aspx</DependentUpon>
+    <Compile Include="ViewsManagment\ProductSettings.aspx.designer.cs">
+      <DependentUpon>ProductSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewCommon\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -219,6 +220,13 @@
     </Compile>
     <Compile Include="ViewsManagment\HomeManagment.aspx.designer.cs">
       <DependentUpon>HomeManagment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsManagment\MesaDetalle.aspx.cs">
+      <DependentUpon>MesaDetalle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsManagment\MesaDetalle.aspx.designer.cs">
+      <DependentUpon>MesaDetalle.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewsManagment\UserSettings.aspx.cs">
       <DependentUpon>UserSettings.aspx</DependentUpon>

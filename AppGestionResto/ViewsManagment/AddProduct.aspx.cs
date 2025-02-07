@@ -17,7 +17,7 @@ namespace WebApplication1.ViewCommon
         {
             if (Seguridad.NivelAcceso != UserType.Gerente)
             {
-                Response.Redirect("~/ViewCommon/HomeStaff.aspx",false);
+                Response.Redirect("~/ViewsManagment/HomeManagment.aspx",false);
             }
 
             if (!IsPostBack)
@@ -28,7 +28,7 @@ namespace WebApplication1.ViewCommon
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/ViewCommon/Products.aspx",false);
+            Response.Redirect("~/ViewsManagment/ProductSettings.aspx",false);
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)

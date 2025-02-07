@@ -90,7 +90,7 @@
             <ul class="nav flex-column">
                 <!-- Salon -->
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Salón</a>
+                    <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/HomeManagment.aspx") %>">Salón</a>
                 </li>
 
                 <%if (Dominio.Seguridad.NivelAcceso == Dominio.UserType.Gerente)
@@ -113,7 +113,7 @@
                     <a class="nav-link text-white" data-bs-toggle="collapse" href="#collapseInventario" role="button" aria-expanded="false" aria-controls="collapseInventario">Inventario</a>
                     <div class="collapse" id="collapseInventario">
                         <ul class="nav flex-column ps-3">
-                            <li><a class="nav-link text-white"  href="<%= ResolveUrl("~/ViewCommon/Products.aspx") %>">Productos</a></li>
+                            <li><a class="nav-link text-white"  href="<%= ResolveUrl("~/ViewsManagment/ProductSettings.aspx") %>">Productos</a></li>
                             <li><a class="nav-link text-white" href="#">Categorías</a></li>
                         </ul>
                     </div>

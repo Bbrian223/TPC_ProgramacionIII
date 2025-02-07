@@ -18,7 +18,7 @@ namespace WebApplication1.ViewCommon
         {
             if (Seguridad.NivelAcceso != UserType.Gerente)
             {
-                Response.Redirect("~/ViewsStaff/HomeStaff.aspx", false);
+                Response.Redirect("~/ViewsManagment/HomeManagment.aspx", false);
             }
 
 
@@ -53,7 +53,7 @@ namespace WebApplication1.ViewCommon
 
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/ViewCommon/AddProduct.aspx", false);
+            Response.Redirect("~/ViewsManagment/AddProduct.aspx", false);
         }
 
         protected void ddlCategorias_SelectedIndexChanged(object sender, EventArgs e)
