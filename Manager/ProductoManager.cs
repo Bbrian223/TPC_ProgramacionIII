@@ -152,5 +152,25 @@ namespace Manager
                 datos.CerrarConeccion();
             }
         }
+
+        public void Baja(long idProd) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("UPDATE Productos SET ESTADO = '0' WHERE IDPRODUCTO = @IdProducto");
+                datos.SetearParametro("@IdProducto",idProd);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
     }
 }

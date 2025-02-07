@@ -60,13 +60,13 @@ namespace WebApplication1.ViewCommon
         protected global::System.Web.UI.WebControls.Repeater repeaterProductos;
 
         /// <summary>
-        /// Control btnEliminarEmpleado.
+        /// Control btnEliminarProd.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEliminarEmpleado;
+        protected global::System.Web.UI.WebControls.Button btnEliminarProd;
 
         /// <summary>
         /// Control hiddenFieldIdEmpleado.

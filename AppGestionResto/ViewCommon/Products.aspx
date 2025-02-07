@@ -83,7 +83,7 @@
                             <td><%# Eval("Stock") %></td>
                             <td><%# Eval("Estado") %></td>
                             <td>
-                                <asp:Button ID="btnEditarEmpleado" class="btn btn-primary btn-sm" Text="Editar" runat="server"
+                                <asp:Button ID="btnEditarProd" class="btn btn-primary btn-sm" Text="Editar" runat="server"
                                     CommandArgument='<%# Eval("IdProducto") %>' />
                                 <button type="button" class="btn btn-danger btn-sm btnEliminar"
                                     data-id='<%# Eval("IdProducto") %>'>
@@ -116,7 +116,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <asp:Button ID="btnEliminarEmpleado" CssClass="btn btn-danger" runat="server" Text="Eliminar" />
+                                <asp:Button ID="btnEliminarProd" CssClass="btn btn-danger" runat="server" Text="Eliminar"  OnClick="btnEliminarProd_Click"/>
                             </div>
                         </div>
                     </div>

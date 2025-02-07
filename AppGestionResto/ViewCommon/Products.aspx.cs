@@ -56,6 +56,47 @@ namespace WebApplication1.ViewCommon
             Response.Redirect("~/ViewCommon/AddProduct.aspx", false);
         }
 
+        protected void ddlCategorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idCategoria = int.Parse(ddlCategorias.SelectedValue);
+
+            try
+            {
+                if (idCategoria != 0)
+                {
+                    ListaProductos = ObtenerTodosProductos().Where(
+                        empl => empl.Categoria.IdCategoria != null && empl.Categoria.IdCategoria == idCategoria).ToList();
+                    CargarLista(ListaProductos);
+                }
+                else
+                {
+                    CargarLista();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+            }
+        }
+
+        protected void btnEliminarProd_Click(object sender, EventArgs e)
+        {
+            ProductoManager manager = new ProductoManager();
+            string idProd = hiddenFieldIdEmpleado.Value;
+            try
+            {
+                manager.Baja(int.Parse(idProd));
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+            }
+
+            CargarLista();
+        }
+
+
         //funciones
 
         public void CargarLista()
@@ -101,28 +142,5 @@ namespace WebApplication1.ViewCommon
             return aux;
         }
 
-        protected void ddlCategorias_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int idCategoria = int.Parse(ddlCategorias.SelectedValue);
-
-            try
-            {
-                if (idCategoria != 0)
-                {
-                    ListaProductos = ObtenerTodosProductos().Where(
-                        empl => empl.Categoria.IdCategoria != null && empl.Categoria.IdCategoria == idCategoria).ToList();
-                    CargarLista(ListaProductos);
-                }
-                else
-                {
-                    CargarLista();
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
-            }
-        }
     }
 }
