@@ -14,8 +14,8 @@
 
             // Almacenar el valor en el campo oculto
             $('#<%= hiddenFieldIdEmpleado.ClientID %>').val(idEmpleado);
-    });
-</script>
+        });
+    </script>
 
     <h2>Lista de Productos</h2>
 
@@ -36,6 +36,20 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--Categoria-->
+                    <div class="col-3">
+                        <asp:DropDownList ID="ddlCategorias" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
+                            BackColor="white" ForeColor="black" Font-Size="Large" AutoPostBack="true" OnSelectedIndexChanged="ddlCategorias_SelectedIndexChanged">
+                            <asp:ListItem Text="Todos las categorias" Value="0" />
+                            <asp:ListItem Text="Cafeteria" Value="1" />
+                            <asp:ListItem Text="Entradas" Value="2" />
+                            <asp:ListItem Text="Comidas" Value="3" />
+                            <asp:ListItem Text="Postres" Value="4" />
+                            <asp:ListItem Text="Bebidas" Value="5" />
+                        </asp:DropDownList>
+                    </div>
+
                 </div>
 
                 <!-- Botón de Agregar Producto -->
@@ -54,6 +68,7 @@
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Categoria</th>
                                     <th scope="col">Stock</th>
+                                    <th scope="col">Estado</th>
                                     <th scope="col">Opciones</th>
                                 </tr>
                             </thead>
@@ -66,6 +81,7 @@
                             <td><%# Eval("Nombre") %></td>
                             <td><%# Eval("Categoria.Nombre") %></td>
                             <td><%# Eval("Stock") %></td>
+                            <td><%# Eval("Estado") %></td>
                             <td>
                                 <asp:Button ID="btnEditarEmpleado" class="btn btn-primary btn-sm" Text="Editar" runat="server"
                                     CommandArgument='<%# Eval("IdProducto") %>' />

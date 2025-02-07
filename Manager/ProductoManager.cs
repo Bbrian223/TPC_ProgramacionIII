@@ -18,13 +18,14 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("select IDPRODUCTO,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,ESTADO  from vw_ListaProductos");
+                datos.SetearConsulta("select IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,ESTADO  from vw_ListaProductos");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Producto prod = new Producto();
                     prod.IdProducto = (long)datos.Lector["IDPRODUCTO"];
+                    prod.Categoria.IdCategoria = (long)datos.Lector["IDCATEGORIA"];
                     prod.Categoria.Nombre = (string)datos.Lector["CATEGORIA"];
                     prod.Nombre = (string)datos.Lector["NOMBRE"];
                     prod.Precio = (decimal)datos.Lector["PRECIO"];

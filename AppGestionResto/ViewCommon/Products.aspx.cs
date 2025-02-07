@@ -16,36 +16,62 @@ namespace WebApplication1.ViewCommon
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Seguridad.NivelAcceso != UserType.Gerente) 
+            if (Seguridad.NivelAcceso != UserType.Gerente)
             {
                 Response.Redirect("~/ViewsStaff/HomeStaff.aspx", false);
             }
 
 
-            if (!IsPostBack) 
+            if (!IsPostBack)
             {
-                CargarLista( ObtenerTodosProductos() );
+                CargarLista();
             }
         }
 
         protected void txtNombreFiltro_TextChanged(object sender, EventArgs e)
         {
+            string nombre = txtNombreFiltro.Text.Trim();
 
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                CargarLista();
+            }
+            else
+            {
+                btnBuscarNombre_Click(sender, e);
+            }
         }
 
         protected void btnBuscarNombre_Click(object sender, EventArgs e)
         {
+            string nombre = txtNombreFiltro.Text;
+            ListaProductos = ObtenerTodosProductos().Where(
+                empl => empl.Nombre != null && empl.Nombre.IndexOf(nombre, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            CargarLista(ListaProductos);
 
         }
 
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/ViewCommon/AddProduct.aspx",false);
+            Response.Redirect("~/ViewCommon/AddProduct.aspx", false);
         }
 
         //funciones
 
-        public void CargarLista(List<Producto> lista) 
+        public void CargarLista()
+        {
+            try
+            {
+                repeaterProductos.DataSource = ObtenerTodosProductos();
+                repeaterProductos.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+            }
+        }
+
+        public void CargarLista(List<Producto> lista)
         {
             try
             {
@@ -58,7 +84,7 @@ namespace WebApplication1.ViewCommon
             }
         }
 
-        public List<Producto> ObtenerTodosProductos() 
+        public List<Producto> ObtenerTodosProductos()
         {
             ProductoManager manager = new ProductoManager();
             List<Producto> aux = new List<Producto>();
@@ -73,6 +99,30 @@ namespace WebApplication1.ViewCommon
             }
 
             return aux;
+        }
+
+        protected void ddlCategorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idCategoria = int.Parse(ddlCategorias.SelectedValue);
+
+            try
+            {
+                if (idCategoria != 0)
+                {
+                    ListaProductos = ObtenerTodosProductos().Where(
+                        empl => empl.Categoria.IdCategoria != null && empl.Categoria.IdCategoria == idCategoria).ToList();
+                    CargarLista(ListaProductos);
+                }
+                else
+                {
+                    CargarLista();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+            }
         }
     }
 }

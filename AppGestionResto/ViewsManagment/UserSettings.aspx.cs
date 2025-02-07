@@ -33,43 +33,34 @@ namespace WebApplication1.ViewsManagment
         protected void btnBuscarDni_Click(object sender, EventArgs e)
         {
             string dni = txtDniFiltro.Text;
-            txtDniFiltro.AutoPostBack = false;
             txtApellidoFiltro.Text = string.Empty;
             txtNombreFiltro.Text = string.Empty;
 
             listaEmpleados = ObtenerListaEmpl().Where(empl => empl.Documento == dni).ToList();
             repeaterEmpleados.DataSource = listaEmpleados;
             repeaterEmpleados.DataBind();
-
-            txtDniFiltro.AutoPostBack = true;
         }
 
         protected void btnBuscarApellido_Click(object sender, EventArgs e)
         {
             string apellido = txtApellidoFiltro.Text;
-            txtApellidoFiltro.AutoPostBack = false;
             txtNombreFiltro.Text = string.Empty;
             txtDniFiltro.Text = string.Empty;
 
             listaEmpleados = ObtenerListaEmpl().Where(empl => empl.Apellido == apellido).ToList();
             repeaterEmpleados.DataSource = listaEmpleados;
             repeaterEmpleados.DataBind();
-
-            txtApellidoFiltro.AutoPostBack = true;
         }
 
         protected void btnBuscarNombre_Click(object sender, EventArgs e)
         {
             string nombre = txtNombreFiltro.Text;
-            txtNombreFiltro.AutoPostBack = false;
             txtApellidoFiltro.Text = string.Empty;
             txtDniFiltro.Text = string.Empty;
 
             listaEmpleados = ObtenerListaEmpl().Where(empl => empl.Nombre == nombre).ToList();
             repeaterEmpleados.DataSource = listaEmpleados;
             repeaterEmpleados.DataBind();
-
-            txtNombreFiltro.AutoPostBack = true;
         }
 
         protected void btnEliminarEmpleado_Click(object sender, EventArgs e)
@@ -104,9 +95,13 @@ namespace WebApplication1.ViewsManagment
         {
             string dni = txtDniFiltro.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(dni)) 
+            if (string.IsNullOrWhiteSpace(dni))
             {
                 CargarListaEnPantalla();
+            }
+            else 
+            {
+                btnBuscarDni_Click(sender,e);
             }
         }
 
@@ -118,6 +113,10 @@ namespace WebApplication1.ViewsManagment
             {
                 CargarListaEnPantalla();
             }
+            else
+            {
+                btnBuscarApellido_Click(sender, e);
+            }
         }
 
         protected void txtNombreFiltro_TextChanged(object sender, EventArgs e)
@@ -127,6 +126,10 @@ namespace WebApplication1.ViewsManagment
             if (string.IsNullOrWhiteSpace(nombre))
             {
                 CargarListaEnPantalla();
+            }
+            else
+            {
+                btnBuscarNombre_Click(sender, e);
             }
         }
 

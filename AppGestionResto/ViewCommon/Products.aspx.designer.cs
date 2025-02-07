@@ -33,6 +33,15 @@ namespace WebApplication1.ViewCommon
         protected global::System.Web.UI.WebControls.Button btnBuscarNombre;
 
         /// <summary>
+        /// Control ddlCategorias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategorias;
+
+        /// <summary>
         /// Control btnAgregarProducto.
         /// </summary>
         /// <remarks>
