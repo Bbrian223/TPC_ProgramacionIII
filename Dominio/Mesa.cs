@@ -8,9 +8,15 @@ namespace Dominio
 {
     public class Mesa
     {
-        public int IdMesa { get; set; }
-        public int Numero { get; set; }
-        public string Estado { get; set; }
+        public long IdMesa { get; set; }
+        public long IdSalon { get; set; }
+        public string EstadoMesa { get; set; }
         public Usuario UsuarioAsignado { get; set; }
+        public bool Habilitado { get; set; }
+
+        public Mesa()
+        { 
+            UsuarioAsignado = new Usuario();
+        }
     }
 }

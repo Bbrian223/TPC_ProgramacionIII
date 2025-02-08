@@ -153,6 +153,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="ViewsManagment\AddProduct.aspx" />
     <Content Include="ViewCommon\Login.aspx" />
+    <Content Include="ViewsManagment\MesasSettings.aspx" />
     <Content Include="ViewsManagment\ProductSettings.aspx" />
     <Content Include="ViewCommon\Site.Master" />
     <Content Include="ViewsManagment\AddUser.aspx" />
@@ -185,6 +186,13 @@
     </Compile>
     <Compile Include="ViewCommon\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsManagment\MesasSettings.aspx.cs">
+      <DependentUpon>MesasSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsManagment\MesasSettings.aspx.designer.cs">
+      <DependentUpon>MesasSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewsManagment\ProductSettings.aspx.cs">
       <DependentUpon>ProductSettings.aspx</DependentUpon>

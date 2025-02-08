@@ -102,7 +102,7 @@
                     <div class="collapse" id="collapseAdministracion">
                         <ul class="nav flex-column ps-3">
                             <li><a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/UserSettings.aspx") %>">Usuarios</a></li>
-                            <li><a class="nav-link text-white" href="#">Salon</a></li>
+                            <li><a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/MesasSettings.aspx") %>">Mesas</a></li>
                         </ul>
                     </div>
                 </li>

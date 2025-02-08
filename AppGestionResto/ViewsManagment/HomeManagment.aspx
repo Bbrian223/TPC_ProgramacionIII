@@ -14,12 +14,13 @@
             font-weight: bold;
             border-radius: 8px;
             transition: transform 0.2s, background-color 0.2s;
+            margin: 20px; 
         }
 
         .mesa-cuadrado:hover {
             transform: scale(1.1);
-            background-color: #218838; /* Verde más oscuro en hover */
-            color:gray;
+            background-color: #218838; 
+            color:whitesmoke;
         }
 
         /* Ejemplo de estados */
@@ -27,20 +28,32 @@
             background-color: #dc3545; /* Rojo para ocupada */
         }
 
+        .mesa-ocupada:hover {
+            transform: scale(1.1);
+            background-color: #da1b2e; 
+            color:whitesmoke;
+        }
+
+        .mesa-pendiente {
+            background-color: #f5ed35; /* Amarillo para pendiente */
+        }
+
+        .mesa-pendiente:hover {
+            transform: scale(1.1);
+            background-color: #e4db17;
+            color:whitesmoke;
+        }
+
         .mesa-cerrada {
             background-color: #6c757d; /* Gris para cerrada */
         }
+
+        .mesa-cerrada:hover {
+            transform: scale(1.1);
+            background-color: #6a757d;
+            color:whitesmoke;
+        }
     </style>
-
-    <script>
-
-        document.querySelectorAll('.mesa-cuadrado').forEach(mesa => {
-            mesa.addEventListener('click', () => {
-                const idMesa = mesa.getAttribute('id').split('-')[1];
-                window.location.href = `MesaDetalle.aspx?id=${idMesa}`;
-            });
-        });
-    </script>
 
 
     <h2>Mesas</h2>
@@ -48,18 +61,10 @@
     <hr class="my-4" />
 
     <div class="container mt-4">
-        <div class="row">
+        <div class="row" id="ContenedorMesas" runat="server">
+                    
             <!-- 5 filas con 5 mesas cada una -->
-            <% for (int i = 1; i <= 24; i++)
 
-                { %>
-            <div class="col-2 d-flex justify-content-center mb-3">
-                <a href="MesaDetalle.aspx?id=<%= i %>"
-                    class="mesa-cuadrado text-decoration-none text-center"
-                    id="mesa-<%= i %>">Mesa <%= i %>
-            </a>
-            </div>
-            <% } %>
         </div>
     </div>
 
