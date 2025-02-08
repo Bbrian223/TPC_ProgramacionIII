@@ -13,5 +13,10 @@ namespace WebApplication1.ViewsManagment
         {
 
         }
+
+        protected void rdbtnTodasMesas_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

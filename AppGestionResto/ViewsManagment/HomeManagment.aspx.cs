@@ -27,7 +27,7 @@ namespace WebApplication1.ViewsManagment
             // Cambia la clase del botón seleccionado
             //clickedButton.CssClass = "mesa-cuadrado mesa-ocupada";
 
-            Response.Write("<script>alert(' MESA SELECCIONADA: : " + mesaSeleccionada + "');</script>");
+            Response.Write("<script>alert(' MESA SELECCIONADA: " + mesaSeleccionada + "');</script>");
 
         }
 
@@ -58,7 +58,9 @@ namespace WebApplication1.ViewsManagment
                 foreach (Mesa item in listaMesas)
                 {
                     Button btnMesa = new Button();
-                    btnMesa.ID = "Mesa_" + (int)item.IdMesa;
+                    int idMesa = (int)item.IdMesa;
+
+                    btnMesa.ID = idMesa.ToString() ;
                     btnMesa.Text = "Mesa " + (int)item.IdMesa;
                     btnMesa.Click += BtnMesa_Click; // manejar evento
 
