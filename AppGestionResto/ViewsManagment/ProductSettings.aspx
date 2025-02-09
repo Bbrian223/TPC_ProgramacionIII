@@ -116,7 +116,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <asp:Button ID="btnEliminarProd" CssClass="btn btn-danger" runat="server" Text="Eliminar"  OnClick="btnEliminarProd_Click"/>
+                                <asp:Button ID="btnEliminarProd" CssClass="btn btn-danger" runat="server" Text="Eliminar" OnClick="btnEliminarProd_Click" />
                             </div>
                         </div>
                     </div>

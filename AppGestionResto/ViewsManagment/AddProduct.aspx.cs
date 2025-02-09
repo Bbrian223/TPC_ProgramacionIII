@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -17,18 +18,20 @@ namespace WebApplication1.ViewCommon
         {
             if (Seguridad.NivelAcceso != UserType.Gerente)
             {
-                Response.Redirect("~/ViewsManagment/HomeManagment.aspx",false);
+                Response.Redirect("~/ViewsManagment/HomeManagment.aspx", false);
             }
 
             if (!IsPostBack)
             {
                 BorrarDatos();
             }
+
+            CargarImagen();
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/ViewsManagment/ProductSettings.aspx",false);
+            Response.Redirect("~/ViewsManagment/ProductSettings.aspx", false);
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -55,21 +58,23 @@ namespace WebApplication1.ViewCommon
                 switch (ddlCategorias.SelectedValue)
                 {
                     case "2":   //entradas
-                        manager.AgregarEntrada(nuevoProd,chkIndividual.Checked);
+                        manager.AgregarEntrada(nuevoProd, chkIndividual.Checked);
                         break;
 
                     case "4":   //postre
-                        manager.AgregarPostre(nuevoProd,chkAzucar.Checked,chkGluten.Checked);    
+                        manager.AgregarPostre(nuevoProd, chkAzucar.Checked, chkGluten.Checked);
                         break;
-                    
+
                     case "5":   //bebida
-                        manager.AgregarBebida(nuevoProd,int.Parse(txtVolumen.Text),chkAlcohol.Checked);
+                        manager.AgregarBebida(nuevoProd, int.Parse(txtVolumen.Text), chkAlcohol.Checked);
                         break;
 
                     default:    // general
                         manager.AgregarProd(nuevoProd);
                         break;
                 }
+
+                GuardarImagen();
 
             }
             catch (Exception ex)
@@ -84,7 +89,7 @@ namespace WebApplication1.ViewCommon
 
         //funciones
 
-        public void BorrarDatos() 
+        public void BorrarDatos()
         {
             txtNombre.Text = string.Empty;
             txtPrecio.Text = string.Empty;
@@ -99,6 +104,9 @@ namespace WebApplication1.ViewCommon
             ddlCategorias.SelectedValue = "0";
             lblErrores.Visible = false;
             txtBxDescripcion.Text = string.Empty;
+
+            Session["file"] = null;
+            imgPreview.ImageUrl = string.Empty;
         }
 
         private bool ValidarCampos()
@@ -162,6 +170,62 @@ namespace WebApplication1.ViewCommon
             panelMsgLbl.CssClass = "MsgSucces";
             lblErrores.Text = "Producto Guardado con Exito !!!";
             lblErrores.Visible = true;
+        }
+
+        private void CargarImagen()
+        {
+
+            try
+            {
+                if (fileUploadImagen.HasFile)
+                {
+                    Session.Add("file", fileUploadImagen);
+                }
+
+                if (Session["file"] != null)
+                {
+                    FileUpload file = (FileUpload)Session["file"];
+
+                    byte[] imagenBytes = file.FileBytes;
+                    string base64String = Convert.ToBase64String(imagenBytes);
+                    imgPreview.ImageUrl = "data:image/png;base64," + base64String;
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Error: " + ex.Message);
+            }
+
+        }
+
+        public void GuardarImagen()
+        {
+            string rutaCarpeta, nombreArchivo, rutaCompleta, rutaDB;
+
+            try
+            {
+                FileUpload file = (FileUpload)Session["file"];
+
+                rutaCarpeta = Server.MapPath("~/Database/ImagenesProductos/"); // Carpeta en el servidor
+                nombreArchivo = Path.GetFileName(file.FileName);
+                rutaCompleta = Path.Combine(rutaCarpeta, nombreArchivo);
+
+                // Guardar la imagen en el servidor
+                file.SaveAs(rutaCompleta);
+
+                // Guardar la ruta relativa en la base de datos
+                rutaDB = "~/Database/ImagenesProductos/" + nombreArchivo;
+
+                // Guardar en la base de datos
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+      
         }
 
     }

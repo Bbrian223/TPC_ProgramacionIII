@@ -29,19 +29,19 @@
 
         <div class="container-fluid vh-100">
             <div class="row h-100">
-                <!-- Columna izquierda (30%) -->
+                <!-- Columna izquierda (70%) -->
                 <div class="col-8 bg-primary text-white d-flex align-items-center justify-content-center">
-                    <h2>Sección Izquierda</h2>
+                    <h2>Productos</h2>
                 </div>
 
-                <!-- Columna derecha (70%) -->
+                <!-- Columna derecha (30%) -->
                 <div class="col-4 bg-success text-white d-flex align-items-center justify-content-center">
-                    <h2>Sección Derecha</h2>
+                    <h2>Detalles del pedido</h2>
                 </div>
             </div>
         </div>
 
-
+        
 
 
 

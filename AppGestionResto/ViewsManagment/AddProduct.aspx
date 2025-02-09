@@ -39,8 +39,6 @@
      </style>
 
 
-
-
     <h2>+ Agregar Producto</h2>
 
     <hr class="my-4" />
@@ -52,8 +50,12 @@
             <asp:Label ID="lblErrores" runat="server" Visible="false"></asp:Label>
         </asp:Panel>
 
-        <div id="imagePreview" class="image-circle mx-auto mb-3"></div>
-        <asp:FileUpload ID="fileUploadImagen" runat="server" CssClass="form-control-file mx-auto d-block" />
+        <div class="d-flex justify-content-center">
+            <asp:Image ID="imgPreview" CssClass="image-circle mb-3" runat="server" />
+        </div>
+
+        <asp:FileUpload ID="fileUploadImagen" runat="server" CssClass="form-control" onchange="javascript:__doPostBack('<%= fileUploadImagen.ClientID %>', '');"
+            />
 
         <div class="row justify-content-center" style="margin-top: 20px">
             <!--Categoria-->
