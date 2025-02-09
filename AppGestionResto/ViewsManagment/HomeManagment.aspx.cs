@@ -27,7 +27,8 @@ namespace WebApplication1.ViewsManagment
             // Cambia la clase del botón seleccionado
             //clickedButton.CssClass = "mesa-cuadrado mesa-ocupada";
 
-            Response.Write("<script>alert(' MESA SELECCIONADA: " + mesaSeleccionada + "');</script>");
+            Response.Redirect("~/ViewCommon/OrderDetail.aspx?mesa="+mesaSeleccionada, false);
+            //Response.Write("<script>alert(' MESA SELECCIONADA: " + mesaSeleccionada + "');</script>");
 
         }
 
