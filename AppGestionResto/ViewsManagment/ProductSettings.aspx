@@ -64,7 +64,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Foto</th>
+                                    <th scope="col">Imagen</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Categoria</th>
                                     <th scope="col">Stock</th>
@@ -77,7 +77,7 @@
                     <ItemTemplate>
                         <tr>
                             <td><%# Eval("IdProducto") %></td>
-                            <td><%# Eval("Nombre") %></td>
+                            <td><asp:Image ID="imgProducto" runat="server" CssClass="img-thumbnail" Width="80px" Height="80px" ImageUrl='<%# ResolveUrl(Eval("Imagen.DirComp").ToString()) %>' /></td>
                             <td><%# Eval("Nombre") %></td>
                             <td><%# Eval("Categoria.Nombre") %></td>
                             <td><%# Eval("Stock") %></td>

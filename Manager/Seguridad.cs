@@ -12,7 +12,6 @@ namespace Dominio
     {
         private static UserType nivelAcceso;
 
-
         public static UserType NivelAcceso 
         {
             get { return nivelAcceso; } 

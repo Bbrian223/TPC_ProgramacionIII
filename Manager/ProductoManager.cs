@@ -18,7 +18,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("select IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,ESTADO  from vw_ListaProductos");
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaProductos");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -31,6 +31,8 @@ namespace Manager
                     prod.Precio = (decimal)datos.Lector["PRECIO"];
                     prod.stock = (int)datos.Lector["STOCK"];
                     prod.Descripcion = (string)datos.Lector["DESCRIPCION"];
+                    prod.Imagen.IdImagen = (long)datos.Lector["IDIMAGEN"];
+                    prod.Imagen.NombreArch = (string)datos.Lector["ARCHNOMB"];
                     prod.Estado = (bool)datos.Lector["ESTADO"];
 
                     lista.Add(prod);
@@ -165,6 +167,34 @@ namespace Manager
             }
             catch (Exception)
             {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public long UltimoId()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            long id = -1;
+
+            try
+            {
+                datos.SetearConsulta("SELECT MAX(IDPRODUCTO) AS ID FROM Productos;");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    id = (long)datos.Lector["ID"];
+                }
+
+                return id;
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
             finally

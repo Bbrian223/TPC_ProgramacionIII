@@ -33,7 +33,7 @@ namespace WebApplication1.ViewCommon
                         InputError();
                         break;
                     case UserType.Gerente:
-
+                        
                         Response.Redirect("~/ViewsManagment/HomeManagment.aspx", false);
                         break;
                     case UserType.Mozo:

@@ -74,7 +74,7 @@ namespace WebApplication1.ViewCommon
                         break;
                 }
 
-                GuardarImagen();
+                GuardarImagen(manager.UltimoId());
 
             }
             catch (Exception ex)
@@ -199,25 +199,20 @@ namespace WebApplication1.ViewCommon
 
         }
 
-        public void GuardarImagen()
+        public void GuardarImagen(long id)
         {
-            string rutaCarpeta, nombreArchivo, rutaCompleta, rutaDB;
+            string rutaCarpeta, nombreArchivo, rutaCompleta;
 
             try
             {
                 FileUpload file = (FileUpload)Session["file"];
 
-                rutaCarpeta = Server.MapPath("~/Database/ImagenesProductos/"); // Carpeta en el servidor
-                nombreArchivo = Path.GetFileName(file.FileName);
+                rutaCarpeta = Server.MapPath("~/Database/Imagenes/Productos/"); // Carpeta en el servidor
+                nombreArchivo = "producto-" + id.ToString() + ".jpg";
                 rutaCompleta = Path.Combine(rutaCarpeta, nombreArchivo);
 
-                // Guardar la imagen en el servidor
+                // Guardar la imagen en la carpeta del servidor
                 file.SaveAs(rutaCompleta);
-
-                // Guardar la ruta relativa en la base de datos
-                rutaDB = "~/Database/ImagenesProductos/" + nombreArchivo;
-
-                // Guardar en la base de datos
 
             }
             catch (Exception)

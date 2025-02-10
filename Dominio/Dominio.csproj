@@ -47,6 +47,7 @@
     <Compile Include="Comidas.cs" />
     <Compile Include="Direccion.cs" />
     <Compile Include="Entradas.cs" />
+    <Compile Include="ImagenProd.cs" />
     <Compile Include="Mesa.cs" />
     <Compile Include="Pedido.cs" />
     <Compile Include="Empleado.cs" />

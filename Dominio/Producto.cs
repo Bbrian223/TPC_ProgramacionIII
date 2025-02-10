@@ -10,6 +10,7 @@ namespace Dominio
     {
         public long IdProducto { get; set; }
         public CategoriaProducto Categoria { get; set; }
+        public ImagenProd Imagen { get; set; }
         public string Nombre { get; set; }
         public decimal Precio { get; set; }
         public int stock { get; set; }
@@ -19,6 +20,7 @@ namespace Dominio
         public Producto()
         {
             Categoria = new CategoriaProducto();
+            Imagen = new ImagenProd();
         }
     }
 }
