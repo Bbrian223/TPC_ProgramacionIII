@@ -63,6 +63,24 @@ INNER JOIN Categorias C ON  P.IDCATEGORIA = C.IDCATEGORIA
 INNER JOIN Imagenes I ON P.IDPRODUCTO = I.IDPRODUCTO
 GO
 
+-- Lista de Guarniciones
+CREATE VIEW vw_ListaGuarniciones
+AS
+SELECT* FROM vw_ListaProductos WHERE IDCATEGORIA = 6
+GO
+
+-- Lista de Leches
+CREATE VIEW vw_ListaLeches
+AS
+SELECT* FROM vw_ListaProductos WHERE IDCATEGORIA = 7
+GO
+
+-- Lista de Tazas
+CREATE VIEW vw_ListaTazas
+AS
+SELECT* FROM vw_ListaProductos WHERE IDCATEGORIA = 8
+GO
+
 -- Agregar producto
 CREATE PROCEDURE sp_AgregarProd(
 	@pIdCategoria BIGINT,
@@ -163,4 +181,68 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE sp_AgregarProdExtra(
+	@pIdCategoria BIGINT,
+	@pNombre VARCHAR(100),
+	@pPrecio MONEY,
+	@pStock int,
+	@pDescripcion TEXT
+	)AS
+BEGIN 
+	DECLARE @IdProducto BIGINT
 
+	INSERT Productos (IDCATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION)
+	VALUES (@pIdCategoria,@pNombre,@pPrecio,@pStock,@pDescripcion)
+
+	SELECT @IdProducto = IDENT_CURRENT('Productos')
+
+	INSERT INTO Imagenes (IDPRODUCTO, NOMBRE)
+	VALUES (@IdProducto, 'sin-imagen');		
+
+END
+GO
+
+
+EXEC sp_AgregarProd '1','Cafe solo','1500','120','Cafe de maquina solo'
+EXEC sp_AgregarProd '1','Cafe con leche','2000','120','Cafe de maquina con leche'
+EXEC sp_AgregarProd '1','Latte Clasico','2500','80','20% Cafe y 80% leche'
+EXEC sp_AgregarProd '1','Capuchino Clasico','2500','60','Cafe, leche embulsionada con canela y cacao'
+EXEC sp_AgregarProd '1','Te negro ','1500','120','Te negro ingles clasico'
+
+EXEC sp_AgregarProdEntr 'Tequeños','11000','20','6 unidades de de masa de harina de trigo frita, rellena de queso blanco','0'
+EXEC sp_AgregarProdEntr 'Papas Bravas','12300','27','papas fritas con salsa chedar, verdeo y panceta','0'
+EXEC sp_AgregarProdEntr 'Chicken Fingers','14200','18','Tiras de pollo frito con salsas aioli i bbq','0'
+EXEC sp_AgregarProdEntr 'Empanada Frita','5000','44','Empanadas de Carne cortada a cuchillo fritas','1'
+EXEC sp_AgregarProdEntr 'Bocaditos de Espinaca','3000','64','5 unidades de bocaditos de espinaca y muzzarella','1'
+
+EXEC sp_AgregarProd '3','Milanesa de carne','8200','60','Milanesa de Carne sola con guarnicion'
+EXEC sp_AgregarProd '3','Milanesa de Pollo','7200','80','Milanesa de Pollo sola con guarnicion'
+EXEC sp_AgregarProd '3','Milanesa Napolitana','10500','80','Milanesa de carne o pollo a la napolitana con guarnicion'
+EXEC sp_AgregarProd '3','Ravioles de ricota','11000','60','Ravioles de Ricota con salsa a eleccion'
+EXEC sp_AgregarProd '3','Hamburguesa completa','9000','33','Hamburguesa con jamon, queso, lechuga, tomate y huevo con guarnicion'
+
+EXEC sp_AgregarProdPost 'Flan casero','4100','25','Flan casero solo','1','1'
+EXEC sp_AgregarProdPost 'Flan sing gluten','5100','10','Flan sin gluten','1','0'
+EXEC sp_AgregarProdPost 'Budin de Pan','4100','25','Budin casero solo','1','1'
+EXEC sp_AgregarProdPost 'Ensalada de Frutas','5000','10','Ensalada de frutas de estacion sin agregados','0','0'
+EXEC sp_AgregarProdPost 'Helado tricolor','4200','20','Helado de chocolate, frutilla y vainilla','1','1'
+
+EXEC sp_AgregarProdBeb 'Agua','1000','100','Agua mineral sin gas','0','500'
+EXEC sp_AgregarProdBeb 'Agua c/gas','1000','100','Agua mineral con gas','0','500'
+EXEC sp_AgregarProdBeb 'Coca Cola','3000','80','Coca-Cola Orignial','0','500'
+EXEC sp_AgregarProdBeb 'Cerveza Corona','3000','40','Cerveza Corona Orignial','1','500'
+EXEC sp_AgregarProdBeb 'Limonada Clasica','5500','20','Jugo de limon, agua, menta, jemgibre y azucar','0','1500'
+
+EXEC sp_AgregarProdExtra '6','Papas Fritas','0','1200','Papas Fritas caseras'
+EXEC sp_AgregarProdExtra '6','Pure de Papas','0','1200','Pure de papa'
+EXEC sp_AgregarProdExtra '6','Ensalada','0','1200','Ensalada 3 ingredientes'
+EXEC sp_AgregarProdExtra '6','Papas al Horno','0','1200','Papas al Horno'
+
+
+EXEC sp_AgregarProdExtra '7','Entera','0','1200','Leche Entera'
+EXEC sp_AgregarProdExtra '7','Descremada','1000','1200','Leche Descremada'
+EXEC sp_AgregarProdExtra '7','Almendras','2000','1200','Leche de Almendras'
+EXEC sp_AgregarProdExtra '7','Coco','2000','1200','Leche de Coco'
+
+EXEC sp_AgregarProdExtra '8','Mediano','0','1200','Taza mediana, tamaño normal'
+EXEC sp_AgregarProdExtra '8','Grande','1000','1200','Taza Grande'

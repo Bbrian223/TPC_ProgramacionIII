@@ -80,16 +80,20 @@
         .btnAgregar {
             border-radius: 8px;
         }
+
+        .lbldetalle {
+            margin-bottom:20px;
+        }
     </style>
 
 
     <form id="form1" runat="server">
 
-        <nav class="navbar navbar-light bg-light">
+        <nav class="navbar navbar-dark bg-dark" >
             <div class="container-fluid">
-                <asp:Button ID="btnCerraVentana" runat="server" CssClass="btn-close" OnClick="btnCerraVentana_Click" />
+                <asp:Button ID="btnCerraVentana" runat="server" CssClass="btn-close btn-close-white" OnClick="btnCerraVentana_Click" />
 
-                <h4 style="margin-right: 90px">Detalle de pedido Mesa:
+                <h4 style="margin-right: 90px; color:;">Detalle de pedido Mesa:
                     <asp:Label ID="lblIdMesa" runat="server" /></h4>
             </div>
         </nav>
@@ -110,8 +114,8 @@
                                         <div class="row">
                                             <asp:Label CssClass="card-text" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
                                         </div>
-                                        <asp:Button ID="btnAgregarProd" Text="Agregar" runat="server" CssClass="btn btn-primary btn-sm"
-                                            OnClick="btnAgregarProd_Click" CommandArgument='<%# Eval("IdProducto") %>' />
+                                        <asp:Button ID="btnVistaPrevia" Text="Agregar" runat="server" CssClass="btn btn-primary btn-sm"
+                                            OnClick="btnVistaPrevia_Click" CommandArgument='<%# Eval("IdProducto") %>' />
                                     </div>
 
                                 </asp:Panel>
@@ -122,7 +126,7 @@
                 </div>
 
                 <!-- Columna derecha (30%) -->
-                <div class="col-4 bg-success text-white ">
+                <div class="col-4 text-black" style="background-color: #343a40;">
                     <h2>Detalles del pedido</h2>
                 </div>
             </div>
@@ -184,12 +188,14 @@
                             <%if (IdCategoria == 1) // cafeteria
                                 { %>
                             <div class="col-3">
+                                <asp:Label Text="Tipo de Leche" runat="server" CssClass="lbldetalle"/>
                                 <asp:DropDownList ID="ddlTipoLeche" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
                                     BackColor="white" ForeColor="black" Font-Size="Large">
                                 </asp:DropDownList>
                             </div>
 
                             <div class="col-3">
+                                <asp:Label Text="Tamaño cafe" runat="server" CssClass="lbldetalle"/>
                                 <asp:DropDownList ID="ddlTamanio" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
                                     BackColor="white" ForeColor="black" Font-Size="Large">
                                 </asp:DropDownList>
@@ -202,6 +208,7 @@
 
                                 { %>
                             <div class="col-3">
+                                <asp:Label Text="Guarnicion" runat="server" CssClass="lbldetalle"/>
                                 <asp:DropDownList ID="ddlGuarniciones" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
                                     BackColor="white" ForeColor="black" Font-Size="Large">
                                 </asp:DropDownList>

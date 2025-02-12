@@ -50,13 +50,13 @@ namespace WebApplication1.ViewCommon
             }
         }
 
-        protected void btnAgregarProd_Click(object sender, EventArgs e)
+        protected void btnVistaPrevia_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             string idProducto = btn.CommandArgument;
 
             CargarProdSeleccionado(int.Parse(idProducto));
-
+            CargarDropDownList();
 
             ClientScript.RegisterStartupScript(this.GetType(), "EjecutarAlgo", "var modal = new bootstrap.Modal(document.getElementById('modalDetalles')); modal.show();", true);
 
@@ -118,8 +118,31 @@ namespace WebApplication1.ViewCommon
         }
 
         public void CargarDropDownList() 
-        { 
-            // 3 ddl --> tipo leche, tamanio, guarnicion
+        {
+            ProductoManager manager = new ProductoManager();
+
+            try
+            {
+                ddlGuarniciones.DataSource = manager.ObtnerGuarniciones();
+                ddlTipoLeche.DataSource = manager.ObtnerTipoLeche();
+                ddlTamanio.DataSource = manager.ObtnerTamanioTaza();
+
+                ddlGuarniciones.DataTextField = "Nombre";
+                ddlGuarniciones.DataValueField = "IdProducto";
+                ddlGuarniciones.DataBind();
+
+                ddlTipoLeche.DataTextField = "Nombre";
+                ddlTipoLeche.DataValueField = "IdProducto";
+                ddlTipoLeche.DataBind();
+
+                ddlTamanio.DataTextField = "Nombre";
+                ddlTamanio.DataValueField = "IdProducto";
+                ddlTamanio.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
         }
     }
 }
