@@ -16,7 +16,7 @@ namespace WebApplication1.ViewsManagment
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CargarMesas();   
+            CargarMesas();
         }
 
         protected void BtnMesa_Click(object sender, EventArgs e)
@@ -91,6 +91,7 @@ namespace WebApplication1.ViewsManagment
                 throw;
             }
         }
+
 
     }
 }

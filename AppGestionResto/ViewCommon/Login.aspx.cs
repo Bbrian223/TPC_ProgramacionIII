@@ -43,6 +43,7 @@ namespace WebApplication1.ViewCommon
                 }
 
                 Session.Add("User", nuevoUsuario);
+                GuardarEmpleado((int)nuevoUsuario.idusuario);
             }
             catch (Exception ex)
             {
@@ -57,6 +58,22 @@ namespace WebApplication1.ViewCommon
             userErrorMsg.Style["display"] = "block";
             txtPassword.CssClass += " is-invalid";
             errorMessage.Style["display"] = "block";
+        }
+
+        public void GuardarEmpleado(int idusuario)
+        {
+            EmpleadoManager manager = new EmpleadoManager();
+            Empleado emplActual = new Empleado();
+
+            try
+            {
+                emplActual = manager.Obtener(idusuario);
+                Session.Add("Empleado", emplActual);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
     }

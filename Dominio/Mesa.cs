@@ -17,6 +17,7 @@ namespace Dominio
         public Mesa()
         { 
             UsuarioAsignado = new Usuario();
+            EstadoMesa = string.Empty;
         }
     }
 }

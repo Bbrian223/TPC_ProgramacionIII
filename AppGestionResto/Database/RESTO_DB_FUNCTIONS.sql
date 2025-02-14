@@ -129,7 +129,6 @@ BEGIN
 END
 GO
 
-
 -- Agregar producto de Postres
 CREATE PROCEDURE sp_AgregarProdPost(
 	@pNombre VARCHAR(100),
@@ -181,6 +180,7 @@ BEGIN
 END
 GO
 
+-- Agregar productoS Extra
 CREATE PROCEDURE sp_AgregarProdExtra(
 	@pIdCategoria BIGINT,
 	@pNombre VARCHAR(100),
@@ -202,6 +202,75 @@ BEGIN
 END
 GO
 
+/*		Ventas		*/
+
+--	Lista de Productos asignados a una mesa y un pedido
+CREATE FUNCTION fn_ObtenerProductos(@IDMESA BIGINT)
+RETURNS TABLE
+AS
+RETURN
+(
+SELECT D.IDDETALLE,D.IDPEDIDO,D.IDPRODUCTO,LP.IDCATEGORIA,LP.CATEGORIA,LP.NOMBRE,LP.PRECIO,
+	   LP.STOCK,LP.DESCRIPCION,LP.IDIMAGEN,LP.ARCHNOMB,D.CANTIDAD,D.SUBTOTAL FROM Pedidos P 
+INNER JOIN Mesas M ON P.IDMESA = M.IDMESA
+INNER JOIN DetallesPedido D ON P.IDPEDIDO = D.IDPEDIDO
+INNER JOIN vw_ListaProductos LP ON D.IDPRODUCTO = LP.IDPRODUCTO
+WHERE 
+	P.IDMESA = @IDMESA 
+	AND P.ESTADO = 'EN PROCESO' 
+	AND M.ESTADO = 'OCUPADA'
+	AND LP.ESTADO = '1'
+);
+GO
+
+-- Tabla para obtener el pedido pendiente para la mesa indicada
+CREATE FUNCTION fn_ObtenerPedido(@IDMESA BIGINT)
+RETURNS TABLE
+AS
+RETURN
+(
+	SELECT P.IDPEDIDO,M.IDMESA,M.IDSALON,M.ESTADO AS ESTADOMESA,M.HABILITADA, P.ESTADO AS ESTADOPEDIDO FROM Pedidos P
+	INNER JOIN Mesas M ON P.IDMESA = M.IDMESA
+	WHERE 
+		P.IDMESA = @IDMESA
+		AND M.ESTADO = 'OCUPADA'
+		AND P.ESTADO = 'EN PROCESO'
+);
+GO
+
+-- Generar un pediodo nuevo
+CREATE PROCEDURE sp_GenerarPedido(
+	@pIDUSER BIGINT,
+	@pIDMESA BIGINT
+)AS
+BEGIN
+	INSERT Pedidos(IDMESA,IDUSUARIO,ESTADO)
+	VALUES (@pIDMESA,@pIDUSER,'EN PROCESO')
+
+	UPDATE Mesas SET ESTADO = 'OCUPADA' WHERE IDMESA = @pIDMESA
+END
+GO
+
+-- Agregar un producto a un detalle de pedido
+CREATE PROCEDURE sp_AgregarProdAlPedido(
+	@pIDPRODUCTO BIGINT,
+	@pIDPEDIDO BIGINT,
+	@pCANTIDAD INT
+)AS
+BEGIN
+	
+	DECLARE @SubTotal money
+
+	SET @SubTotal = (SELECT PRECIO*@pCANTIDAD FROM Productos WHERE IDPRODUCTO = @pIDPRODUCTO)
+
+	INSERT DetallesPedido (IDPEDIDO,IDPRODUCTO,CANTIDAD,SUBTOTAL)
+	VALUES (@pIDPEDIDO,@pIDPRODUCTO,@pCANTIDAD,@SubTotal)
+END
+GO
+
+
+
+--	Datos 
 
 EXEC sp_AgregarProd '1','Cafe solo','1500','120','Cafe de maquina solo'
 EXEC sp_AgregarProd '1','Cafe con leche','2000','120','Cafe de maquina con leche'
@@ -246,3 +315,4 @@ EXEC sp_AgregarProdExtra '7','Coco','2000','1200','Leche de Coco'
 
 EXEC sp_AgregarProdExtra '8','Mediano','0','1200','Taza mediana, tamaño normal'
 EXEC sp_AgregarProdExtra '8','Grande','1000','1200','Taza Grande'
+

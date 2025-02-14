@@ -82,18 +82,22 @@
         }
 
         .lbldetalle {
-            margin-bottom:20px;
+            margin-bottom: 20px;
+        }
+
+        .lblDetalleMesa {
+            font-size: 20px;
         }
     </style>
 
 
     <form id="form1" runat="server">
 
-        <nav class="navbar navbar-dark bg-dark" >
+        <nav class="navbar navbar-dark bg-dark">
             <div class="container-fluid">
                 <asp:Button ID="btnCerraVentana" runat="server" CssClass="btn-close btn-close-white" OnClick="btnCerraVentana_Click" />
 
-                <h4 style="margin-right: 90px; color:;">Detalle de pedido Mesa:
+                <h4 style="margin-right: 90px; color: ;">Detalle de pedido Mesa:
                     <asp:Label ID="lblIdMesa" runat="server" /></h4>
             </div>
         </nav>
@@ -126,8 +130,94 @@
                 </div>
 
                 <!-- Columna derecha (30%) -->
-                <div class="col-4 text-black" style="background-color: #343a40;">
-                    <h2>Detalles del pedido</h2>
+                <div class="col-4 text-black lblDetalleMesa" style="background-color: white">
+
+                    <h2>Detalle de Mesa</h2>
+                    <hr class="my-4" />
+
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-6">
+                            <asp:Label Text="Fecha y hora: " runat="server" />
+                        </div>
+                        <div class="col-6">
+                            <asp:Label ID="lblFecha" runat="server" />
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-6">
+                            <asp:Label Text="Numero de Mesa: " runat="server" />
+                        </div>
+                        <div class="col-6">
+                            <asp:Label ID="lblNumeroMesa" runat="server" />
+                        </div>
+                    </div>
+
+                    <div class="row " style="margin-top: 20px">
+                        <div class="col-6">
+                            <asp:Label Text="Estado: " runat="server" />
+                        </div>
+                        <div class="col-6">
+                            <asp:Label ID="lblEstadoMesa" runat="server" />
+                        </div>
+                    </div>
+
+                    <div class="row " style="margin-top: 20px">
+                        <div class="col-6">
+                            <asp:Label Text="Nro Empleado: " runat="server" />
+                        </div>
+                        <div class="col-6">
+                            <asp:Label ID="lblNroEmpleado" runat="server" />
+                        </div>
+                    </div>
+                    <hr class="my-4" />
+
+                    <div class="row " style="margin-top: 20px">
+                        <div class="col-6">
+                            <asp:Label Text="Detalle del pedido: " runat="server" />
+                        </div>
+                    </div>
+                    
+                    <div class="row " style="margin-top: 20px">
+                        <div class="col-6">
+                            <!--repeater-->
+                            <asp:Repeater ID="repeaterDetalles" runat="server">
+                                <HeaderTemplate>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Imagen</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Cantidad</th>
+                                                <th scope="col">Subtotal</th>
+                                                <th scope="col">Opciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><asp:Image ID="imgProducto" runat="server" CssClass="img-thumbnail" Width="80px" Height="80px" ImageUrl='<%# ResolveUrl(Eval("Producto.Imagen.DirComp").ToString()) %>' /></td>
+                                        <td><%# Eval("Producto.Nombre") %></td>
+                                        <td><%# Eval("Cantidad") %></td>
+                                        <td><%# Eval("Subtotal") %></td>
+                                        <td>
+                                            <asp:Button ID="btnEliminarProd" class="btn btn-primary btn-sm" Text="Eliminar" runat="server"
+                                                CommandArgument='<%# Eval("Producto.IdProducto") %>' />
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </tbody>
+    </table>
+               
+               
+                                </FooterTemplate>
+                            </asp:Repeater>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -141,9 +231,6 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body d-flex flex-column gap-3">
-                        <!-- Alineación vertical -->
-
-                        <!-- div1: Alineación horizontal -->
                         <div id="div1" class="d-flex align-items-center gap-3 w-100">
                             <div class="flex-grow-1 table-responsive">
                                 <asp:Repeater ID="repeaterModal" runat="server">
@@ -180,7 +267,8 @@
                             </div>
 
                             <div>
-                                <asp:Button Text="Agregar" runat="server" CssClass="btn btn-primary" />
+                                <asp:Button ID="btnAgregarProd" Text="Agregar" runat="server" CssClass="btn btn-primary"
+                                    OnClick="btnAgregarProd_Click" />
                             </div>
                         </div>
 
@@ -188,14 +276,14 @@
                             <%if (IdCategoria == 1) // cafeteria
                                 { %>
                             <div class="col-3">
-                                <asp:Label Text="Tipo de Leche" runat="server" CssClass="lbldetalle"/>
+                                <asp:Label Text="Tipo de Leche" runat="server" CssClass="lbldetalle" />
                                 <asp:DropDownList ID="ddlTipoLeche" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
                                     BackColor="white" ForeColor="black" Font-Size="Large">
                                 </asp:DropDownList>
                             </div>
 
                             <div class="col-3">
-                                <asp:Label Text="Tamaño cafe" runat="server" CssClass="lbldetalle"/>
+                                <asp:Label Text="Tamaño cafe" runat="server" CssClass="lbldetalle" />
                                 <asp:DropDownList ID="ddlTamanio" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
                                     BackColor="white" ForeColor="black" Font-Size="Large">
                                 </asp:DropDownList>
@@ -208,7 +296,7 @@
 
                                 { %>
                             <div class="col-3">
-                                <asp:Label Text="Guarnicion" runat="server" CssClass="lbldetalle"/>
+                                <asp:Label Text="Guarnicion" runat="server" CssClass="lbldetalle" />
                                 <asp:DropDownList ID="ddlGuarniciones" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
                                     BackColor="white" ForeColor="black" Font-Size="Large">
                                 </asp:DropDownList>

@@ -77,8 +77,37 @@ namespace Manager
                 datos.CerrarConeccion();
             }
         }
-    
-        
+
+        public Mesa ObtenerMesasPorID(int idMesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Mesa mesa = new Mesa();
+
+            try
+            {
+                datos.SetearConsulta("SELECT IDSALON,IDMESA,ESTADO,HABILITADA FROM Mesas WHERE IDMESA = @IDMESA");
+                datos.SetearParametro("@IDMESA", idMesa);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    mesa.IdSalon = (long)datos.Lector["IDSALON"];
+                    mesa.IdMesa = (long)datos.Lector["IDMESA"];
+                    mesa.EstadoMesa = (string)datos.Lector["ESTADO"];
+                    mesa.Habilitado = (bool)datos.Lector["HABILITADA"];
+                }
+
+                return mesa;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
 
 
     }
