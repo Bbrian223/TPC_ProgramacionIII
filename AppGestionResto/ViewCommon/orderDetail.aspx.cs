@@ -67,7 +67,7 @@ namespace WebApplication1.ViewCommon
                 }
                 else 
                 {
-                    CargarModalError("Habilita la mesa antes de registrar un pedido", false);
+                    CargarModalError("Habilite la mesa antes de registrar un pedido", false);
                 }
             }
             catch (Exception ex)
@@ -129,6 +129,16 @@ namespace WebApplication1.ViewCommon
         protected void btnCancelarPedido_Click(object sender, EventArgs e)
         {
             // CANCELAR PEDIDO
+            // SOLICITA CONFIRMACION POR CARTEL MODAL
+            try
+            {
+                CargarModalError("Esta seguro que desea Cancelar este Pedido?",true);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+            }
+
         }
 
         protected void btnMesaHabilitada_Click(object sender, EventArgs e)
@@ -136,6 +146,22 @@ namespace WebApplication1.ViewCommon
             try
             {
                 ordManager.HabilitarMesa();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+            }
+
+            Response.Redirect(Request.Url.AbsoluteUri);
+        }
+
+        protected void btnModalAceptar_Click(object sender, EventArgs e)
+        {
+            // unica funcion --> cancelar pedido actual
+
+            try
+            {
+                ordManager.CancelarPedido();
             }
             catch (Exception ex)
             {
@@ -317,17 +343,18 @@ namespace WebApplication1.ViewCommon
         {
             CargarProdSeleccionado(idProducto);
             CargarDropDownList();
-            btnAceptarCancelarPed.Visible = false;
+            btnModalAceptar.Visible = false;
 
             ClientScript.RegisterStartupScript(this.GetType(), "VistaPrevia", "var modal = new bootstrap.Modal(document.getElementById('modalDetalles')); modal.show();", true);
         }
 
         public void CargarModalError(string msg,bool btnEstado)
         {
-            btnAceptarCancelarPed.Visible = btnEstado;
+            btnModalAceptar.Visible = btnEstado;
             lblModalError.Text = msg;   
             ClientScript.RegisterStartupScript(this.GetType(), "Error", "var modal = new bootstrap.Modal(document.getElementById('modalError')); modal.show();", true);
         }
+
 
     }
 }

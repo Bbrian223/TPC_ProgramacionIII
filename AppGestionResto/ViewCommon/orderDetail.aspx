@@ -365,16 +365,15 @@
                         <h5 class="modal-title">Error</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
-                    <div class="modal-body d-flex flex-column gap-3">
+                    <div class="modal-body d-flex flex-column gap-3 alert alert-danger" role="alert">
 
-                        <div class="alert alert-danger" role="alert">
-                            <asp:Label ID="lblModalError" runat="server" />
-                        </div>
+                        <asp:Label ID="lblModalError" runat="server" Font-Size="XX-Large"/>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <asp:Button ID="btnAceptarCancelarPed" Text="Aceptar" runat="server" CssClass="btn btn-primary"/>
+                        <asp:Button ID="btnModalAceptar" Text="Aceptar" runat="server" CssClass="btn btn-primary"
+                            OnClick="btnModalAceptar_Click" />
                     </div>
 
                 </div>

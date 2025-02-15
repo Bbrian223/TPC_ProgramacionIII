@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
@@ -204,6 +205,26 @@ namespace Manager
                 datos.SetearConsulta("UPDATE Mesas SET ESTADO = @ESTADO WHERE IDMESA = @IDMESA");
                 datos.SetearParametro("@ESTADO", estado);
                 datos.SetearParametro("@IDMESA", idMesa);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public void CancelarPedido(long idPedido)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("EXEC sp_CancelarPedido @IDPEDIDO");
+                datos.SetearParametro("@IDPEDIDO", idPedido);
                 datos.ejecutarAccion();
             }
             catch (Exception)

@@ -118,6 +118,18 @@ namespace Manager
             }
         }
 
+        public void CancelarPedido()
+        {
+            try
+            {
+                manager.CancelarPedido(pedido.IdPedido);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public void HabilitarMesa()
         {
             try
