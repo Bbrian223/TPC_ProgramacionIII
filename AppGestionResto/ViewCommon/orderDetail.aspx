@@ -368,10 +368,15 @@
                     <div class="modal-body d-flex flex-column gap-3">
 
                         <div class="alert alert-danger" role="alert">
-                            <h2>Habilite la Mesa antes de asignar pedidos</h2>
+                            <asp:Label ID="lblModalError" runat="server" />
                         </div>
 
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <asp:Button ID="btnAceptarCancelarPed" Text="Aceptar" runat="server" CssClass="btn btn-primary"/>
+                    </div>
+
                 </div>
             </div>
         </div>

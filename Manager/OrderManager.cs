@@ -14,6 +14,7 @@ namespace Manager
 {
     public class OrderManager
     {
+        private PedidosManager manager = new PedidosManager();
         private Pedido pedido = new Pedido();
         public Pedido Pedido 
         { 
@@ -42,8 +43,6 @@ namespace Manager
 
         public void ObtenerEstadoPedido() 
         {
-            PedidosManager manager = new PedidosManager();
-
             try
             {
                 pedido = manager.ObtenerPedidoPorID((int)Mesa.IdMesa);
@@ -95,8 +94,6 @@ namespace Manager
 
         public void EliminarProdAlPedido(long idDetallePedido)
         {
-            PedidosManager manager = new PedidosManager();
-
             try
             {
                 manager.EliminarProd(idDetallePedido);
@@ -110,8 +107,6 @@ namespace Manager
 
         public void CerrarPedido(long idUser) 
         {
-            PedidosManager manager = new PedidosManager();
-
             try
             {
                 manager.CerrarPedido(pedido.IdPedido);
@@ -123,12 +118,22 @@ namespace Manager
             }
         }
 
+        public void HabilitarMesa()
+        {
+            try
+            {
+                manager.ActualizarEstadoMesa(Mesa.IdMesa, "DISPONIBLE");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         // PRIVADAS
 
         private void GenerarPedidoNuevo(int idUser)
         {
-            PedidosManager manager = new PedidosManager();
-
             try
             {   
                 manager.GenerarPedido(idUser,(int)Mesa.IdMesa);
@@ -141,8 +146,6 @@ namespace Manager
 
         private void AgregarProd(int idProd,int cantidad) 
         {
-            PedidosManager manager = new PedidosManager();
-
             try
             {
                 ObtenerEstadoPedido();

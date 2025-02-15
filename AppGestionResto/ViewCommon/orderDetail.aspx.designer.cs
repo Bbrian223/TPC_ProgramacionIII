@@ -204,6 +204,24 @@ namespace WebApplication1.ViewCommon
         protected global::System.Web.UI.WebControls.TextBox txtBxDescripcion;
 
         /// <summary>
+        /// Control lblModalError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModalError;
+
+        /// <summary>
+        /// Control btnAceptarCancelarPed.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAceptarCancelarPed;
+
+        /// <summary>
         /// Control hiddenFieldIdEmpleado.
         /// </summary>
         /// <remarks>

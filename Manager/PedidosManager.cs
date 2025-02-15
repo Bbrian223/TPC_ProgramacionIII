@@ -194,6 +194,26 @@ namespace Manager
                 datos.CerrarConeccion();
             }
         }
-    
+
+        public void ActualizarEstadoMesa(long idMesa, string estado) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("UPDATE Mesas SET ESTADO = @ESTADO WHERE IDMESA = @IDMESA");
+                datos.SetearParametro("@ESTADO", estado);
+                datos.SetearParametro("@IDMESA", idMesa);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
     }
 }
