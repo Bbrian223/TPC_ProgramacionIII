@@ -58,7 +58,7 @@ GO
 CREATE VIEW vw_ListaProductos
 AS
 SELECT	P.IDPRODUCTO,C.IDCATEGORIA AS IDCATEGORIA,C.NOMBRE AS CATEGORIA,P.NOMBRE,P.PRECIO,P.STOCK,P.DESCRIPCION,
-		I.IDIMAGEN,I.NOMBRE AS ARCHNOMB,P.ESTADO FROM Productos P
+		I.IDIMAGEN,I.NOMBRE AS ARCHNOMB,P.ESTADO,P.GUARNICION FROM Productos P
 INNER JOIN Categorias C ON  P.IDCATEGORIA = C.IDCATEGORIA
 INNER JOIN Imagenes I ON P.IDPRODUCTO = I.IDPRODUCTO
 GO
@@ -87,13 +87,14 @@ CREATE PROCEDURE sp_AgregarProd(
 	@pNombre VARCHAR(100),
 	@pPrecio MONEY,
 	@pStock int,
-	@pDescripcion TEXT
+	@pDescripcion TEXT,
+	@pGuarnicion BIT
 	)AS
 BEGIN 
 	DECLARE @IdProducto BIGINT
 
-	INSERT Productos (IDCATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION)
-	VALUES (@pIdCategoria,@pNombre,@pPrecio,@pStock,@pDescripcion)
+	INSERT Productos (IDCATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,GUARNICION)
+	VALUES (@pIdCategoria,@pNombre,@pPrecio,@pStock,@pDescripcion,@pGuarnicion)
 
 	SELECT @IdProducto = IDENT_CURRENT('Productos')
 
@@ -211,7 +212,7 @@ AS
 RETURN
 (
 SELECT D.IDDETALLE,D.IDPEDIDO,D.IDPRODUCTO,LP.IDCATEGORIA,LP.CATEGORIA,LP.NOMBRE,LP.PRECIO,
-	   LP.STOCK,LP.DESCRIPCION,LP.IDIMAGEN,LP.ARCHNOMB,D.CANTIDAD,D.SUBTOTAL FROM Pedidos P 
+	   LP.STOCK,LP.DESCRIPCION,LP.IDIMAGEN,LP.ARCHNOMB,D.CANTIDAD,D.SUBTOTAL,LP.GUARNICION FROM Pedidos P 
 INNER JOIN Mesas M ON P.IDMESA = M.IDMESA
 INNER JOIN DetallesPedido D ON P.IDPEDIDO = D.IDPEDIDO
 INNER JOIN vw_ListaProductos LP ON D.IDPRODUCTO = LP.IDPRODUCTO
@@ -251,6 +252,30 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE sp_CompletarPedido(
+	@pIDPEDIDO BIGINT
+)AS
+BEGIN
+	DECLARE @IDMESA BIGINT 
+	SET @IDMESA = (SELECT IDMESA FROM Pedidos WHERE IDPEDIDO = @pIDPEDIDO)
+
+	UPDATE Pedidos SET ESTADO = 'COMPLETADO' WHERE IDPEDIDO = @pIDPEDIDO
+	UPDATE Mesas SET ESTADO = 'PENDIENTE' WHERE IDMESA = @IDMESA
+END
+GO
+
+CREATE PROCEDURE sp_AgregarVenta(
+	@pIDPEDIDO BIGINT,
+	@pIDUSUARIO BIGINT,
+	@pTOTAL MONEY
+)AS
+BEGIN
+	INSERT Ventas (IDPEDIDO,IDUSUARIO,TOTAL)
+	VALUES (@pIDPEDIDO,@pIDUSUARIO,@pTOTAL)
+END
+GO
+
+
 -- Agregar un producto a un detalle de pedido
 CREATE PROCEDURE sp_AgregarProdAlPedido(
 	@pIDPRODUCTO BIGINT,
@@ -272,11 +297,11 @@ GO
 
 --	Datos 
 
-EXEC sp_AgregarProd '1','Cafe solo','1500','120','Cafe de maquina solo'
-EXEC sp_AgregarProd '1','Cafe con leche','2000','120','Cafe de maquina con leche'
-EXEC sp_AgregarProd '1','Latte Clasico','2500','80','20% Cafe y 80% leche'
-EXEC sp_AgregarProd '1','Capuchino Clasico','2500','60','Cafe, leche embulsionada con canela y cacao'
-EXEC sp_AgregarProd '1','Te negro ','1500','120','Te negro ingles clasico'
+EXEC sp_AgregarProd '1','Cafe solo','1500','120','Cafe de maquina solo','0'
+EXEC sp_AgregarProd '1','Cafe con leche','2000','120','Cafe de maquina con leche','0'
+EXEC sp_AgregarProd '1','Latte Clasico','2500','80','20% Cafe y 80% leche','0'
+EXEC sp_AgregarProd '1','Capuchino Clasico','2500','60','Cafe, leche embulsionada con canela y cacao','0'
+EXEC sp_AgregarProd '1','Te negro ','1500','120','Te negro ingles clasico','0'
 
 EXEC sp_AgregarProdEntr 'Tequeños','11000','20','6 unidades de de masa de harina de trigo frita, rellena de queso blanco','0'
 EXEC sp_AgregarProdEntr 'Papas Bravas','12300','27','papas fritas con salsa chedar, verdeo y panceta','0'
@@ -284,11 +309,11 @@ EXEC sp_AgregarProdEntr 'Chicken Fingers','14200','18','Tiras de pollo frito con
 EXEC sp_AgregarProdEntr 'Empanada Frita','5000','44','Empanadas de Carne cortada a cuchillo fritas','1'
 EXEC sp_AgregarProdEntr 'Bocaditos de Espinaca','3000','64','5 unidades de bocaditos de espinaca y muzzarella','1'
 
-EXEC sp_AgregarProd '3','Milanesa de carne','8200','60','Milanesa de Carne sola con guarnicion'
-EXEC sp_AgregarProd '3','Milanesa de Pollo','7200','80','Milanesa de Pollo sola con guarnicion'
-EXEC sp_AgregarProd '3','Milanesa Napolitana','10500','80','Milanesa de carne o pollo a la napolitana con guarnicion'
-EXEC sp_AgregarProd '3','Ravioles de ricota','11000','60','Ravioles de Ricota con salsa a eleccion'
-EXEC sp_AgregarProd '3','Hamburguesa completa','9000','33','Hamburguesa con jamon, queso, lechuga, tomate y huevo con guarnicion'
+EXEC sp_AgregarProd '3','Milanesa de carne','8200','60','Milanesa de Carne sola con guarnicion','1'
+EXEC sp_AgregarProd '3','Milanesa de Pollo','7200','80','Milanesa de Pollo sola con guarnicion','1'
+EXEC sp_AgregarProd '3','Milanesa Napolitana','10500','80','Milanesa de carne o pollo a la napolitana con guarnicion','1'
+EXEC sp_AgregarProd '3','Ravioles de ricota','11000','60','Ravioles de Ricota con salsa a eleccion','0'
+EXEC sp_AgregarProd '3','Hamburguesa completa','9000','33','Hamburguesa con jamon, queso, lechuga, tomate y huevo con guarnicion','1'
 
 EXEC sp_AgregarProdPost 'Flan casero','4100','25','Flan casero solo','1','1'
 EXEC sp_AgregarProdPost 'Flan sing gluten','5100','10','Flan sin gluten','1','0'

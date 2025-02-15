@@ -18,7 +18,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaProductos WHERE IDCATEGORIA < 6");
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO,GUARNICION  from vw_ListaProductos WHERE IDCATEGORIA < 6");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -34,6 +34,7 @@ namespace Manager
                     prod.Imagen.IdImagen = (long)datos.Lector["IDIMAGEN"];
                     prod.Imagen.NombreArch = (string)datos.Lector["ARCHNOMB"];
                     prod.Estado = (bool)datos.Lector["ESTADO"];
+                    prod.Guarnicion = (bool)datos.Lector["GUARNICION"];
 
                     lista.Add(prod);
                 }

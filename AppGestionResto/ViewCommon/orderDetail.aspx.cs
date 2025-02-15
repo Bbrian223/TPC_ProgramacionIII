@@ -57,11 +57,23 @@ namespace WebApplication1.ViewCommon
         {
             Button btn = (Button)sender;
             string idProducto = btn.CommandArgument;
+            //MODIFICAR PARA SABER SI MUESTRA GUARNICION
 
-            CargarProdSeleccionado(int.Parse(idProducto));
-            CargarDropDownList();
-
-            ClientScript.RegisterStartupScript(this.GetType(), "EjecutarAlgo", "var modal = new bootstrap.Modal(document.getElementById('modalDetalles')); modal.show();", true);
+            try
+            {
+                if (ordManager.ObtenerEstadoMesa((int)Session["idMesa"]) != "PENDIENTE")
+                {
+                    CargarModal(int.Parse(idProducto));
+                }
+                else 
+                {
+                    CargarModalError();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+            }
 
             Session.Add("idProducto",int.Parse(idProducto));
         }
@@ -76,6 +88,52 @@ namespace WebApplication1.ViewCommon
             ordManager.AgregarProdAlPedido(idProd, cantidad ,(int)user.idusuario);
 
             VerificarEstadoMesa();
+
+            Response.Redirect(Request.Url.AbsoluteUri);
+        }
+
+        protected void btnEliminarProd_Click(object sender, EventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            string idDetalle = btn.CommandArgument;
+
+            try
+            {
+                ordManager.EliminarProdAlPedido(long.Parse(idDetalle));
+                MostrarDetallePedido();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+            }
+
+            Response.Redirect(Request.Url.AbsoluteUri);
+        }
+
+        protected void btnCerrarPedido_Click(object sender, EventArgs e)
+        {
+            Usuario usuario = (Usuario)Session["User"];
+
+            try
+            {
+                ordManager.CerrarPedido(usuario.idusuario);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+            }
+
+            Response.Redirect(Request.Url.AbsoluteUri);
+        }
+
+        protected void btnCancelarPedido_Click(object sender, EventArgs e)
+        {
+            // CANCELAR PEDIDO
+        }
+
+        protected void btnMesaHabilitada_Click(object sender, EventArgs e)
+        {
+            // HABILITAR MESA PARA PROXIMO CLIENTE
         }
 
         //funciones
@@ -173,18 +231,21 @@ namespace WebApplication1.ViewCommon
                     case "DISPONIBLE":
                         // Mesa abierta, Sin Pedidos asignados
                         MostrarDatosMesa();
+                        HabilitarBotonesEstado(false);
                         break;
 
                     case "OCUPADA":
                         // Pedido asignado
                         ordManager.ObtenerEstadoPedido();
                         MostrarDetallePedido();
+                        HabilitarBotonesEstado(true);
                         break;
 
                     case "PENDIENTE":
                         // Mesa En espera
                         MostrarDatosMesa();
-                        HabilitarBotonesEstado();
+                        HabilitarBotonesEstado(false);
+                        btnMesaHabilitada.Visible = true;
                         break;
 
                     default:
@@ -205,10 +266,17 @@ namespace WebApplication1.ViewCommon
         {
             Empleado empl = (Empleado)Session["Empleado"];
 
-            lblFecha.Text = DateTime.Now.ToString();
-            lblNumeroMesa.Text = ordManager.Mesa.IdMesa.ToString();
-            lblEstadoMesa.Text = ordManager.Mesa.EstadoMesa;
-            lblNroEmpleado.Text = empl.IdEmpleado.ToString();
+            try
+            {
+                lblFecha.Text = DateTime.Now.ToString();
+                lblNumeroMesa.Text = ordManager.Mesa.IdMesa.ToString();
+                lblEstadoMesa.Text = ordManager.Mesa.EstadoMesa;
+                lblNroEmpleado.Text = empl.IdEmpleado.ToString();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
 
         }
 
@@ -220,16 +288,34 @@ namespace WebApplication1.ViewCommon
             {
                 repeaterDetalles.DataSource = ordManager.Pedido.ListaProd;
                 repeaterDetalles.DataBind();
+                lblMontoTotal.Text = "$ " + ordManager.ObtenerMontoTotal().ToString();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
             }
         }
 
-        public void HabilitarBotonesEstado()
-        { 
-        
+        public void HabilitarBotonesEstado(bool estado)
+        {
+            btnCerrarPedido.Visible = estado;
+            btnCancelarPedido.Visible = estado;
+            pnlMonto.Visible = estado;
+            btnMesaHabilitada.Visible = false;
         }
+
+        public void CargarModal(int idProducto)
+        {
+            CargarProdSeleccionado(idProducto);
+            CargarDropDownList();
+
+            ClientScript.RegisterStartupScript(this.GetType(), "VistaPrevia", "var modal = new bootstrap.Modal(document.getElementById('modalDetalles')); modal.show();", true);
+        }
+
+        public void CargarModalError()
+        { 
+            ClientScript.RegisterStartupScript(this.GetType(), "Error", "var modal = new bootstrap.Modal(document.getElementById('modalError')); modal.show();", true);
+        }
+
     }
 }

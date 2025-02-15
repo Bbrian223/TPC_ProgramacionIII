@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -18,7 +19,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDDETALLE,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,ARCHNOMB,CANTIDAD,SUBTOTAL FROM fn_ObtenerProductos(@IDMESA)");
+                datos.SetearConsulta("SELECT IDDETALLE,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,ARCHNOMB,CANTIDAD,SUBTOTAL,GUARNICION FROM fn_ObtenerProductos(@IDMESA) ORDER BY IDDETALLE");
                 datos.SetearParametro("@IDMESA",idMesa);
                 datos.EjecutarLectura();
 
@@ -34,6 +35,7 @@ namespace Manager
                     pedidos.Producto.stock = (int)datos.Lector["STOCK"];
                     pedidos.Producto.Descripcion = (string)datos.Lector["DESCRIPCION"];
                     pedidos.Producto.Imagen.NombreArch = (string)datos.Lector["ARCHNOMB"];
+                    pedidos.Producto.Guarnicion = (bool)datos.Lector["GUARNICION"];
                     pedidos.Cantidad = (int)datos.Lector["CANTIDAD"];
                     pedidos.Subtotal = (decimal)datos.Lector["SUBTOTAL"];
 
@@ -108,15 +110,57 @@ namespace Manager
             }
         }
 
-        public void AgregarProd(int idProd,int idPedido, int cantidad) 
+        public void CerrarPedido(long idPedido) 
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.SetearConsulta("EXEC sp_AgregarProdAlPedido @IDPRODUCTO,@IDPEDIDO,@CANTIDAD");
-                datos.SetearParametro("@IDPRODUCTO",idProd);
+                datos.SetearConsulta("EXEC sp_CompletarPedido @IDPEDIDO");
                 datos.SetearParametro("@IDPEDIDO",idPedido);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public void AgregarVenta(long idPedido, long idUsuario, decimal total) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("EXEC sp_AgregarVenta @IDPEDIDO,@IDUSUARIO,@TOTAL");
+                datos.SetearParametro("@IDPEDIDO",idPedido);
+                datos.SetearParametro("@IDUSUARIO",idUsuario);
+                datos.SetearParametro("@TOTAL",total);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public void AgregarProd(long idPedido, long idUser, int cantidad) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("EXEC sp_AgregarProdAlPedido @IDPEDIDO,@IDUSUARIO,@CANTIDAD");
+                datos.SetearParametro("@IDPEDIDO",idPedido);
+                datos.SetearParametro("@IDUSUARIO", idUser); 
                 datos.SetearParametro("@CANTIDAD",cantidad);
                 datos.ejecutarAccion();
 
@@ -130,5 +174,26 @@ namespace Manager
                 datos.CerrarConeccion();
             }
         }
+
+        public void EliminarProd(long idDetalle) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("DELETE DetallesPedido WHERE IDDETALLE = @IDDETALLE");
+                datos.SetearParametro("@IDDETALLE", idDetalle);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+    
     }
 }

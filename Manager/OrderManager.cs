@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Remoting.Contexts;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Dominio;
+using Microsoft.SqlServer.Server;
 
 namespace Manager
 {
@@ -53,6 +55,22 @@ namespace Manager
             }
         }
 
+        public decimal ObtenerMontoTotal() 
+        {
+            decimal monto = 0.0m;
+
+            if (pedido.ListaProd.Count != 0) 
+            {
+
+                foreach (DetallePedido item in pedido.ListaProd)
+                {
+                    monto += item.Subtotal;
+                }
+            }
+
+            return Math.Round(monto,1);
+        }
+
         public void AgregarProdAlPedido(int idProd,int cantidad, int idUser) 
         {
             switch (Mesa.EstadoMesa)
@@ -75,6 +93,35 @@ namespace Manager
             }
         }
 
+        public void EliminarProdAlPedido(long idDetallePedido)
+        {
+            PedidosManager manager = new PedidosManager();
+
+            try
+            {
+                manager.EliminarProd(idDetallePedido);
+                ObtenerEstadoPedido();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void CerrarPedido(long idUser) 
+        {
+            PedidosManager manager = new PedidosManager();
+
+            try
+            {
+                manager.CerrarPedido(pedido.IdPedido);
+                manager.AgregarVenta(pedido.IdPedido,idUser,ObtenerMontoTotal());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         // PRIVADAS
 

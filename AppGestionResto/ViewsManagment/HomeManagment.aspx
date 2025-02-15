@@ -25,22 +25,22 @@
 
         /* Ejemplo de estados */
         .mesa-ocupada {
-            background-color: #dc3545; /* Rojo para ocupada */
+            background-color: #f5ed35; /* Amarillo para ocupada */
         }
 
         .mesa-ocupada:hover {
             transform: scale(1.1);
-            background-color: #da1b2e; 
+            background-color: #e4db17;
             color:whitesmoke;
         }
 
         .mesa-pendiente {
-            background-color: #f5ed35; /* Amarillo para pendiente */
+            background-color: #dc3545; /* Rojo para pendiente */
         }
 
         .mesa-pendiente:hover {
             transform: scale(1.1);
-            background-color: #e4db17;
+            background-color: #da1b2e; 
             color:whitesmoke;
         }
 

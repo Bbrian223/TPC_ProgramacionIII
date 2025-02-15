@@ -15,6 +15,7 @@ namespace Dominio
         public decimal Precio { get; set; }
         public int stock { get; set; }
         public string Descripcion { get; set; }
+        public bool Guarnicion { get; set; }
         public bool Estado { get; set; }
 
         public Producto()
