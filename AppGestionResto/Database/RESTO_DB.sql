@@ -68,7 +68,6 @@ CREATE TABLE Salones(
 )
 
 
-
 /*	TABLA MESAS	*/
 CREATE TABLE Mesas(
 	IDSALON BIGINT,

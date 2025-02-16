@@ -20,4 +20,11 @@ namespace Dominio
             EstadoMesa = string.Empty;
         }
     }
+
+    public class Salon
+    {
+        public long IdSalon { get; set; }
+        public string Nombre { get; set; }
+        public bool Estado { get; set; }
+    }
 }

@@ -15,6 +15,15 @@ namespace WebApplication1.ViewsManagment
     {
 
         /// <summary>
+        /// Control lblIdSalon.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblIdSalon;
+
+        /// <summary>
         /// Control ContenedorMesas.
         /// </summary>
         /// <remarks>
@@ -22,5 +31,14 @@ namespace WebApplication1.ViewsManagment
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ContenedorMesas;
+
+        /// <summary>
+        /// Control ContenedorPaginador.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ContenedorPaginador;
     }
 }

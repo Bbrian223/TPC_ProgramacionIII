@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
@@ -109,6 +110,36 @@ namespace Manager
             }
         }
 
+        public List<Salon> ObtenerListaSalones() 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Salon> lista = new List<Salon>();
+            try
+            {
+                datos.SetearConsulta("SELECT IDSALON,NOMBRE,ESTADO FROM Salones WHERE ESTADO = '1'");
+                datos.EjecutarLectura();
 
+                while (datos.Lector.Read())
+                {
+                    Salon salon = new Salon();
+
+                    salon.IdSalon = (long)datos.Lector["IDSALON"];
+                    salon.Nombre = (string)datos.Lector["NOMBRE"];
+                    salon.Estado = (bool)datos.Lector["ESTADO"];
+
+                    lista.Add(salon);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
     }
 }
