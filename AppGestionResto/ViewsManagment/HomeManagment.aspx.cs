@@ -60,7 +60,6 @@ namespace WebApplication1.ViewsManagment
 
         //funciones
 
-
         public void CargarMesas()
         {
             MesasManager manager = new MesasManager();
@@ -83,7 +82,7 @@ namespace WebApplication1.ViewsManagment
             MesasManager manager = new MesasManager();
             try
             {
-                listaSalon = manager.ObtenerListaSalones();
+                listaSalon = manager.ObtenerListaSalonesHabilitados();
                 GenerarBotonesPaginacion();
             }
             catch (Exception ex)

@@ -110,7 +110,7 @@ namespace Manager
             }
         }
 
-        public List<Salon> ObtenerListaSalones() 
+        public List<Salon> ObtenerListaSalonesHabilitados() 
         {
             AccesoDatos datos = new AccesoDatos();
             List<Salon> lista = new List<Salon>();
@@ -141,5 +141,39 @@ namespace Manager
                 datos.CerrarConeccion();
             }
         }
+
+        public List<Salon> ObtenerListaTodosSalones()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Salon> lista = new List<Salon>();
+            try
+            {
+                datos.SetearConsulta("SELECT IDSALON,NOMBRE,ESTADO FROM Salones");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Salon salon = new Salon();
+
+                    salon.IdSalon = (long)datos.Lector["IDSALON"];
+                    salon.Nombre = (string)datos.Lector["NOMBRE"];
+                    salon.Estado = (bool)datos.Lector["ESTADO"];
+
+                    lista.Add(salon);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+
     }
 }
