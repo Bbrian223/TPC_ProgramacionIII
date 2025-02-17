@@ -174,6 +174,48 @@ namespace Manager
             }
         }
 
+        public void ActualizarEstadoSalon (long idSalon, bool estado) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            
+            try
+            {
+                datos.SetearConsulta("EXEC sp_ActualizarSalones @IDSALON,@ESTADO");
+                datos.SetearParametro("@IDSALON", idSalon);
+                datos.SetearParametro("@ESTADO", estado);
+                datos.ejecutarAccion();
 
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public void ActualizarEstadoMesa(int idMesa, bool estado) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("EXEC sp_ModificarEstadoMesa @IDMESA, @ESTADO");
+                datos.SetearParametro("@IDMESA",idMesa);
+                datos.SetearParametro("@ESTADO",estado);
+                datos.ejecutarAccion();
+                
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
     }
 }

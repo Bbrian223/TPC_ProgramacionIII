@@ -280,7 +280,10 @@ namespace WebApplication1.ViewCommon
                         // Mesa En espera
                         MostrarDatosMesa();
                         HabilitarBotonesEstado(false);
-                        btnMesaHabilitada.Visible = true;
+                        if(ordManager.Mesa.Habilitado == true)
+                            btnMesaHabilitada.Visible = true;
+                        else
+                            btnMesaHabilitada.Visible = false;
                         break;
 
                     default:

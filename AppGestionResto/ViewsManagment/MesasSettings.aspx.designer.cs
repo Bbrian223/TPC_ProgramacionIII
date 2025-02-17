@@ -60,6 +60,15 @@ namespace WebApplication1.ViewsManagment
         protected global::System.Web.UI.WebControls.CheckBox chkSalon5;
 
         /// <summary>
+        /// Control btnGuardarSalonesHab.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarSalonesHab;
+
+        /// <summary>
         /// Control rdbtnTodasMesas.
         /// </summary>
         /// <remarks>
@@ -112,5 +121,23 @@ namespace WebApplication1.ViewsManagment
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ContenedorMesas;
+
+        /// <summary>
+        /// Control lblModalError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModalError;
+
+        /// <summary>
+        /// Control btnModalAceptar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModalAceptar;
     }
 }

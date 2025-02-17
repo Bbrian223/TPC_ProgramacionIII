@@ -20,33 +20,86 @@ namespace WebApplication1.ViewsManagment
             if (!IsPostBack)
             {
                 ObtenerSalones();
+                CargarDatosPagina();
+                ObtenerMesas(idSalon);
             }
-            ObtenerMesas(1);
+            else 
+            { 
+                ObtenerMesas( Session["idSalon"] == null ? 1 : (int)Session["idSalon"]  );
+            }
         }
 
         protected void BtnMesa_Click(object sender, EventArgs e)
         {
+            MesasManager manager = new MesasManager();
             Button clickedButton = (Button)sender;
             string mesaSeleccionada = clickedButton.ID;
 
-            if (rdBtnDeshab.Checked == true)
+            try
             {
-                clickedButton.CssClass = "mesa-cuadrado mesa-cerrada text-decoration-none text-center";
+                manager.ActualizarEstadoMesa(int.Parse(mesaSeleccionada),rdBtnHab.Checked);
             }
-            else
+            catch (Exception ex)
             {
-                clickedButton.CssClass = "mesa-cuadrado text-decoration-none text-center";
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
             }
 
+            ObtenerMesas(Session["idSalon"] == null ? 1 : (int)Session["idSalon"]);
         }
 
         protected void ddlSalones_TextChanged(object sender, EventArgs e)
         {
             string salon = ddlSalones.SelectedValue;
             idSalon = int.Parse(salon);
+
             ObtenerMesas(idSalon);
+
+            Session["idSalon"] = idSalon;
         }
 
+        protected void btnGuardarSalonesHab_Click(object sender, EventArgs e)
+        {
+            List<Salon> listaSalonesChk = new List<Salon>();
+            string Salones = string.Empty;
+
+            listaSalonesChk.Add(new Salon(1,chkSalon1.Checked));
+            listaSalonesChk.Add(new Salon(2, chkSalon2.Checked));
+            listaSalonesChk.Add(new Salon(3, chkSalon3.Checked));
+            listaSalonesChk.Add(new Salon(4, chkSalon4.Checked));
+            listaSalonesChk.Add(new Salon(5, chkSalon5.Checked));
+
+            for (int i = 0; i < listaSalonesChk.Count; i++)
+            {
+                if (listaSalonesChk[i].Estado == false) 
+                {
+                    
+                    Salones += listaSalonesChk[i].IdSalon.ToString();
+                    Salones += "  ";
+                }
+            }
+
+            CargarModalError(Salones, true);
+            Session.Add("ListaSalonesChk",listaSalonesChk);
+        }
+
+        protected void btnModalAceptar_Click(object sender, EventArgs e)
+        {
+            MesasManager manager = new MesasManager();
+            List<Salon> lista = (List<Salon>)Session["ListaSalonesChk"];
+
+            try
+            {
+                foreach (var item in lista)
+                {
+                    manager.ActualizarEstadoSalon(item.IdSalon,item.Estado);
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
+            }
+
+        }
 
         //funciones
 
@@ -56,15 +109,14 @@ namespace WebApplication1.ViewsManagment
 
             try
             {
-                listaSalon = manager.ObtenerListaTodosSalones();
-                CargarDatosPagina();
+                listaSalon = manager.ObtenerListaTodosSalones();      
             }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
             }
 
-            ObtenerMesas(idSalon);
+            ObtenerMesas(Session["idSalon"] == null ? 1 : (int)Session["idSalon"]);
         }
 
         public void CargarDatosPagina()
@@ -81,7 +133,12 @@ namespace WebApplication1.ViewsManagment
             ddlSalones.DataValueField = "IdSalon";
             ddlSalones.DataBind();
 
+            rdbtnSeleccionar.Checked = true;
+
+            rdBtnHab.Checked = true;
+
             idSalon = 1;
+            Session.Add("idSalon", idSalon);
         }
 
         public void ObtenerMesas(int salon)
@@ -136,5 +193,16 @@ namespace WebApplication1.ViewsManagment
             }
         }
 
+        public void CargarModalError(string msg, bool btnEstado)
+        {
+            btnModalAceptar.Visible = btnEstado;
+            
+            if(msg == string.Empty)
+                lblModalError.Text = "Salones a deshabilitar: Ninguno";
+            else 
+                lblModalError.Text = "Salones a deshabilitar: " + msg;
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Error", "var modal = new bootstrap.Modal(document.getElementById('modalError')); modal.show();", true);
+        }
     }
 }

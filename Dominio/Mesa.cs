@@ -33,5 +33,11 @@ namespace Dominio
             Nombre = string.Empty;
             Estado = false;
         }
+
+        public Salon(long idsalon, bool estado) 
+        { 
+            IdSalon = idsalon;
+            Estado = estado;
+        }
     }
 }
