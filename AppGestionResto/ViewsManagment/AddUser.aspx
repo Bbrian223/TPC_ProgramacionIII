@@ -52,8 +52,12 @@
             <asp:Label ID="lblErrores" runat="server" Visible="false"></asp:Label>
         </asp:Panel>
 
-        <div id="imagePreview" class="image-circle mx-auto mb-3"></div>
-        <asp:FileUpload ID="fileUploadImagen" runat="server" CssClass="form-control-file mx-auto d-block" />
+        <div class="d-flex justify-content-center">
+            <asp:Image ID="imgPreview" CssClass="image-circle mb-3" runat="server" />
+        </div>
+
+        <asp:FileUpload ID="fileUploadImagen" runat="server" CssClass="form-control" onchange="javascript:__doPostBack('<%= fileUploadImagen.ClientID %>', '');" />
+
 
         <div class="row justify-content-center" style="margin-top: 20px">
             <div class="col-3">
@@ -98,7 +102,7 @@
                     Placeholder="Telefono" onkeypress="return soloNumeros(event);"></asp:TextBox>
             </div>
             <div class="col-4">
-                <asp:DropDownList ID="ddlOpciones" runat="server" CssClass="form-select">
+                <asp:DropDownList ID="ddlOpciones" runat="server" CssClass="form-select" AutoPostBack="true">
                     <asp:ListItem Text="Seleccione una opcion" Value="0" />
                     <asp:ListItem Text="Gerente" Value="1" />
                     <asp:ListItem Text="Mozo" Value="2" />

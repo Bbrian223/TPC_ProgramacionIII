@@ -71,7 +71,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
+                                    <th scope="col">Imagen</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Apellido</th>
                                     <th scope="col">Documento</th>
@@ -85,7 +85,7 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <td><%# Eval("IdEmpleado") %></td>
+                            <td><asp:Image ID="imgUser" runat="server" CssClass="img-thumbnail" Width="80px" Height="80px" ImageUrl='<%# ResolveUrl(Eval("Imagen.DirComp").ToString()) %>' /></td>
                             <td><%# Eval("Nombre") %></td>
                             <td><%# Eval("Apellido") %></td>
                             <td><%# Eval("Documento") %></td>

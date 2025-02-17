@@ -2,6 +2,7 @@
 using Manager;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security;
 using System.Web;
@@ -18,6 +19,8 @@ namespace WebApplication1.ViewsManagment
             {
                 Response.Redirect("~/ViewsStaff/HomeStaff.aspx",false);
             }
+
+            CargarImagen();
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -53,11 +56,13 @@ namespace WebApplication1.ViewsManagment
 
                 manager.Agregar(nuevoEmpleado);
 
+                GuardarImagen(manager.UltimoId());
             }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
+
 
             BorrarDatos();
             MsgSucces();
@@ -78,6 +83,9 @@ namespace WebApplication1.ViewsManagment
             txtEmail.Text = string.Empty;
             txtTelefono.Text = string.Empty;
             ddlOpciones.SelectedValue = "0";
+
+            Session["fileUser"] = null;
+            imgPreview.ImageUrl = string.Empty;
         }
 
         private bool ValidarCampos()
@@ -170,5 +178,58 @@ namespace WebApplication1.ViewsManagment
             lblErrores.Text = "Usuario Guardado con Exito !!!";
             lblErrores.Visible = true;
         }
+
+        private void CargarImagen()
+        {
+
+            try
+            {
+                if (fileUploadImagen.HasFile)
+                {
+                    Session.Add("fileUser", fileUploadImagen);
+                }
+
+                if (Session["fileUser"] != null)
+                {
+                    FileUpload file = (FileUpload)Session["fileUser"];
+
+                    byte[] imagenBytes = file.FileBytes;
+                    string base64String = Convert.ToBase64String(imagenBytes);
+                    imgPreview.ImageUrl = "data:image/png;base64," + base64String;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Error: " + ex.Message);
+            }
+
+        }
+
+        public void GuardarImagen(long id)
+        {
+            string rutaCarpeta, nombreArchivo, rutaCompleta;
+
+            try
+            {
+                FileUpload file = (FileUpload)Session["fileUser"];
+
+                rutaCarpeta = Server.MapPath("~/Database/Imagenes/Perfiles/"); // Carpeta en el servidor
+                nombreArchivo = "Usuario-" + id.ToString() + ".jpg";
+                rutaCompleta = Path.Combine(rutaCarpeta, nombreArchivo);
+
+                // Guardar la imagen en la carpeta del servidor
+                file.SaveAs(rutaCompleta);
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
+        }
+
+
     }
 }

@@ -54,10 +54,21 @@ namespace WebApplication1.ViewCommon
                 nuevoProd.stock = int.Parse(txtStock.Text); //validar
                 nuevoProd.Descripcion = txtBxDescripcion.Text;
                 nuevoProd.Categoria.IdCategoria = int.Parse(ddlCategorias.SelectedValue);
+                nuevoProd.Guarnicion = false;
 
                 switch (ddlCategorias.SelectedValue)
                 {
+                    case "1":   //cafeteria
+                        nuevoProd.Guarnicion = chkLeche.Checked;
+                        manager.AgregarProd(nuevoProd);
+                        break;
+
                     case "2":   //entradas
+                        manager.AgregarEntrada(nuevoProd, chkIndividual.Checked);
+                        break;
+
+                    case "3":   //comidas
+                        nuevoProd.Guarnicion = chkGuarnicion.Checked;
                         manager.AgregarEntrada(nuevoProd, chkIndividual.Checked);
                         break;
 
@@ -67,10 +78,6 @@ namespace WebApplication1.ViewCommon
 
                     case "5":   //bebida
                         manager.AgregarBebida(nuevoProd, int.Parse(txtVolumen.Text), chkAlcohol.Checked);
-                        break;
-
-                    default:    // general
-                        manager.AgregarProd(nuevoProd);
                         break;
                 }
 

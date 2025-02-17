@@ -21,6 +21,7 @@ namespace Dominio
         public string nombreusuario { get; set; }
         public string clave { get; set; }
         public UserType rol { get; set; }
+        public ImagenUser Imagen { get; set; }
         public bool estado { get; set; }
 
         public Usuario() 
@@ -30,6 +31,7 @@ namespace Dominio
             clave = string.Empty;
             estado = false;
             rol = UserType.invalid;
+            Imagen = new ImagenUser();
         }
 
     }

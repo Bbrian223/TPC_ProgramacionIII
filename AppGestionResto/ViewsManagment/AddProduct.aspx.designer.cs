@@ -87,6 +87,15 @@ namespace WebApplication1.ViewCommon
         protected global::System.Web.UI.WebControls.TextBox txtStock;
 
         /// <summary>
+        /// Control chkLeche.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkLeche;
+
+        /// <summary>
         /// Control chkIndividual.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace WebApplication1.ViewCommon
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkIndividual;
+
+        /// <summary>
+        /// Control chkGuarnicion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkGuarnicion;
 
         /// <summary>
         /// Control chkAzucar.

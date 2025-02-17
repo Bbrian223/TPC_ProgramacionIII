@@ -186,12 +186,13 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("EXEC sp_AgregarProd @IdCategoria,@Nombre,@Precio,@Stock,@Descripcion");
+                datos.SetearConsulta("EXEC sp_AgregarProd @IdCategoria,@Nombre,@Precio,@Stock,@Descripcion,@GUARNICION");
                 datos.SetearParametro("@IdCategoria", prod.Categoria.IdCategoria);
                 datos.SetearParametro("@Nombre", prod.Nombre);
                 datos.SetearParametro("@Precio", prod.Precio);
                 datos.SetearParametro("@Stock", prod.stock);
                 datos.SetearParametro("@Descripcion", prod.Descripcion);
+                datos.SetearParametro("@GUARNICION",prod.Guarnicion);
                 datos.ejecutarAccion();
 
             }

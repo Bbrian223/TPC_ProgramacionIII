@@ -36,6 +36,14 @@
              margin-top: 10px;
              margin-bottom: 10px;
          }
+
+         input[type="checkbox"] {
+             width: 15px;
+             height: 15px;
+             transform: scale(1.5);
+             cursor: pointer;
+             margin: 5px
+         }
      </style>
 
 
@@ -54,8 +62,7 @@
             <asp:Image ID="imgPreview" CssClass="image-circle mb-3" runat="server" />
         </div>
 
-        <asp:FileUpload ID="fileUploadImagen" runat="server" CssClass="form-control" onchange="javascript:__doPostBack('<%= fileUploadImagen.ClientID %>', '');"
-            />
+        <asp:FileUpload ID="fileUploadImagen" runat="server" CssClass="form-control" onchange="javascript:__doPostBack('<%= fileUploadImagen.ClientID %>', '');" />
 
         <div class="row justify-content-center" style="margin-top: 20px">
             <!--Categoria-->
@@ -93,12 +100,31 @@
         <div class="row justify-content-lg-start" style="margin-top: 20px">
 
             <!--Entradas-->
+            <%if (string.Compare(ddlCategorias.SelectedValue, "1") == 0)
+                { %>
+
+            <div class="col-3">
+                <asp:CheckBox ID="chkLeche" runat="server" Text=" " />
+                <label style="font-size: 20px">Leche</label>
+            </div>
+            <% } %>
+
+            <!--Entradas-->
             <%if (string.Compare(ddlCategorias.SelectedValue, "2") == 0)
                 { %>
 
             <div class="col-3">
-                <asp:CheckBox ID="chkIndividual" runat="server" Text=" " CssClass="form-check-input form-control-lg" />
+                <asp:CheckBox ID="chkIndividual" runat="server" Text=" " />
                 <label style="font-size: 20px">Individual</label>
+            </div>
+            <% } %>
+            <!--Comidas-->
+            <%if (string.Compare(ddlCategorias.SelectedValue, "3") == 0)
+                { %>
+
+            <div class="col-3">
+                <asp:CheckBox ID="chkGuarnicion" runat="server" Text=" " />
+                <label style="font-size: 20px">Tiene Guarnicion</label>
             </div>
             <% } %>
 
@@ -106,12 +132,12 @@
             <%if (string.Compare(ddlCategorias.SelectedValue, "4") == 0)
                 { %>
             <div class="col-3">
-                <asp:CheckBox ID="chkAzucar" runat="server" Text=" " CssClass="form-check-input form-control-lg" />
+                <asp:CheckBox ID="chkAzucar" runat="server" Text=" " />
                 <label style="font-size: 20px">Azucar agregada</label>
             </div>
 
             <div class="col-3">
-                <asp:CheckBox ID="chkGluten" runat="server" Text=" " CssClass="form-check-input form-control-lg" />
+                <asp:CheckBox ID="chkGluten" runat="server" Text=" " />
                 <label style="font-size: 20px">Gluten</label>
             </div>
             <% } %>
@@ -125,7 +151,7 @@
                     onkeypress="return soloNumeros(event)"></asp:TextBox>
             </div>
             <div class="col-3">
-                <asp:CheckBox ID="chkAlcohol" runat="server" Text=" " CssClass="form-check-input form-control-lg" />
+                <asp:CheckBox ID="chkAlcohol" runat="server" Text=" " />
                 <label style="font-size: 20px">Alcohol</label>
 
             </div>

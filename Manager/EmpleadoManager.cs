@@ -18,7 +18,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDEMPLEADO,IDUSUARIO,NOMBRE,APELLIDO,DOCUMENTO,FECHA_NACIMIENTO,FECHA_INGRESO,IDDIRECCION,CALLE,NUM_DIRECCION,LOCALIDAD,COD_POSTAL,EMAIL,TELEFONO,IDROL,ESTADO FROM vw_ListaEmpleados\r\n");
+                datos.SetearConsulta("SELECT IDEMPLEADO,IDUSUARIO,NOMBRE,APELLIDO,DOCUMENTO,FECHA_NACIMIENTO,FECHA_INGRESO,IDDIRECCION,CALLE,NUM_DIRECCION,LOCALIDAD,COD_POSTAL,EMAIL,TELEFONO,IDROL,ESTADO,ARCHIMAGEN FROM vw_ListaEmpleados");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -41,6 +41,7 @@ namespace Manager
                     empleado.Telefono = !(datos.Lector["TELEFONO"] is DBNull) ? (string)datos.Lector["TELEFONO"] : string.Empty;
                     empleado.rol = (UserType)datos.Lector["IDROL"];
                     empleado.estado = (bool)datos.Lector["ESTADO"];
+                    empleado.Imagen.NombreArch = (string)datos.Lector["ARCHIMAGEN"];
 
                     lista.Add(empleado);
                 }
@@ -151,5 +152,32 @@ namespace Manager
             }
         }
 
+        public long UltimoId()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            long id = -1;
+
+            try
+            {
+                datos.SetearConsulta("SELECT MAX(IDUSUARIO) AS ID FROM Usuarios");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    id = (long)datos.Lector["ID"];
+                }
+
+                return id;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
     }
 }
