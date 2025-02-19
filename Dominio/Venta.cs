@@ -8,10 +8,16 @@ namespace Dominio
 {
     public class Venta
     {
-        public int IdVenta { get; set; }
-        public int IdPedido { get; set; }
-        public int IdUsuario { get; set; }
+        public long IdVenta { get; set; }
+        public long IdPedido { get; set; }
+        public Mesa Mesa { get; set; }
+        public long IdUsuario { get; set; }
         public DateTime Fecha_hora { get; set; }
-        public double Total { get; set; }
+        public decimal Total { get; set; }
+
+        public Venta()
+        {
+            Mesa = new Mesa();
+        }
     }
 }
