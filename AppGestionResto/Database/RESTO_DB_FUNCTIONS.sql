@@ -228,6 +228,14 @@ WHERE
 );
 GO
 
+-- Lista de pedidos
+CREATE VIEW vw_ListaPedidos
+AS
+SELECT P.IDPEDIDO,M.IDSALON,P.IDMESA,P.IDUSUARIO,P.ESTADO FROM Pedidos P 
+INNER JOIN Mesas M ON P.IDMESA = M.IDMESA
+GO
+
+
 -- Tabla para obtener el pedido pendiente para la mesa indicada
 CREATE FUNCTION fn_ObtenerPedido(@IDMESA BIGINT)
 RETURNS TABLE

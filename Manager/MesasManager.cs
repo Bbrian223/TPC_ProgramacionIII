@@ -51,7 +51,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDSALON,IDMESA,ESTADO,HABILITADA from Mesas WHERE IDSALON = @IDSALON ORDER BY IDMESA");
+                datos.SetearConsulta("SELECT IDSALON,IDMESA,IDUSUARIO,ESTADO,HABILITADA from Mesas WHERE IDSALON = @IDSALON ORDER BY IDMESA");
                 datos.SetearParametro("@IDSALON",idSalon);
                 datos.EjecutarLectura();
 
@@ -62,6 +62,7 @@ namespace Manager
                     mesa.IdSalon = (long)datos.Lector["IDSALON"];
                     mesa.IdMesa = (long)datos.Lector["IDMESA"];
                     mesa.EstadoMesa = (string)datos.Lector["ESTADO"];
+                    mesa.UsuarioAsignado.idusuario = (datos.Lector["IDUSUARIO"] is DBNull) ? -1 : (long)datos.Lector["IDUSUARIO"]; 
                     mesa.Habilitado = (bool)datos.Lector["HABILITADA"];
 
                     lista.Add(mesa);

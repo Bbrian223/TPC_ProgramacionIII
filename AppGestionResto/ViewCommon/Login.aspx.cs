@@ -67,7 +67,7 @@ namespace WebApplication1.ViewCommon
 
             try
             {
-                emplActual = manager.Obtener(idusuario);
+                emplActual = manager.ObtenerPorId(idusuario);
                 Session.Add("Empleado", emplActual);
             }
             catch (Exception)

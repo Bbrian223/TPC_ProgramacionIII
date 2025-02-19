@@ -156,12 +156,15 @@
     <Content Include="ViewCommon\orderDetail.aspx" />
     <Content Include="ViewsManagment\AddProduct.aspx" />
     <Content Include="ViewCommon\Login.aspx" />
+    <Content Include="ViewsManagment\AssignTable.aspx" />
     <Content Include="ViewsManagment\MesasSettings.aspx" />
     <Content Include="ViewsManagment\ProductSettings.aspx" />
     <Content Include="ViewCommon\Site.Master" />
     <Content Include="ViewsManagment\AddUser.aspx" />
     <Content Include="ViewsManagment\HomeManagment.aspx" />
     <Content Include="ViewsManagment\UserSettings.aspx" />
+    <Content Include="ViewsManagment\ViewOrders.aspx" />
+    <Content Include="ViewsManagment\ViewSales.aspx" />
     <Content Include="ViewsStaff\HomeStaff.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -195,6 +198,13 @@
     </Compile>
     <Compile Include="ViewCommon\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsManagment\AssignTable.aspx.cs">
+      <DependentUpon>AssignTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsManagment\AssignTable.aspx.designer.cs">
+      <DependentUpon>AssignTable.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewsManagment\MesasSettings.aspx.cs">
       <DependentUpon>MesasSettings.aspx</DependentUpon>
@@ -244,6 +254,20 @@
     </Compile>
     <Compile Include="ViewsManagment\UserSettings.aspx.designer.cs">
       <DependentUpon>UserSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsManagment\ViewOrders.aspx.cs">
+      <DependentUpon>ViewOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsManagment\ViewOrders.aspx.designer.cs">
+      <DependentUpon>ViewOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsManagment\ViewSales.aspx.cs">
+      <DependentUpon>ViewSales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsManagment\ViewSales.aspx.designer.cs">
+      <DependentUpon>ViewSales.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewsStaff\HomeStaff.aspx.cs">
       <DependentUpon>HomeStaff.aspx</DependentUpon>

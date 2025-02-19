@@ -102,7 +102,8 @@
                     <div class="collapse" id="collapseAdministracion">
                         <ul class="nav flex-column ps-3">
                             <li><a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/UserSettings.aspx") %>">Usuarios</a></li>
-                            <li><a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/MesasSettings.aspx") %>">Mesas</a></li>
+                            <li><a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/MesasSettings.aspx") %>">Salones</a></li>
+                            <li><a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/AssignTable.aspx") %>">Asignar Mesa</a></li>
                         </ul>
                     </div>
                 </li>
@@ -114,14 +115,18 @@
                     <div class="collapse" id="collapseInventario">
                         <ul class="nav flex-column ps-3">
                             <li><a class="nav-link text-white"  href="<%= ResolveUrl("~/ViewsManagment/ProductSettings.aspx") %>">Productos</a></li>
-                            <li><a class="nav-link text-white" href="#">Categorías</a></li>
+                            <li><a class="nav-link text-white" href="#">Extras</a></li>
                         </ul>
                     </div>
                 </li>
 
                 <!-- Opción Pedidos -->
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Pedidos</a>
+                    <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/ViewOrders.aspx") %>">Pedidos</a>
+                </li>
+                <!-- Opcion Ventas -->
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/ViewSales.aspx") %>">Ventas</a>
                 </li>
 
             </ul>

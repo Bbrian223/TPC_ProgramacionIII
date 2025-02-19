@@ -41,7 +41,6 @@
 
 
 
-
     <h2>+ Agregar Empleado</h2>
 
     <hr class="my-4" />
@@ -109,6 +108,7 @@
                 </asp:DropDownList>
             </div>
         </div>
+
 
         <div class="row" style="margin-top: 40px;">
             <div class="col-6">

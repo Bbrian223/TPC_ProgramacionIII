@@ -13,6 +13,42 @@ namespace Manager
 {
     public class PedidosManager
     {
+        public List<Pedido> ObtenerTodosPedidos() 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Pedido> lista = new List<Pedido>();
+
+            try
+            {
+                datos.SetearConsulta("SELECT IDPEDIDO,IDSALON,IDMESA,IDUSUARIO,ESTADO FROM vw_ListaPedidos");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Pedido ped = new Pedido();
+
+                    ped.IdPedido = (long)datos.Lector["IDPEDIDO"];
+                    ped.Mesa.IdSalon = (long)datos.Lector["IDSALON"];
+                    ped.Mesa.IdMesa = (long)datos.Lector["IDMESA"];
+                    ped.Empleado.idusuario = (long)datos.Lector["IDUSUARIO"];
+                    ped.Estado = (string)datos.Lector["ESTADO"];
+
+                    lista.Add(ped);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+
+        }
+        
         public List<DetallePedido> ObtenerProductosDelPedido(int idMesa) 
         {
             AccesoDatos datos = new AccesoDatos();
