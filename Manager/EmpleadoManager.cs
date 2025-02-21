@@ -106,6 +106,46 @@ namespace Manager
             }
         }
 
+        public List<Empleado> ObtenerEmpleadosPorMesa(long mesa) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Empleado> lista = new List<Empleado>();    
+            
+            try
+            {
+                datos.SetearConsulta("EXEC sp_ListaEmpleadosPorMesa @IDMESA");
+                datos.SetearParametro("@IDMESA", mesa);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Empleado empl = new Empleado();
+
+                    empl.IdEmpleado = (long)datos.Lector["IDEMPLEADO"];
+                    empl.idusuario = (long)datos.Lector["IDUSUARIO"];
+                    empl.Nombre = (string)datos.Lector["NOMBRE"];
+                    empl.Apellido = (string)datos.Lector["APELLIDO"];
+                    empl.Documento = (string)datos.Lector["DOCUMENTO"];
+                    empl.FechaNac = (DateTime)datos.Lector["FECHA_NACIMIENTO"];
+                    empl.FechaIng = (DateTime)datos.Lector["FECHA_INGRESO"];
+                    empl.rol = (UserType)datos.Lector["IDROL"];
+                    empl.estado = (bool)datos.Lector["ESTADO"];
+
+                    lista.Add(empl);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
         public Empleado ObtenerPorId(long idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();

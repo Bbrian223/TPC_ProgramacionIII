@@ -240,5 +240,26 @@ namespace Manager
             }
         }
 
+        public void desasignarEmpleadoMesa(long idEmpl, long idMesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("DELETE Mesas_X_Empleados WHERE IDMESA = @IDMESA AND IDEMPLEADO = @IDEMPLEADO");
+                datos.SetearParametro("@IDMESA", idMesa); 
+                datos.SetearParametro("@IDEMPLEADO",idEmpl);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
     }
 }

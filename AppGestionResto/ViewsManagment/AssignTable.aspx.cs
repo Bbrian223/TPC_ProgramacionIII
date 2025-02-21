@@ -141,6 +141,23 @@ namespace WebApplication1.ViewsManagment
             Session["ListIdEmpl"] = listaIdSelect;
         }
 
+        protected void gViewMesaEmpleados_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            MesasManager manager = new MesasManager();
+            int index = Convert.ToInt32(e.CommandArgument);
+            string idEmpleado = gViewMesaEmpleados.DataKeys[index].Value.ToString();
+            string mesa = lblModalMesa.Text;
+
+            try
+            {
+                manager.desasignarEmpleadoMesa( long.Parse(idEmpleado), long.Parse(mesa));
+                MostrarModal(mesa);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message +"')</Script>");
+            }
+        }
 
         //Funciones
         private void CargarGridView()
@@ -297,7 +314,26 @@ namespace WebApplication1.ViewsManagment
 
         public void MostrarModal(string mesa)
         {
-            
+            EmpleadoManager manager = new EmpleadoManager();
+            List<Empleado> lista = new List<Empleado>();
+            lblModalError.Text = string.Empty;
+
+            try
+            {
+                lista = manager.ObtenerEmpleadosPorMesa(long.Parse(mesa));
+
+                gViewMesaEmpleados.DataSource = lista;
+                gViewMesaEmpleados.DataBind();
+                lblModalMesa.Text = mesa;
+
+                if (lista.Count == 0) lblModalError.Text = "SIN MESAS ASIGNADAS";
+
+                ObtenerMesas();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
             ClientScript.RegisterStartupScript(this.GetType(), "Error", "var modal = new bootstrap.Modal(document.getElementById('modalEstado')); modal.show();", true);
         }
@@ -323,5 +359,6 @@ namespace WebApplication1.ViewsManagment
             }
 
         }
+
     }
 }

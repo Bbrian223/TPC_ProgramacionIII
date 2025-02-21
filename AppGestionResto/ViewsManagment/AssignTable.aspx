@@ -133,15 +133,15 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Empleados asignados</h5>
+                    <h5 class="modal-title">Empleados asignados a la mesa:  <asp:Label ID="lblModalMesa" runat="server" /></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body d-flex flex-column gap-3" role="alert">
 
-                    <div class="col-6 scroll-grid-container">
-                        <label style="margin-bottom: 20px">Empleados Seleccionados</label>
+                    <div class="col-12 scroll-grid-container">
+                        <asp:Label ID="lblModalError" runat="server" Font-Size="20PX"/>
                         <asp:GridView ID="gViewMesaEmpleados" runat="server" CssClass="table table-striped table-bordered text-center"
-                            AutoGenerateColumns="False" DataKeyNames="IdEmpleado">
+                            AutoGenerateColumns="False" DataKeyNames="IdEmpleado" OnRowCommand="gViewMesaEmpleados_RowCommand">
                             <Columns>
                                 <asp:ButtonField ButtonType="Button" CommandName="X" Text="X"
                                     ControlStyle-CssClass="btn btn-danger btn-sm" ItemStyle-Width="20px" />

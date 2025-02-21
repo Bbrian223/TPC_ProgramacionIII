@@ -359,6 +359,17 @@ BEGIN
 END
 GO
 
+-- Obtener empleados asignados a mesas
+CREATE PROCEDURE sp_ListaEmpleadosPorMesa(
+	@IDMESA BIGINT
+)AS
+BEGIN
+	SELECT L.IDEMPLEADO,L.IDUSUARIO,L.NOMBRE,L.APELLIDO,L.DOCUMENTO,L.FECHA_NACIMIENTO,L.FECHA_INGRESO,L.IDROL,L.ESTADO FROM vw_ListaEmpleados L
+	INNER JOIN Mesas_X_Empleados ME ON L.IDEMPLEADO = ME.IDEMPLEADO
+	WHERE ME.IDMESA = @IDMESA
+END
+GO
+
 -- Actualiza el estado de los salones y las mesas en consecuencia
 CREATE PROCEDURE sp_ActualizarSalones(
 	@pIDSALON BIGINT,
