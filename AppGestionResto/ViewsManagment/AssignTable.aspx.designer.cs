@@ -24,6 +24,15 @@ namespace WebApplication1.ViewsManagment
         protected global::System.Web.UI.WebControls.DropDownList ddlSalones;
 
         /// <summary>
+        /// Control chkAsignarMesa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkAsignarMesa;
+
+        /// <summary>
         /// Control ContenedorMesas.
         /// </summary>
         /// <remarks>
@@ -33,13 +42,22 @@ namespace WebApplication1.ViewsManagment
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ContenedorMesas;
 
         /// <summary>
-        /// Control lblResultado.
+        /// Control gViewEmpleados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblResultado;
+        protected global::System.Web.UI.WebControls.GridView gViewEmpleados;
+
+        /// <summary>
+        /// Control gviewEmplSelect.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gviewEmplSelect;
 
         /// <summary>
         /// Control txtIdFiltro.
@@ -60,12 +78,12 @@ namespace WebApplication1.ViewsManagment
         protected global::System.Web.UI.WebControls.TextBox txtDniFiltro;
 
         /// <summary>
-        /// Control gViewEmpleados.
+        /// Control gViewMesaEmpleados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gViewEmpleados;
+        protected global::System.Web.UI.WebControls.GridView gViewMesaEmpleados;
     }
 }

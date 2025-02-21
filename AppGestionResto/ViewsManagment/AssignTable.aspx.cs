@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Security.Permissions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,10 +14,10 @@ namespace WebApplication1.ViewsManagment
 {
     public partial class AssignTable : System.Web.UI.Page
     {
+        List<string> listaIdSelect = new List<string>();
         List<Salon> listaSalon = new List<Salon>();
         List<Mesa> listaMesas = new List<Mesa>();
-        public bool EmplSeleccionado;
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Seguridad.NivelAcceso != UserType.Gerente)
@@ -45,8 +47,22 @@ namespace WebApplication1.ViewsManagment
             Button clickedButton = (Button)sender;
             string mesaSeleccionada = clickedButton.ID;
 
-
-
+            try
+            {
+                if (!chkAsignarMesa.Checked)
+                {
+                    MostrarModal(mesaSeleccionada);
+                }
+                else
+                {
+                    AsignarMesaEmpleado(mesaSeleccionada);
+                    ObtenerMesas();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
 
         }
 
@@ -81,13 +97,50 @@ namespace WebApplication1.ViewsManagment
         protected void gViewEmpleados_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
-            int idCliente = Convert.ToInt32(gViewEmpleados.DataKeys[index].Value);
+            string idEmpleado = gViewEmpleados.DataKeys[index].Value.ToString();
 
-            // Mostrar el ID seleccionado
-            lblResultado.Text = $"Empleado seleccionado: {idCliente}";
+            if (Session["ListIdEmpl"] == null) 
+                Session.Add("ListIdEmpl", new List<string>());
 
-            Session["emplSeleccionado"] = true;
+            listaIdSelect = (List<string>)Session["ListIdEmpl"];
+
+            try
+            {
+                if (!listaIdSelect.Contains(idEmpleado)) 
+                    listaIdSelect.Add(idEmpleado);
+
+                gviewEmplSelect.DataSource = ObtenerEmp(listaIdSelect);
+                gviewEmplSelect.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
+
+            Session["ListIdEmpl"] = listaIdSelect;
         }
+
+        protected void gviewEmplSelect_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            string idEmpleado = gviewEmplSelect.DataKeys[index].Value.ToString();
+
+            listaIdSelect = (List<string>)Session["ListIdEmpl"];
+
+            try
+            {
+                listaIdSelect.Remove(idEmpleado);
+                gviewEmplSelect.DataSource = ObtenerEmp(listaIdSelect);
+                gviewEmplSelect.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
+
+            Session["ListIdEmpl"] = listaIdSelect;
+        }
+
 
         //Funciones
         private void CargarGridView()
@@ -116,6 +169,7 @@ namespace WebApplication1.ViewsManagment
             try
             {
                 List<Empleado> aux = manager.ObtenerListaEmplPorRol((int)UserType.Mozo).Where(emp => emp.IdEmpleado == id).ToList();
+                
                 gViewEmpleados.DataSource = aux;
                 gViewEmpleados.DataBind();
             }
@@ -192,7 +246,7 @@ namespace WebApplication1.ViewsManagment
                     btnMesa.Text = item.IdMesa.ToString();
                     btnMesa.Click += BtnMesa_Click; // manejar evento
 
-                    if (item.UsuarioAsignado.idusuario == -1) 
+                    if (item.EmplAsignados == 0)
                     {
                         btnMesa.CssClass = "mesa-cuadrado mesa-cerrada text-decoration-none text-center";
                     }
@@ -210,18 +264,64 @@ namespace WebApplication1.ViewsManagment
             }
         }
 
-        public void CargarSalones() 
+        public void CargarSalones()
         {
             ddlSalones.DataSource = listaSalon;
             ddlSalones.DataValueField = "IdSalon";
             ddlSalones.DataTextField = "Nombre";
             ddlSalones.DataBind();
 
-            EmplSeleccionado = false;
             ddlSalones.SelectedValue = "1";
-            Session.Add("IDSALON",int.Parse(ddlSalones.SelectedValue));
-            Session.Add("emplSeleccionado", EmplSeleccionado);
+            Session.Add("IDSALON", int.Parse(ddlSalones.SelectedValue));
         }
 
+        public List<Empleado> ObtenerEmp(List<string> lista)
+        {
+            EmpleadoManager manager = new EmpleadoManager();
+            List<Empleado> aux = new List<Empleado>();
+
+            try
+            {
+                foreach (var item in lista)
+                {
+                    aux.Add( manager.ObtenerPorId(long.Parse(item)) );
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return aux;
+        }
+
+        public void MostrarModal(string mesa)
+        {
+            
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Error", "var modal = new bootstrap.Modal(document.getElementById('modalEstado')); modal.show();", true);
+        }
+
+        public void AsignarMesaEmpleado(string mesa)
+        {
+            MesasManager manager = new MesasManager();
+            List<string> lista = (List<string>)Session["ListIdEmpl"];
+
+            if (lista is null)
+                return;
+
+            try
+            {
+                foreach (var item in lista)
+                {
+                    manager.AsignarMesa( long.Parse(item), long.Parse(mesa));
+                } 
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
     }
 }

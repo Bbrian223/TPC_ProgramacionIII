@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ViewCommon/Site.Master" AutoEventWireup="true" CodeBehind="AssignTable.aspx.cs" Inherits="WebApplication1.ViewsManagment.AssignTable" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ViewCommon/Site.Master" AutoEventWireup="true" CodeBehind="AssignTable.aspx.cs" Inherits="WebApplication1.ViewsManagment.AssignTable"
+    MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -38,72 +39,127 @@
         .mesa-cerrada {
             background-color: #6c757d; /* Gris para cerrada */
         }
+
+
+        input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
+            transform: scale(1.5);
+            cursor: pointer;
+            margin: 5px
+        }
     </style>
 
     <h2>Asignar mesas Mozos</h2>
     <hr class="my-4" />
 
     <div class="container">
-        <div class="row justify-content-center" style="padding-top: 30px">
+        <div class="row justify-content-center" style="padding-top: 10px">
             <div class="container-fluid">
-
-                <div class="row row-cols-3">
-                    <!--DropDownList 1-->
+                <!--DropDownList Salones-->
+                <div class="row button-row mb-5">
                     <div class="form-check col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <asp:DropDownList ID="ddlSalones" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
                             BackColor="white" ForeColor="black" Font-Size="Large" AutoPostBack="true" OnSelectedIndexChanged="ddlSalones_SelectedIndexChanged">
                         </asp:DropDownList>
-
+                    </div>
+                    <!--Botones-->
+                    <div class="form-check col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <asp:CheckBox ID="chkAsignarMesa" runat="server" AutoPostBack="true" />
+                        <label style="font-size: 20px">Asignar Mesa</label>
                     </div>
                 </div>
-
                 <!--Mesas-->
                 <div class="row" id="ContenedorMesas" runat="server" style="margin-top: 20px;">
                     <!-- 5 filas con 5 mesas cada una -->
                 </div>
-
-                <!-- Etiqueta para mostrar el resultado -->
-                <div style="margin-top: 20px; margin-bottom:20px">
-                    <asp:Label ID="lblResultado" runat="server" CssClass="mt-3 fw-bold"></asp:Label>
+                <%if (chkAsignarMesa.Checked)
+                    { %>
+                <!--GridView Empleados-->
+                <div class="row button-row mb-5 text-center">
+                    <div class="col-6 scroll-grid-container">
+                        <label style="margin-bottom: 20px">Empleados</label>
+                        <asp:GridView ID="gViewEmpleados" runat="server" CssClass="table table-striped table-bordered text-center"
+                            AutoGenerateColumns="False" DataKeyNames="IdEmpleado" OnRowCommand="gViewEmpleados_RowCommand">
+                            <Columns>
+                                <asp:ButtonField ButtonType="Button" CommandName="Seleccionar" Text="+"
+                                    ControlStyle-CssClass="btn btn-primary btn-sm" ItemStyle-Width="20px" />
+                                <asp:BoundField DataField="IdEmpleado" HeaderText="ID" ItemStyle-Width="50px" />
+                                <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-Width="100px" />
+                                <asp:BoundField DataField="Apellido" HeaderText="Apellido" ItemStyle-Width="100px" />
+                                <asp:BoundField DataField="Documento" HeaderText="DNI" ItemStyle-Width="100px" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                    <!--Empleados seleccionados-->
+                    <div class="col-6 scroll-grid-container">
+                        <label style="margin-bottom: 20px">Empleados Seleccionados</label>
+                        <asp:GridView ID="gviewEmplSelect" runat="server" CssClass="table table-striped table-bordered text-center"
+                            AutoGenerateColumns="False" DataKeyNames="IdEmpleado" OnRowCommand="gviewEmplSelect_RowCommand">
+                            <Columns>
+                                <asp:ButtonField ButtonType="Button" CommandName="Seleccionar" Text="X"
+                                    ControlStyle-CssClass="btn btn-danger btn-sm" ItemStyle-Width="20px" />
+                                <asp:BoundField DataField="IdEmpleado" HeaderText="ID" ItemStyle-Width="50px" />
+                                <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-Width="100px" />
+                                <asp:BoundField DataField="Apellido" HeaderText="Apellido" ItemStyle-Width="100px" />
+                                <asp:BoundField DataField="Documento" HeaderText="DNI" ItemStyle-Width="100px" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
                 </div>
-
                 <!--Filtros-->
                 <div class="row button-row mb-5 text-center">
                     <!-- Filtro por ID -->
-                    <div class="col-4">
+                    <div class="col-3">
                         <div class="input-group mb-3">
                             <asp:TextBox ID="txtIdFiltro" CssClass="form-control" runat="server" Placeholder="ID"
                                 OnTextChanged="txtIdFiltro_TextChanged" AutoPostBack="true"></asp:TextBox>
                         </div>
                     </div>
                     <!-- Filtro por DOCUMENTO -->
-                    <div class="col-4">
+                    <div class="col-3">
                         <div class="input-group mb-3">
                             <asp:TextBox ID="txtDniFiltro" CssClass="form-control" runat="server" Placeholder="DNI"
                                 OnTextChanged="txtDniFiltro_TextChanged" AutoPostBack="true"></asp:TextBox>
                         </div>
                     </div>
                 </div>
+            </div>
+            <%} %>
+        </div>
+    </div>
 
-                <div class="scroll-grid-container">
-                    <!--GridView Empleados-->
-                    <asp:GridView ID="gViewEmpleados" runat="server" CssClass="table table-striped table-bordered text-center"
-                        OnRowCommand="gViewEmpleados_RowCommand" AutoGenerateColumns="False" DataKeyNames="IdEmpleado">
-                        <Columns>
-                            <asp:ButtonField ButtonType="Button" CommandName="Seleccionar" Text="Asignar"
-                                ControlStyle-CssClass="btn btn-primary btn-sm" ItemStyle-Width="20px" />
-                            <asp:BoundField DataField="IdEmpleado" HeaderText="ID" ItemStyle-Width="50px" />
-                            <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-Width="100px" />
-                            <asp:BoundField DataField="Apellido" HeaderText="Apellido" ItemStyle-Width="100px" />
-                            <asp:BoundField DataField="Documento" HeaderText="DNI" ItemStyle-Width="100px" />
-                        </Columns>
-                    </asp:GridView>
+    <div class="modal fade" id="modalEstado" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Empleados asignados</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
+                <div class="modal-body d-flex flex-column gap-3" role="alert">
 
+                    <div class="col-6 scroll-grid-container">
+                        <label style="margin-bottom: 20px">Empleados Seleccionados</label>
+                        <asp:GridView ID="gViewMesaEmpleados" runat="server" CssClass="table table-striped table-bordered text-center"
+                            AutoGenerateColumns="False" DataKeyNames="IdEmpleado">
+                            <Columns>
+                                <asp:ButtonField ButtonType="Button" CommandName="X" Text="X"
+                                    ControlStyle-CssClass="btn btn-danger btn-sm" ItemStyle-Width="20px" />
+                                <asp:BoundField DataField="IdEmpleado" HeaderText="ID" ItemStyle-Width="50px" />
+                                <asp:BoundField DataField="Nombre" HeaderText="Nombre" ItemStyle-Width="100px" />
+                                <asp:BoundField DataField="Apellido" HeaderText="Apellido" ItemStyle-Width="100px" />
+                                <asp:BoundField DataField="Documento" HeaderText="DNI" ItemStyle-Width="100px" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
 
-
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
 
             </div>
         </div>
     </div>
+
 </asp:Content>

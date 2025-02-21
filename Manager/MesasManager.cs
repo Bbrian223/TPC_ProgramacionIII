@@ -51,7 +51,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDSALON,IDMESA,IDUSUARIO,ESTADO,HABILITADA from Mesas WHERE IDSALON = @IDSALON ORDER BY IDMESA");
+                datos.SetearConsulta("SELECT IDMESA,IDSALON,ESTADO,HABILITADA,ASIGNADOS FROM vw_ObtenerMesas WHERE IDSALON = @IDSALON ORDER BY IDMESA");
                 datos.SetearParametro("@IDSALON",idSalon);
                 datos.EjecutarLectura();
 
@@ -59,11 +59,11 @@ namespace Manager
                 {
                     Mesa mesa = new Mesa();
 
-                    mesa.IdSalon = (long)datos.Lector["IDSALON"];
                     mesa.IdMesa = (long)datos.Lector["IDMESA"];
+                    mesa.IdSalon = (long)datos.Lector["IDSALON"];
                     mesa.EstadoMesa = (string)datos.Lector["ESTADO"];
-                    mesa.UsuarioAsignado.idusuario = (datos.Lector["IDUSUARIO"] is DBNull) ? -1 : (long)datos.Lector["IDUSUARIO"]; 
                     mesa.Habilitado = (bool)datos.Lector["HABILITADA"];
+                    mesa.EmplAsignados = (int)datos.Lector["ASIGNADOS"];
 
                     lista.Add(mesa);
                 }
@@ -218,5 +218,27 @@ namespace Manager
                 datos.CerrarConeccion();
             }
         }
+
+        public void AsignarMesa(long idEmpl, long idMesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("EXEC sp_AsignarMesa @IDEMPLEADO,@IDMESA");
+                datos.SetearParametro("@IDEMPLEADO", idEmpl);
+                datos.SetearParametro("@IDMESA", idMesa);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
     }
 }

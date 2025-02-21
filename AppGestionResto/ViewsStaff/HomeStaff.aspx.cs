@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
 
 namespace WebApplication1.ViewsStaff
 {
@@ -11,7 +12,10 @@ namespace WebApplication1.ViewsStaff
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Seguridad.NivelAcceso != UserType.Mozo) 
+            { 
+                
+            }
         }
     }
 }

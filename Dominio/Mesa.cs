@@ -11,13 +11,13 @@ namespace Dominio
         public long IdMesa { get; set; }
         public long IdSalon { get; set; }
         public string EstadoMesa { get; set; }
-        public Usuario UsuarioAsignado { get; set; }
         public bool Habilitado { get; set; }
+        public int EmplAsignados { get; set; }
 
         public Mesa()
         { 
-            UsuarioAsignado = new Usuario();
             EstadoMesa = string.Empty;
+            EmplAsignados = 0;
         }
     }
 
