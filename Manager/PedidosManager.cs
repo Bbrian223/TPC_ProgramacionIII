@@ -189,16 +189,17 @@ namespace Manager
             }
         }
 
-        public void AgregarProd(long idPedido, long idUser, int cantidad) 
+        public void AgregarProd(long idPedido, long idUser, int cantidad, string aclaraciones) 
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.SetearConsulta("EXEC sp_AgregarProdAlPedido @IDPEDIDO,@IDUSUARIO,@CANTIDAD");
+                datos.SetearConsulta("EXEC sp_AgregarProdAlPedido @IDPEDIDO,@IDUSUARIO,@CANTIDAD,@ACLARACIONES");
                 datos.SetearParametro("@IDPEDIDO",idPedido);
                 datos.SetearParametro("@IDUSUARIO", idUser); 
                 datos.SetearParametro("@CANTIDAD",cantidad);
+                datos.SetearParametro("@ACLARACIONES", aclaraciones);
                 datos.ejecutarAccion();
 
             }

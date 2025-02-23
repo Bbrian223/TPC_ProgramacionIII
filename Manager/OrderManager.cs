@@ -70,19 +70,19 @@ namespace Manager
             return Math.Round(monto,1);
         }
 
-        public void AgregarProdAlPedido(int idProd,int cantidad, int idUser) 
+        public void AgregarProdAlPedido(int idProd,int cantidad, int idUser,string detalles) 
         {
             switch (Mesa.EstadoMesa)
             {
                 case "DISPONIBLE":
 
                     GenerarPedidoNuevo(idUser);
-                    AgregarProd(idProd, cantidad);
+                    AgregarProd(idProd, cantidad,detalles);
                     break;
 
                 case "OCUPADA":
 
-                    AgregarProd(idProd, cantidad);
+                    AgregarProd(idProd, cantidad,detalles);
                     break;
 
                 default:
@@ -184,12 +184,12 @@ namespace Manager
             }
         }
 
-        private void AgregarProd(int idProd,int cantidad) 
+        private void AgregarProd(int idProd,int cantidad,string aclaraciones) 
         {
             try
             {
                 ObtenerEstadoPedido();
-                manager.AgregarProd(idProd,(int)Pedido.IdPedido,cantidad);
+                manager.AgregarProd(idProd,(int)Pedido.IdPedido,cantidad,aclaraciones);
             }
             catch (Exception)
             {

@@ -86,8 +86,6 @@ namespace WebApplication1.ViewCommon
         {
             int idProd = (int)Session["idProducto"];
             int cantidad = int.Parse(txtCantidad.Text);
-            Usuario user = (Usuario)Session["User"];
-
 
             try
             {
@@ -95,13 +93,12 @@ namespace WebApplication1.ViewCommon
 
                 if (stock >= cantidad)
                 {
-                    ordManager.AgregarProdAlPedido(idProd, cantidad, (int)user.idusuario);
+                    GuardarProductoSeleccionado(idProd, cantidad);
                     VerificarEstadoMesa();
                     Response.Redirect(Request.Url.AbsoluteUri);
                 }
                 else
                 {
-
                     lblErrores.Text = "Stock insuficiente, cantidad disponible: " + stock;
                     CargarModal(idProd,true);
                 }
@@ -435,6 +432,62 @@ namespace WebApplication1.ViewCommon
             }
             catch (Exception)
             {
+                throw;
+            }
+
+            if (Session["IDCATEGORIA"] is null)
+                Session.Add("IDCATEGORIA", IdCategoria);
+
+            Session["IDCATEGORIA"] = IdCategoria;
+        }
+
+        public void GuardarProductoSeleccionado(int idProd, int cantidad)
+        {
+            Usuario user = (Usuario)Session["User"];
+            string aclaraciones = txtBxDescripcion.Text;
+            int idUser = (int)user.idusuario;
+            IdCategoria = (long)Session["IDCATEGORIA"];
+
+            try
+            {
+                switch (IdCategoria)
+                {
+                    case 1:     //CAFETERIA
+                        ordManager.AgregarProdAlPedido(idProd, cantidad, idUser, aclaraciones);
+
+                        if ((bool)Session["GUARNICION"] && ddlTipoLeche.SelectedIndex != 0)
+                            ordManager.AgregarProdAlPedido(int.Parse(ddlTipoLeche.SelectedValue), 1, idUser, string.Empty);
+
+                        if (ddlTamanio.SelectedIndex != 0)
+                            ordManager.AgregarProdAlPedido(int.Parse(ddlTamanio.SelectedValue), 1, idUser, string.Empty);
+
+                    break;  
+                    
+                    case 3:     //COMIDAS
+                        if ((bool)Session["GUARNICION"])
+                        {
+                            if (string.IsNullOrWhiteSpace(txtBxDescripcion.Text))
+                                aclaraciones = "Guarnicion: " + ddlGuarniciones.SelectedItem.Text;
+                            else
+                                aclaraciones += "; Guarnicion: " + ddlGuarniciones.SelectedItem.Text;
+                        }
+
+                        ordManager.AgregarProdAlPedido(idProd, cantidad, idUser, aclaraciones);
+
+                    break;
+                    
+                    default:    //ENTRADAS,POSTRES,BEBIDAS
+                        ordManager.AgregarProdAlPedido(idProd, cantidad, idUser, aclaraciones);
+
+                    break;
+                }
+
+                
+
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
         }
