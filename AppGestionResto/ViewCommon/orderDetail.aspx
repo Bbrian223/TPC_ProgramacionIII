@@ -95,6 +95,7 @@
 
         .lbldetalle {
             margin-bottom: 20px;
+            font-size: 20px;
         }
 
         .lblDetalleMesa {
@@ -320,7 +321,10 @@
 
                         <!--Extras-->
                         <div class="d-flex align-items-center gap-3 w-100">
-                            <%if (IdCategoria == 1) // cafeteria
+                            <%if (IdCategoria == 1) // CAFETERIA
+                                {%>
+
+                            <%if ((bool)Session["GUARNICION"])
                                 { %>
                             <div class="col-3">
                                 <asp:Label Text="Tipo de Leche" runat="server" CssClass="lbldetalle" />
@@ -328,6 +332,7 @@
                                     BackColor="white" ForeColor="black" Font-Size="Large">
                                 </asp:DropDownList>
                             </div>
+                            <%} %>
 
                             <div class="col-3">
                                 <asp:Label Text="Tamaño cafe" runat="server" CssClass="lbldetalle" />
@@ -339,7 +344,18 @@
                             <%} %>
 
 
-                            <%if (IdCategoria == 3) // comida
+                            <%if (IdCategoria == 2) //ENTRADAS
+                                { %>
+                            <div class="col-2">
+                                <asp:Label Text="Detalles:   " runat="server" CssClass="lbldetalle" />
+                            </div>
+                            <div class="col-6">
+                                <asp:Label ID="lblEntradas" runat="server" CssClass="lbldetalle" />
+                            </div>
+
+                            <%} %>
+
+                            <%if (IdCategoria == 3 && (bool)Session["GUARNICION"]) // COMIDA
 
                                 { %>
                             <div class="col-3">
@@ -347,6 +363,34 @@
                                 <asp:DropDownList ID="ddlGuarniciones" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
                                     BackColor="white" ForeColor="black" Font-Size="Large">
                                 </asp:DropDownList>
+                            </div>
+
+                            <%} %>
+
+                            <%if (IdCategoria == 4) // POSTRES
+                                { %>
+                            <div class="col-2">
+                                <asp:Label Text="Detalles:   " runat="server" CssClass="lbldetalle" />
+                            </div>
+                            <div class="col-5">
+                                <asp:Label ID="lblAzucar" runat="server" CssClass="lbldetalle" />
+                            </div>
+                            <div class="col-5">
+                                <asp:Label ID="lblGluten" runat="server" CssClass="lbldetalle" />
+                            </div>
+
+                            <%} %>
+
+                            <%if (IdCategoria == 5) // BEBIDAS
+                                { %>
+                            <div class="col-2">
+                                <asp:Label Text="Detalles:   " runat="server" CssClass="lbldetalle" />
+                            </div>
+                            <div class="col-5">
+                                <asp:Label ID="lblAlcohol" runat="server" CssClass="lbldetalle" />
+                            </div>
+                            <div class="col-5">
+                                <asp:Label ID="lblVolumen" runat="server" CssClass="lbldetalle" />
                             </div>
 
                             <%} %>

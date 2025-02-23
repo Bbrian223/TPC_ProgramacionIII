@@ -300,5 +300,120 @@ namespace Manager
                 datos.CerrarConeccion();
             }
         }
+
+        public bool Guarnicion(long idProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool guarnicion = false;
+
+            try
+            {
+                datos.SetearConsulta("SELECT GUARNICION FROM Productos WHERE IDPRODUCTO = @IDPRODUCTO");
+                datos.SetearParametro("@IDPRODUCTO",idProd);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    guarnicion = (bool)datos.Lector["GUARNICION"];
+                }
+
+                return guarnicion;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public bool EntradaIndividual(long idProd) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool individual = false;
+
+            try
+            {
+                datos.SetearConsulta("SELECT INDIVIDUAL FROM Entradas WHERE IDPRODUCTO = @IDPRODUCTO");
+                datos.SetearParametro("@IDPRODUCTO", idProd);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    individual = (bool)datos.Lector["INDIVIDUAL"];
+                }
+
+                return individual;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public Postres ObtenerPostre(long idProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Postres postre = new Postres();     // podria obtenerlo llamando al metodo obtenerProducto
+
+            try
+            {
+                datos.SetearConsulta("SELECT GLUTEN,AZUCAR FROM Postres WHERE IDPRODUCTO = @IDPRODUCTO");
+                datos.SetearParametro("@IDPRODUCTO", idProd);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    postre.ContieneGluten = (bool)datos.Lector["GLUTEN"];
+                    postre.ContieneAzucar = (bool)datos.Lector["AZUCAR"];
+                }
+
+                return postre;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public Bebidas ObtenerBebida(long idProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Bebidas bebida = new Bebidas();     // podria obtenerlo llamando al metodo obtenerProducto
+
+            try
+            {
+                datos.SetearConsulta("SELECT ALCOHOL,VOLUMEN FROM Bebidas WHERE IDPRODUCTO = @IDPRODUCTO");
+                datos.SetearParametro("@IDPRODUCTO", idProd);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    bebida.Alcohol = (bool)datos.Lector["ALCOHOL"];
+                    bebida.Volumen = (int)datos.Lector["VOLUMEN"];
+                }
+
+                return bebida;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
     }
 }

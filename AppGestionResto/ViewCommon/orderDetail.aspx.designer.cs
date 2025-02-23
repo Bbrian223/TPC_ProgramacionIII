@@ -204,6 +204,15 @@ namespace WebApplication1.ViewCommon
         protected global::System.Web.UI.WebControls.DropDownList ddlTamanio;
 
         /// <summary>
+        /// Control lblEntradas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEntradas;
+
+        /// <summary>
         /// Control ddlGuarniciones.
         /// </summary>
         /// <remarks>
@@ -211,6 +220,42 @@ namespace WebApplication1.ViewCommon
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlGuarniciones;
+
+        /// <summary>
+        /// Control lblAzucar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAzucar;
+
+        /// <summary>
+        /// Control lblGluten.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGluten;
+
+        /// <summary>
+        /// Control lblAlcohol.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAlcohol;
+
+        /// <summary>
+        /// Control lblVolumen.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblVolumen;
 
         /// <summary>
         /// Control txtBxDescripcion.

@@ -156,6 +156,20 @@ namespace Manager
             }
         }
 
+        public bool ObtenerGuarnicion(int idProd) 
+        {
+            PedidosManager manager = new PedidosManager();
+
+            try
+            {
+                return manager.Guarnicion((long)idProd);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         // PRIVADAS
 
         private void GenerarPedidoNuevo(int idUser)

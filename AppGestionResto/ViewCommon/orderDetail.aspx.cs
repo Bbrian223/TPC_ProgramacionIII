@@ -57,13 +57,17 @@ namespace WebApplication1.ViewCommon
         {
             Button btn = (Button)sender;
             string idProducto = btn.CommandArgument;
-            //MODIFICAR PARA SABER SI MUESTRA GUARNICION
+
+            if (Session["GUARNICION"] is null)
+                Session.Add("GUARNICION", (bool)false);
 
             try
             {
                 if (ordManager.ObtenerEstadoMesa((int)Session["idMesa"]) != "PENDIENTE")
                 {
                     CargarModal(int.Parse(idProducto),false);
+                    CargarDatosLabel(idProducto);
+                    Session["GUARNICION"] = ordManager.ObtenerGuarnicion(int.Parse(idProducto));
                 }
                 else 
                 {
@@ -377,6 +381,62 @@ namespace WebApplication1.ViewCommon
             ClientScript.RegisterStartupScript(this.GetType(), "Error", "var modal = new bootstrap.Modal(document.getElementById('modalError')); modal.show();", true);
         }
 
+        public void CargarDatosLabel(string idProd)
+        {
+            PedidosManager manager = new PedidosManager();
 
+            try
+            {
+                switch (IdCategoria)
+                {
+                    case 2:
+                        if (manager.EntradaIndividual(long.Parse(idProd)))
+                            lblEntradas.Text = "Entrada Individual";
+                        else
+                            lblEntradas.Text = "Entrada para compartir";
+
+                        break;
+
+                    case 4:
+                        Postres postre = manager.ObtenerPostre(long.Parse(idProd));
+
+                        if (postre.ContieneAzucar)
+                            lblAzucar.Text = "Contiene azucar agregada";
+                        else
+                            lblAzucar.Text = "No contiene azucar agregada";
+
+                        if (postre.ContieneGluten)
+                            lblGluten.Text = "Contiene gluten";
+                        else
+                            lblGluten.Text = "Sin Gluten";
+
+                        break;
+                    case 5:
+                        Bebidas bebida = manager.ObtenerBebida(long.Parse(idProd));
+
+                        if (bebida.Alcohol)
+                            lblAlcohol.Text = "Contiene Alcohol";
+                        else
+                            lblAlcohol.Text = "No contiene Alcohol";
+
+                        lblVolumen.Text = "Volumen: " + bebida.Volumen + " mL";
+
+                        break;
+
+                    default:
+                        lblEntradas.Text = string.Empty;
+                        lblAzucar.Text = string.Empty;
+                        lblGluten.Text = string.Empty;
+                        lblAlcohol.Text = string.Empty;
+                        lblVolumen.Text = string.Empty;
+
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
