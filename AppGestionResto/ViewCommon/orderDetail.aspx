@@ -212,13 +212,13 @@
 
                     <hr class="my-4" />
 
-                    <!--    Repeater detalles Pedidos   -->
+
                     <div class="row" style="margin-top: 20px">
                         <div class="col-6">
                             <asp:Label Text="Detalle del pedido: " runat="server" />
                         </div>
                     </div>
-
+                    <!--    Repeater detalles Pedidos   -->
                     <div class="row" style="margin-top: 20px">
                         <div class="col-12">
                             <asp:Repeater ID="repeaterDetalles" runat="server">
@@ -269,8 +269,10 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <div class="modal-body d-flex flex-column gap-3">
+                        <!--Repater productos-->
                         <div id="div1" class="d-flex align-items-center gap-3 w-100">
                             <div class="flex-grow-1 table-responsive">
+
                                 <asp:Repeater ID="repeaterModal" runat="server">
                                     <HeaderTemplate>
                                         <table class="table">
@@ -310,6 +312,13 @@
                             </div>
                         </div>
 
+                        <!--Label Error-->
+                        <asp:Panel ID="pnlError" runat="server" CssClass="alert alert-danger gap-3 w-100" Visible="false">
+                            <asp:Label ID="lblErrores" Text="" runat="server" Visible="false"></asp:Label>
+                        </asp:Panel>
+
+
+                        <!--Extras-->
                         <div class="d-flex align-items-center gap-3 w-100">
                             <%if (IdCategoria == 1) // cafeteria
                                 { %>
@@ -367,7 +376,7 @@
                     </div>
                     <div class="modal-body d-flex flex-column gap-3 alert alert-danger" role="alert">
 
-                        <asp:Label ID="lblModalError" runat="server" Font-Size="XX-Large"/>
+                        <asp:Label ID="lblModalError" runat="server" Font-Size="XX-Large" />
 
                     </div>
                     <div class="modal-footer">
@@ -384,7 +393,7 @@
         <asp:HiddenField ID="hiddenFieldIdEmpleado" runat="server" />
 
         <script>
-            document.getElementById('<%= txtCantidad.ClientID %>').setAttribute('min', '0');
+            document.getElementById('<%= txtCantidad.ClientID %>').setAttribute('min', '1');
         </script>
 
     </form>

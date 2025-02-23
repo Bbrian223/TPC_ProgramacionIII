@@ -3,18 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|c:\\users\\cristal barrera\\documents\\proyectos brian\\tpc_programacioniii\\appgestionresto\\viewsmanagment\\assigntable.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|solutionrelative:viewsmanagment\\assigntable.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|c:\\users\\cristal barrera\\documents\\proyectos brian\\tpc_programacioniii\\appgestionresto\\viewcommon\\orderdetail.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|solutionrelative:viewcommon\\orderdetail.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\viewsmanagment\\assigntable.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|solutionrelative:viewsmanagment\\assigntable.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|c:\\users\\cristal barrera\\documents\\proyectos brian\\tpc_programacioniii\\appgestionresto\\viewcommon\\orderdetail.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|solutionrelative:viewcommon\\orderdetail.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F412F60-D94E-48C6-B86E-4A3A91D71576}|..\\Manager\\Manager.csproj|c:\\users\\cristal barrera\\documents\\proyectos brian\\tpc_programacioniii\\manager\\mesasmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8F412F60-D94E-48C6-B86E-4A3A91D71576}|..\\Manager\\Manager.csproj|c:\\users\\cristal barrera\\documents\\proyectos brian\\tpc_programacioniii\\manager\\ordermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9591A576-B149-4439-8718-D63490C6E7CC}|..\\Dominio\\Dominio.csproj|c:\\users\\cristal barrera\\documents\\proyectos brian\\tpc_programacioniii\\dominio\\mesa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8F412F60-D94E-48C6-B86E-4A3A91D71576}|..\\Manager\\Manager.csproj|c:\\users\\cristal barrera\\documents\\proyectos brian\\tpc_programacioniii\\manager\\pedidosmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,61 +24,62 @@
       "DocumentGroups": [
         {
           "DockedWidth": 219,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AssignTable.aspx",
-              "DocumentMoniker": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\AssignTable.aspx",
-              "RelativeDocumentMoniker": "ViewsManagment\\AssignTable.aspx",
-              "ToolTip": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\AssignTable.aspx",
-              "RelativeToolTip": "ViewsManagment\\AssignTable.aspx",
+              "DocumentIndex": 0,
+              "Title": "orderDetail.aspx",
+              "DocumentMoniker": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewCommon\\orderDetail.aspx",
+              "RelativeDocumentMoniker": "ViewCommon\\orderDetail.aspx",
+              "ToolTip": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewCommon\\orderDetail.aspx",
+              "RelativeToolTip": "ViewCommon\\orderDetail.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-02-19T19:23:11.13Z",
+              "WhenOpened": "2025-02-22T23:16:13.209Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AssignTable.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\AssignTable.aspx.cs",
-              "RelativeDocumentMoniker": "ViewsManagment\\AssignTable.aspx.cs",
-              "ToolTip": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\AssignTable.aspx.cs*",
-              "RelativeToolTip": "ViewsManagment\\AssignTable.aspx.cs*",
-              "ViewState": "AgIAADoBAAAAAAAAAAD4v0gBAABRAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "orderDetail.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewCommon\\orderDetail.aspx.cs",
+              "RelativeDocumentMoniker": "ViewCommon\\orderDetail.aspx.cs",
+              "ToolTip": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewCommon\\orderDetail.aspx.cs",
+              "RelativeToolTip": "ViewCommon\\orderDetail.aspx.cs",
+              "ViewState": "AgIAAFABAAAAAAAAAAA0wG8BAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-19T19:23:23.347Z",
+              "WhenOpened": "2025-02-22T23:16:25.064Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MesasManager.cs",
-              "DocumentMoniker": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\Manager\\MesasManager.cs",
-              "RelativeDocumentMoniker": "..\\Manager\\MesasManager.cs",
-              "ToolTip": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\Manager\\MesasManager.cs",
-              "RelativeToolTip": "..\\Manager\\MesasManager.cs",
-              "ViewState": "AgIAAJAAAAAAAAAAAAAkwPIAAABEAAAAAAAAAA==",
+              "Title": "OrderManager.cs",
+              "DocumentMoniker": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\Manager\\OrderManager.cs",
+              "RelativeDocumentMoniker": "..\\Manager\\OrderManager.cs",
+              "ToolTip": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\Manager\\OrderManager.cs",
+              "RelativeToolTip": "..\\Manager\\OrderManager.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAowJAAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T00:31:16.658Z",
+              "WhenOpened": "2025-02-22T23:18:55.671Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Mesa.cs",
-              "DocumentMoniker": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\Dominio\\Mesa.cs",
-              "RelativeDocumentMoniker": "..\\Dominio\\Mesa.cs",
-              "ToolTip": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\Dominio\\Mesa.cs",
-              "RelativeToolTip": "..\\Dominio\\Mesa.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAEwBMAAAAeAAAAAAAAAA==",
+              "Title": "PedidosManager.cs",
+              "DocumentMoniker": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\Manager\\PedidosManager.cs",
+              "RelativeDocumentMoniker": "..\\Manager\\PedidosManager.cs",
+              "ToolTip": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\Manager\\PedidosManager.cs",
+              "RelativeToolTip": "..\\Manager\\PedidosManager.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBMBAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T00:51:42.005Z"
+              "WhenOpened": "2025-02-22T23:37:39.659Z",
+              "EditorCaption": ""
             }
           ]
         }

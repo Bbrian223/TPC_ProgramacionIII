@@ -63,7 +63,7 @@ namespace WebApplication1.ViewCommon
             {
                 if (ordManager.ObtenerEstadoMesa((int)Session["idMesa"]) != "PENDIENTE")
                 {
-                    CargarModal(int.Parse(idProducto));
+                    CargarModal(int.Parse(idProducto),false);
                 }
                 else 
                 {
@@ -85,11 +85,27 @@ namespace WebApplication1.ViewCommon
             Usuario user = (Usuario)Session["User"];
 
 
-            ordManager.AgregarProdAlPedido(idProd, cantidad ,(int)user.idusuario);
+            try
+            {
+                int stock = ordManager.VerificarStock(idProd);
 
-            VerificarEstadoMesa();
+                if (stock >= cantidad)
+                {
+                    ordManager.AgregarProdAlPedido(idProd, cantidad, (int)user.idusuario);
+                    VerificarEstadoMesa();
+                    Response.Redirect(Request.Url.AbsoluteUri);
+                }
+                else
+                {
 
-            Response.Redirect(Request.Url.AbsoluteUri);
+                    lblErrores.Text = "Stock insuficiente, cantidad disponible: " + stock;
+                    CargarModal(idProd,true);
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
         }
 
         protected void btnEliminarProd_Click(object sender, EventArgs e)
@@ -342,11 +358,14 @@ namespace WebApplication1.ViewCommon
             btnMesaHabilitada.Visible = false;
         }
 
-        public void CargarModal(int idProducto)
+        public void CargarModal(int idProducto, bool error)
         {
             CargarProdSeleccionado(idProducto);
             CargarDropDownList();
             btnModalAceptar.Visible = false;
+            pnlError.Visible = error; 
+            lblErrores.Visible = error;
+            txtCantidad.Text = "1";
 
             ClientScript.RegisterStartupScript(this.GetType(), "VistaPrevia", "var modal = new bootstrap.Modal(document.getElementById('modalDetalles')); modal.show();", true);
         }

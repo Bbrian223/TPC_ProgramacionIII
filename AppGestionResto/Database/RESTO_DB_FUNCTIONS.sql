@@ -272,6 +272,7 @@ BEGIN
 END
 GO
 
+-- Cerrar Pedido
 CREATE PROCEDURE sp_CompletarPedido(
 	@pIDPEDIDO BIGINT
 )AS
@@ -284,6 +285,7 @@ BEGIN
 END
 GO
 
+-- Cancelar Pedido
 CREATE PROCEDURE sp_CancelarPedido(
 	@pIDPEDIDO BIGINT
 )AS
@@ -296,6 +298,7 @@ BEGIN
 END
 GO
 
+-- Agregar a la tabla de ventas
 CREATE PROCEDURE sp_AgregarVenta(
 	@pIDPEDIDO BIGINT,
 	@pIDUSUARIO BIGINT,
@@ -317,11 +320,16 @@ CREATE PROCEDURE sp_AgregarProdAlPedido(
 BEGIN
 	
 	DECLARE @SubTotal money
+	DECLARE @nuevoStock int
 
 	SET @SubTotal = (SELECT PRECIO*@pCANTIDAD FROM Productos WHERE IDPRODUCTO = @pIDPRODUCTO)
+	SET @nuevoStock	= (SELECT STOCK-@pCANTIDAD FROM Productos WHERE IDPRODUCTO = @pIDPRODUCTO)
+
 
 	INSERT DetallesPedido (IDPEDIDO,IDPRODUCTO,CANTIDAD,SUBTOTAL)
 	VALUES (@pIDPEDIDO,@pIDPRODUCTO,@pCANTIDAD,@SubTotal)
+
+	UPDATE Productos SET STOCK = @nuevoStock WHERE IDPRODUCTO = @pIDPRODUCTO
 END
 GO
 

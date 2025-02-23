@@ -142,6 +142,20 @@ namespace Manager
             }
         }
 
+        public int VerificarStock(int idProd)  
+        {
+            PedidosManager manager = new PedidosManager();
+
+            try
+            {
+                return manager.ObtenerStock((long)idProd);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         // PRIVADAS
 
         private void GenerarPedidoNuevo(int idUser)

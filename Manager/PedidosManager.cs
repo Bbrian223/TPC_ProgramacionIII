@@ -272,5 +272,33 @@ namespace Manager
                 datos.CerrarConeccion();
             }
         }
+
+        public int ObtenerStock(long idProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int stock = 0;
+
+            try
+            {
+                datos.SetearConsulta("SELECT STOCK FROM Productos WHERE IDPRODUCTO = @IDPRODUCTO");
+                datos.SetearParametro("@IDPRODUCTO",idProd);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    stock = (int)datos.Lector["STOCK"];
+                }
+
+                return stock;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
     }
 }
