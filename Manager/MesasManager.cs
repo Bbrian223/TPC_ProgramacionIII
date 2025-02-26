@@ -80,6 +80,42 @@ namespace Manager
             }
         }
 
+        public List<Mesa> ObtenerMesasPorSalon(int idSalon, long idEmpleado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Mesa> lista = new List<Mesa>();
+
+            try
+            {
+                datos.SetearConsulta("SELECT IDMESA,IDSALON,HABILITADA,ESTADO FROM fn_ListaMesasPorEmpleado(@IDEMPLEADO,@IDSALON)");
+                datos.SetearParametro("@IDEMPLEADO",idEmpleado);
+                datos.SetearParametro("@IDSALON", idSalon);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Mesa mesa = new Mesa();
+
+                    mesa.IdMesa = (long)datos.Lector["IDMESA"];
+                    mesa.IdSalon = (long)datos.Lector["IDSALON"];
+                    mesa.EstadoMesa = (string)datos.Lector["ESTADO"];
+                    mesa.Habilitado = (bool)datos.Lector["HABILITADA"];
+
+                    lista.Add(mesa);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
         public Mesa ObtenerMesasPorID(int idMesa)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -118,6 +154,39 @@ namespace Manager
             try
             {
                 datos.SetearConsulta("SELECT IDSALON,NOMBRE,ESTADO FROM Salones WHERE ESTADO = '1'");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Salon salon = new Salon();
+
+                    salon.IdSalon = (long)datos.Lector["IDSALON"];
+                    salon.Nombre = (string)datos.Lector["NOMBRE"];
+                    salon.Estado = (bool)datos.Lector["ESTADO"];
+
+                    lista.Add(salon);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public List<Salon> ObtenerListaSalonesPorID(long IdEmpleado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Salon> lista = new List<Salon>();
+            try
+            {
+                datos.SetearConsulta("SELECT IDSALON,NOMBRE,ESTADO FROM fn_ListaSalonesPorId(@IDEMPLEADO)");
+                datos.SetearParametro("@IDEMPLEADO",IdEmpleado);
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())

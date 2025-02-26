@@ -94,16 +94,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/HomeManagment.aspx") %>">Salón</a>
                 </li>
-                <%}
-                    else
-                    {%>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsStaff/HomeStaff.aspx") %>">Salón</a>
-                </li>
-                <%} %>
-                <%if (Dominio.Seguridad.NivelAcceso == Dominio.UserType.Gerente)
-                    { %>
-
+                <!-- Opcion de Administracion-->
                 <li class="nav-item">
                     <a class="nav-link text-white" data-bs-toggle="collapse" href="#collapseAdministracion" role="button" aria-expanded="false" aria-controls="collapseAdministracion">Administración
                     </a>
@@ -115,8 +106,6 @@
                         </ul>
                     </div>
                 </li>
-                <%} %>
-
                 <!-- Opción Inventario -->
                 <li class="nav-item">
                     <a class="nav-link text-white" data-bs-toggle="collapse" href="#collapseInventario" role="button" aria-expanded="false" aria-controls="collapseInventario">Inventario</a>
@@ -137,6 +126,25 @@
                     <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/ViewSales.aspx") %>">Ventas</a>
                 </li>
 
+                <%}
+                    else
+                    {%>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsStaff/HomeStaff.aspx") %>">Salón</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" data-bs-toggle="collapse" href="#collapseInventarioStaff" role="button" aria-expanded="false" aria-controls="collapseInventarioStaff">Inventario</a>
+                    <div class="collapse" id="collapseInventarioStaff">
+                        <ul class="nav flex-column ps-3">
+                            <li><a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsStaff/ProductsList.aspx") %>">Productos</a></li>
+                            <li><a class="nav-link text-white" href="#">Extras</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsStaff/OrderStaff.aspx") %>">Mis Pedidos</a>
+                </li>
+                <%} %>
             </ul>
             <asp:Button ID="btnCerrarSesion" class="btn btn-danger mt-auto" Text="Cerrar Sesión" runat="server" OnClick="btnCerrarSesion_OnClick" />
         </nav>

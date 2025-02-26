@@ -238,4 +238,3 @@ FROM master.dbo.spt_values
 WHERE TYPE = 'P'
 AND NUMBER BETWEEN 1 AND 120;
 
-

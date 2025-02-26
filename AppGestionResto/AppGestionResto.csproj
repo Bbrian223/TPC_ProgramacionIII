@@ -166,6 +166,8 @@
     <Content Include="ViewsManagment\ViewOrders.aspx" />
     <Content Include="ViewsManagment\ViewSales.aspx" />
     <Content Include="ViewsStaff\HomeStaff.aspx" />
+    <Content Include="ViewsStaff\OrderStaff.aspx" />
+    <Content Include="ViewsStaff\ProductsList.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -275,6 +277,20 @@
     </Compile>
     <Compile Include="ViewsStaff\HomeStaff.aspx.designer.cs">
       <DependentUpon>HomeStaff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsStaff\OrderStaff.aspx.cs">
+      <DependentUpon>OrderStaff.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsStaff\OrderStaff.aspx.designer.cs">
+      <DependentUpon>OrderStaff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsStaff\ProductsList.aspx.cs">
+      <DependentUpon>ProductsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsStaff\ProductsList.aspx.designer.cs">
+      <DependentUpon>ProductsList.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
