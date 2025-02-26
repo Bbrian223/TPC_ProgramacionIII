@@ -144,7 +144,7 @@ namespace Manager
 
         public int VerificarStock(int idProd)  
         {
-            PedidosManager manager = new PedidosManager();
+            ProductoManager manager = new ProductoManager();
 
             try
             {
@@ -158,7 +158,7 @@ namespace Manager
 
         public bool ObtenerGuarnicion(int idProd) 
         {
-            PedidosManager manager = new PedidosManager();
+            ProductoManager manager = new ProductoManager();
 
             try
             {

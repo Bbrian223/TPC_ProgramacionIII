@@ -330,5 +330,237 @@ namespace Manager
                 datos.CerrarConeccion();
             }
         }
+
+        public Producto Obtener(long idProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Producto prod = new Producto();
+
+            try
+            {
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO,GUARNICION  from vw_ListaProductos WHERE IDCATEGORIA < 6 AND IDPRODUCTO = @IDPRODUCTO");
+                datos.SetearParametro("@IDPRODUCTO", idProd);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    prod.IdProducto = (long)datos.Lector["IDPRODUCTO"];
+                    prod.Categoria.IdCategoria = (long)datos.Lector["IDCATEGORIA"];
+                    prod.Categoria.Nombre = (string)datos.Lector["CATEGORIA"];
+                    prod.Nombre = (string)datos.Lector["NOMBRE"];
+                    prod.Precio = (decimal)datos.Lector["PRECIO"];
+                    prod.stock = (int)datos.Lector["STOCK"];
+                    prod.Descripcion = (string)datos.Lector["DESCRIPCION"];
+                    prod.Imagen.IdImagen = (long)datos.Lector["IDIMAGEN"];
+                    prod.Imagen.NombreArch = (string)datos.Lector["ARCHNOMB"];
+                    prod.Estado = (bool)datos.Lector["ESTADO"];
+                    prod.Guarnicion = (bool)datos.Lector["GUARNICION"];
+                }
+
+                return prod;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public int ObtenerStock(long idProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int stock = 0;
+
+            try
+            {
+                datos.SetearConsulta("SELECT STOCK FROM Productos WHERE IDPRODUCTO = @IDPRODUCTO");
+                datos.SetearParametro("@IDPRODUCTO", idProd);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    stock = (int)datos.Lector["STOCK"];
+                }
+
+                return stock;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public bool Guarnicion(long idProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool guarnicion = false;
+
+            try
+            {
+                datos.SetearConsulta("SELECT GUARNICION FROM Productos WHERE IDPRODUCTO = @IDPRODUCTO");
+                datos.SetearParametro("@IDPRODUCTO", idProd);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    guarnicion = (bool)datos.Lector["GUARNICION"];
+                }
+
+                return guarnicion;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public bool EntradaIndividual(long idProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool individual = false;
+
+            try
+            {
+                datos.SetearConsulta("SELECT INDIVIDUAL FROM Entradas WHERE IDPRODUCTO = @IDPRODUCTO");
+                datos.SetearParametro("@IDPRODUCTO", idProd);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    individual = (bool)datos.Lector["INDIVIDUAL"];
+                }
+
+                return individual;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public Entradas ObtenerEntrada(long idProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Entradas entrada = new Entradas();     // podria obtenerlo llamando al metodo obtenerProducto
+
+            try
+            {
+                datos.SetearConsulta("SELECT INDIVIDUAL FROM Entradas WHERE IDPRODUCTO = @IDPRODUCTO");
+                datos.SetearParametro("@IDPRODUCTO", idProd);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    entrada.Individual = (bool)datos.Lector["INDIVIDUAL"];
+                }
+
+                return entrada;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public Postres ObtenerPostre(long idProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Postres postre = new Postres();     // podria obtenerlo llamando al metodo obtenerProducto
+
+            try
+            {
+                datos.SetearConsulta("SELECT GLUTEN,AZUCAR FROM Postres WHERE IDPRODUCTO = @IDPRODUCTO");
+                datos.SetearParametro("@IDPRODUCTO", idProd);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    postre.ContieneGluten = (bool)datos.Lector["GLUTEN"];
+                    postre.ContieneAzucar = (bool)datos.Lector["AZUCAR"];
+                }
+
+                return postre;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public Bebidas ObtenerBebida(long idProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Bebidas bebida = new Bebidas();     // podria obtenerlo llamando al metodo obtenerProducto
+
+            try
+            {
+                datos.SetearConsulta("SELECT ALCOHOL,VOLUMEN FROM Bebidas WHERE IDPRODUCTO = @IDPRODUCTO");
+                datos.SetearParametro("@IDPRODUCTO", idProd);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    bebida.Alcohol = (bool)datos.Lector["ALCOHOL"];
+                    bebida.Volumen = (int)datos.Lector["VOLUMEN"];
+                }
+
+                return bebida;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public void Editar(Producto prod)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("EXEC sp_EditarProducto @IDPRODUCTO,@PRECIO,@STOCK,@DESCRIPCION");
+                datos.SetearParametro("@IDPRODUCTO",prod.IdProducto);
+                datos.SetearParametro("@PRECIO", prod.Precio);
+                datos.SetearParametro("@STOCK", prod.stock);
+                datos.SetearParametro("@DESCRIPCION", prod.Descripcion);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
     }
 }

@@ -221,6 +221,34 @@ namespace Manager
             }
         }
 
+        public void Editar(Empleado empl)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("EXEC sp_EditarUsuarios @IDUSUARIO,@CALLE,@NUMDIR,@LOCALIDAD,@CODPOSTAL,@EMAIL,@TELEFONO,@IDROL");
+                datos.SetearParametro("@IDUSUARIO", empl.idusuario);
+                datos.SetearParametro("@CALLE", empl.Direccion.Calle);
+                datos.SetearParametro("@NUMDIR", empl.Direccion.Numero);
+                datos.SetearParametro("@LOCALIDAD", empl.Direccion.Localidad);
+                datos.SetearParametro("@CODPOSTAL", empl.Direccion.CodPostal);
+                datos.SetearParametro("@EMAIL", empl.Email);
+                datos.SetearParametro("@TELEFONO", empl.Telefono);
+                datos.SetearParametro("@IDROL", (int)empl.rol);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
         public void Baja(int id) 
         {
             AccesoDatos datos = new AccesoDatos();

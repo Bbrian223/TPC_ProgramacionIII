@@ -227,7 +227,6 @@ namespace WebApplication1.ViewsManagment
                 throw;
             }
 
-
         }
 
 

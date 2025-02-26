@@ -8,6 +8,6 @@ namespace Dominio
 {
     public class Entradas : Producto
     {
-        public int Porciones { get; set; }
+        public bool Individual { get; set; }
     }
 }

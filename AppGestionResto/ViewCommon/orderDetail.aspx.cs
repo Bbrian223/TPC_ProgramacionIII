@@ -380,7 +380,7 @@ namespace WebApplication1.ViewCommon
 
         public void CargarDatosLabel(string idProd)
         {
-            PedidosManager manager = new PedidosManager();
+            ProductoManager manager = new ProductoManager();
 
             try
             {
