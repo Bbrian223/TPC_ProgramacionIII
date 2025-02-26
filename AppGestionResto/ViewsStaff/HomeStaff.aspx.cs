@@ -18,8 +18,10 @@ namespace WebApplication1.ViewsStaff
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Seguridad.NivelAcceso != UserType.Mozo) 
-            { 
-                
+            {
+                SiteMaster master = this.Master as SiteMaster;
+                if (master != null)
+                    master.CerrarSesion();
             }
 
             CargarSalones();

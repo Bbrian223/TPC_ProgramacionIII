@@ -21,10 +21,15 @@ namespace WebApplication1
 
         protected void btnCerrarSesion_OnClick(object sender, EventArgs e)
         {
+            CerrarSesion();
+        }
+
+        public void CerrarSesion()
+        {
             Seguridad.CerrarSesion();
             Session.Clear();
 
-            Response.Redirect("~/ViewCommon/Login.aspx",false);
+            Response.Redirect("~/ViewCommon/Login.aspx", false);
         }
     }
 }

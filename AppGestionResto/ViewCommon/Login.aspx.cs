@@ -50,6 +50,8 @@ namespace WebApplication1.ViewCommon
                 // colocar pop up con el error
                 Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
             }
+
+            
         }
 
         private void InputError()
@@ -69,6 +71,7 @@ namespace WebApplication1.ViewCommon
             {
                 emplActual = manager.ObtenerPorId(idusuario);
                 Session.Add("Empleado", emplActual);
+                Seguridad.sesionActiva(Session["User"]);
             }
             catch (Exception)
             {
