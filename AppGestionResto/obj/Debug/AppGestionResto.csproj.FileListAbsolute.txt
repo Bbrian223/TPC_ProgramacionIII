@@ -77,6 +77,8 @@ C:\Users\BBARRERA\Documents\GitHub\TPC_ProgramacionIII\AppGestionResto\bin\Domin
 C:\Users\BBARRERA\Documents\GitHub\TPC_ProgramacionIII\AppGestionResto\bin\Manager.dll
 C:\Users\BBARRERA\Documents\GitHub\TPC_ProgramacionIII\AppGestionResto\bin\Dominio.pdb
 C:\Users\BBARRERA\Documents\GitHub\TPC_ProgramacionIII\AppGestionResto\bin\Manager.pdb
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestionResto\obj\Debug\AppGestionResto.csproj.AssemblyReference.cache
+C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestionResto\obj\Debug\AppGestionResto.csproj.CoreCompileInputs.cache
 C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestionResto\bin\WebApplication1.dll.config
 C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestionResto\bin\WebApplication1.dll
 C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestionResto\bin\WebApplication1.pdb
@@ -133,8 +135,6 @@ C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestio
 C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestionResto\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestionResto\bin\es\System.Web.Optimization.resources.dll
 C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestionResto\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
-C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestionResto\obj\Debug\AppGestionResto.csproj.AssemblyReference.cache
-C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestionResto\obj\Debug\AppGestionResto.csproj.CoreCompileInputs.cache
 C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestionResto\obj\Debug\AppGesti.75B1ECDA.Up2Date
 C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestionResto\obj\Debug\WebApplication1.dll
 C:\Users\Cristal Barrera\Documents\proyectos Brian\TPC_ProgramacionIII\AppGestionResto\obj\Debug\WebApplication1.pdb

@@ -46,5 +46,61 @@ namespace Manager
             }
         }
 
+        public List<decimal> ObtenerVentaSemanal()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<decimal> lista = new List<decimal>();
+
+            try
+            {
+                datos.SetearConsulta("SELECT DIA,TOTAL FROM vw_VentaSemana\r\nORDER BY CASE \r\n    WHEN DIA = 'Sunday' THEN 1\r\n    WHEN DIA = 'Monday' THEN 2\r\n    WHEN DIA = 'Tuesday' THEN 3\r\n    WHEN DIA = 'Wednesday' THEN 4\r\n    WHEN DIA = 'Thursday' THEN 5\r\n    WHEN DIA = 'Friday' THEN 6\r\n    WHEN DIA = 'Saturday' THEN 7\r\nEND;");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    decimal valor = (decimal)datos.Lector["TOTAL"];
+
+                    lista.Add(valor);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public decimal ObtenerRecaudacionDia()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            decimal total = 0;
+
+            try
+            {
+                datos.SetearConsulta("SELECT TOTAL FROM vs_TotalRecaudadoDia");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    total = (datos.Lector["TOTAL"] is DBNull) ? 0 : Convert.ToDecimal(datos.Lector["TOTAL"]);
+                }
+
+                return total;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
     }
 }

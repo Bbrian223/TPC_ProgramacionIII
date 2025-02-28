@@ -330,5 +330,34 @@ namespace Manager
             }
         }
 
+        public List<int> CantidadMesasPorEstado()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<int> lista = new List<int>();
+
+            try
+            {
+                datos.SetearConsulta("SELECT*FROM vw_CantidadMesasPorEstado\r\nORDER BY \r\n    CASE ESTADO \r\n        WHEN 'DISPONIBLE' THEN 1\r\n        WHEN 'OCUPADA' THEN 2\r\n        WHEN 'PENDIENTE' THEN 3\r\n    END;");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    int cantidad = (int)datos.Lector["CANTIDAD"];
+
+                    lista.Add(cantidad);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
     }
 }

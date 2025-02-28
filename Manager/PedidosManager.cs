@@ -274,6 +274,33 @@ namespace Manager
             }
         }
 
+        public List<int> ObtenerCantidadMesasEstado()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<int> lista = new List<int>();
 
+            try
+            {
+                datos.SetearConsulta("SELECT CANTIDAD FROM vw_PedidosPorEstado\r\nORDER BY \r\nCASE ESTADO \r\nWHEN 'COMPLETADO' THEN 1\r\nWHEN 'EN PROCESO' THEN 2\r\nWHEN 'CANCELADO' THEN 3\r\nEND;\r\n");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    int dato = (int)datos.Lector["CANTIDAD"];
+
+                    lista.Add(dato);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
     }
 }

@@ -146,6 +146,40 @@ namespace Manager
             }
         }
 
+        public List<Empleado> ObtenerCantidadPedidosPorEmpleado()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Empleado> lista = new List<Empleado>();
+
+            try
+            {
+                datos.SetearConsulta("SELECT IDEMPLEADO,NOMBRE,APELLIDO,CANTIDAD FROM vw_ListaPedidosPorEmpleado ORDER BY CANTIDAD DESC");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Empleado emp = new Empleado();
+
+                    emp.IdEmpleado = (long)datos.Lector["IDEMPLEADO"];
+                    emp.Nombre = (string)datos.Lector["NOMBRE"];
+                    emp.Apellido = (string)datos.Lector["APELLIDO"];
+                    emp.PedidosGenerados = (int)datos.Lector["CANTIDAD"];
+
+                    lista.Add(emp);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
         public Empleado ObtenerPorId(long idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();

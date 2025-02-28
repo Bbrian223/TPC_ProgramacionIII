@@ -18,7 +18,7 @@ namespace Dominio
         public DateTime FechaIng { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
-
+        public int PedidosGenerados { get; set; }
         public Empleado() 
         {
             Direccion = new Direccion();

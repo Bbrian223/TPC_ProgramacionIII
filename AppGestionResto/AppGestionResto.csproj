@@ -55,6 +55,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.DataVisualization.Design" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -157,6 +159,7 @@
     <Content Include="ViewsManagment\AddProduct.aspx" />
     <Content Include="ViewCommon\Login.aspx" />
     <Content Include="ViewsManagment\AssignTable.aspx" />
+    <Content Include="ViewsManagment\Dashboard.aspx" />
     <Content Include="ViewsManagment\MesasSettings.aspx" />
     <Content Include="ViewsManagment\ProductSettings.aspx" />
     <Content Include="ViewCommon\Site.Master" />
@@ -207,6 +210,13 @@
     </Compile>
     <Compile Include="ViewsManagment\AssignTable.aspx.designer.cs">
       <DependentUpon>AssignTable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsManagment\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsManagment\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewsManagment\MesasSettings.aspx.cs">
       <DependentUpon>MesasSettings.aspx</DependentUpon>
