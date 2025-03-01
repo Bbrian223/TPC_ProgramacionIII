@@ -1,4 +1,97 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ViewCommon/Site.Master" AutoEventWireup="true" CodeBehind="OrderStaff.aspx.cs" Inherits="WebApplication1.ViewsStaff.OrderStaff" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ViewCommon/Site.Master" AutoEventWireup="true" CodeBehind="OrderStaff.aspx.cs" Inherits="WebApplication1.ViewsStaff.OrderStaff" EnableEventValidation="false" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h4>Mis ordenes</h4>
+
+    <h2>Lista de Ventas</h2>
+
+    <hr class="my-4" />
+
+    <div class="container">
+        <div class="row justify-content-center" style="padding-top: 30px">
+            <div class="container-fluid">
+                <div class="row button-row mb-5 text-center">
+                    <!-- Filtro por NroVenta -->
+                    <div class="col-3">
+                        <div class="input-group mb-3">
+                            <asp:TextBox ID="txtNroVentaFiltro" CssClass="form-control" runat="server" Placeholder="Nro Venta"
+                                AutoPostBack="true" OnTextChanged="txtNroVentaFiltro_TextChanged">
+                            </asp:TextBox>
+                        </div>
+                    </div>
+                    <!-- Filtro Mesa -->
+                    <div class="col-3">
+                        <div class="input-group mb-3">
+                            <asp:TextBox ID="txtMesaFiltro" CssClass="form-control" runat="server" Placeholder="Nro Mesa"
+                                AutoPostBack="true" OnTextChanged="txtMesaFiltro_TextChanged">
+                            </asp:TextBox>
+                        </div>
+                    </div>
+                    <!-- Filtro Fecha -->
+                    <div class="col-3">
+                        <div class="input-group mb-3">
+                            <asp:TextBox ID="txtFechaFiltro" CssClass="form-control" runat="server" TextMode="Date"
+                                AutoPostBack="true" OnTextChanged="txtFechaFiltro_TextChanged">
+                            </asp:TextBox>
+                        </div>
+                    </div>
+                    <!-- DropDownList Salones -->
+                    <div class="col-3">
+                        <div class="input-group mb-3">
+                            <asp:DropDownList ID="ddlSalones" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
+                                BackColor="white" ForeColor="black" Font-Size="Large" AutoPostBack="true" OnSelectedIndexChanged="ddlSalones_SelectedIndexChanged">
+                                <asp:ListItem Text="Todos los salones" Value="TODOS" />
+                                <asp:ListItem Text="Salon 1" Value="1" />
+                                <asp:ListItem Text="Salon 2" Value="2" />
+                                <asp:ListItem Text="Salon 3" Value="3" />
+                                <asp:ListItem Text="Salon 4" Value="4" />
+                                <asp:ListItem Text="Salon 5" Value="5" />
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Repeater Pedido-->
+                <div class="row row-cols-1 justify-content-center">
+                    <div class="col-11 text-center">
+                        <asp:Repeater ID="repeaterVentas" runat="server">
+                            <HeaderTemplate>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nro Venta</th>
+                                            <th scope="col">Salon</th>
+                                            <th scope="col">Mesa</th>
+                                            <th scope="col">Fecha</th>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Total</th>
+                                            <th scope="col">Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <tr>
+                                    <td><%# Eval("IdVenta") %></td>
+                                    <td><%# Eval("Pedido.Mesa.IdSalon") %></td>
+                                    <td><%# Eval("Pedido.Mesa.IdMesa") %></td>
+                                    <td><%# Eval("Fecha_hora") %></td>
+                                    <td><%# Eval("Pedido.Estado") %></td>
+                                    <td><%# Eval("Total", "{0:F1}") %></td>
+                                    <td>
+                                        <asp:Button ID="btnVerVenta" class="btn btn-primary btn-sm" Text="Ver Detalles" runat="server"
+                                            CommandArgument='<%# Eval("IdVenta") %>' OnClick="btnVerVenta_Click" />
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                </tbody>
+</table>
+                            </FooterTemplate>
+                        </asp:Repeater>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </asp:Content>

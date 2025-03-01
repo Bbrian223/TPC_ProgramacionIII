@@ -79,7 +79,7 @@ namespace WebApplication1.ViewsManagment
             {
                 if (mesa != string.Empty)
                 {
-                    repeaterVentas.DataSource = manager.ObtenerTodas().Where(vent => vent.Mesa.IdMesa == long.Parse(mesa)).ToList();
+                    repeaterVentas.DataSource = manager.ObtenerTodas().Where(vent => vent.Pedido.Mesa.IdMesa == long.Parse(mesa)).ToList();
                     repeaterVentas.DataBind();
                 }
                 else
@@ -105,7 +105,7 @@ namespace WebApplication1.ViewsManagment
             {
                 if (salon != "TODOS")
                 {
-                    repeaterVentas.DataSource = manager.ObtenerTodas().Where(venta => venta.Mesa.IdSalon == long.Parse(salon)).ToList();
+                    repeaterVentas.DataSource = manager.ObtenerTodas().Where(venta => venta.Pedido.Mesa.IdSalon == long.Parse(salon)).ToList();
                     repeaterVentas.DataBind();
                 }
                 else

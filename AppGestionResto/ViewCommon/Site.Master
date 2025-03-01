@@ -118,11 +118,6 @@
                         </ul>
                     </div>
                 </li>
-
-                <!-- Opción Pedidos -->
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/ViewOrders.aspx") %>">Pedidos</a>
-                </li>
                 <!-- Opcion Ventas -->
                 <li class="nav-item">
                     <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/ViewSales.aspx") %>">Ventas</a>

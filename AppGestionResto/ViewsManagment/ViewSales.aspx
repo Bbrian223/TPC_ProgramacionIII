@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ViewCommon/Site.Master" AutoEventWireup="true" CodeBehind="ViewSales.aspx.cs" Inherits="WebApplication1.ViewsManagment.ViewSales" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ViewCommon/Site.Master" AutoEventWireup="true" CodeBehind="ViewSales.aspx.cs" Inherits="WebApplication1.ViewsManagment.ViewSales" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -61,6 +61,7 @@
                                             <th scope="col">Salon</th>
                                             <th scope="col">Mesa</th>
                                             <th scope="col">Fecha</th>
+                                            <th scope="col">Estado</th>
                                             <th scope="col">Total</th>
                                             <th scope="col">Opciones</th>
                                         </tr>
@@ -70,10 +71,11 @@
                             <ItemTemplate>
                                 <tr>
                                     <td><%# Eval("IdVenta") %></td>
-                                    <td><%# Eval("Mesa.IdSalon") %></td>
-                                    <td><%# Eval("Mesa.IdMesa") %></td>
+                                    <td><%# Eval("Pedido.Mesa.IdSalon") %></td>
+                                    <td><%# Eval("Pedido.Mesa.IdMesa") %></td>
                                     <td><%# Eval("Fecha_hora") %></td>
-                                    <td><%# Eval("Total") %></td>
+                                    <td><%# Eval("Pedido.Estado") %></td>
+                                    <td><%# Eval("Total", "{0:F1}") %></td>
                                     <td>
                                         <asp:Button ID="btnVerVenta" class="btn btn-primary btn-sm" Text="Ver Detalles" runat="server"
                                             CommandArgument='<%# Eval("IdVenta") %>' OnClick="btnVerVenta_Click"/>

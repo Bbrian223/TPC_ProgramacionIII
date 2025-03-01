@@ -16,7 +16,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDVENTA,IDPEDIDO,IDSALON,IDMESA,IDUSUARIO,FECHA,TOTAL FROM vw_ListaVentas");
+                datos.SetearConsulta("SELECT IDVENTA,IDPEDIDO,IDSALON,IDMESA,IDUSUARIO,FECHA,ESTADO,TOTAL FROM vw_ListaVentas ORDER BY IDVENTA DESC");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -24,11 +24,12 @@ namespace Manager
                     Venta venta = new Venta();
 
                     venta.IdVenta = (long)datos.Lector["IDVENTA"];
-                    venta.IdPedido = (long)datos.Lector["IDPEDIDO"];
-                    venta.Mesa.IdSalon = (long)datos.Lector["IDSALON"];
-                    venta.Mesa.IdMesa = (long)datos.Lector["IDMESA"];
-                    venta.IdUsuario = (long)datos.Lector["IDUSUARIO"];
+                    venta.Pedido.IdPedido = (long)datos.Lector["IDPEDIDO"];
+                    venta.Pedido.Mesa.IdSalon = (long)datos.Lector["IDSALON"];
+                    venta.Pedido.Mesa.IdMesa = (long)datos.Lector["IDMESA"];
+                    venta.Pedido.Empleado.idusuario = (long)datos.Lector["IDUSUARIO"];
                     venta.Fecha_hora = (DateTime)datos.Lector["FECHA"];
+                    venta.Pedido.Estado = (string)datos.Lector["ESTADO"];
                     venta.Total = (decimal)datos.Lector["TOTAL"];
 
                     lista.Add(venta);
@@ -46,6 +47,42 @@ namespace Manager
             }
         }
 
+        public List<Venta> ObtenerVentasPorEmpleado(long idUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Venta> lista = new List<Venta>();
+
+            try
+            {
+                datos.SetearConsulta("SELECT IDVENTA,IDPEDIDO,IDSALON,IDMESA,IDUSUARIO,FECHA,ESTADO,TOTAL FROM vw_ListaVentas WHERE IDUSUARIO = @IDUSUARIO ORDER BY IDVENTA DESC");
+                datos.SetearParametro("@IDUSUARIO",idUsuario);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Venta venta = new Venta();
+
+                    venta.IdVenta = (long)datos.Lector["IDVENTA"];
+                    venta.Pedido.IdPedido = (long)datos.Lector["IDPEDIDO"];
+                    venta.Pedido.Mesa.IdSalon = (long)datos.Lector["IDSALON"];
+                    venta.Pedido.Mesa.IdMesa = (long)datos.Lector["IDMESA"];
+                    venta.Pedido.Empleado.idusuario = (long)datos.Lector["IDUSUARIO"];
+                    venta.Fecha_hora = (DateTime)datos.Lector["FECHA"];
+                    venta.Pedido.Estado = (string)datos.Lector["ESTADO"];
+                    venta.Total = (decimal)datos.Lector["TOTAL"];
+
+                    lista.Add(venta);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        
         public List<decimal> ObtenerVentaSemanal()
         {
             AccesoDatos datos = new AccesoDatos();

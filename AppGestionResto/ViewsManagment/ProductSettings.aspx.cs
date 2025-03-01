@@ -42,17 +42,11 @@ namespace WebApplication1.ViewCommon
             }
             else
             {
-                btnBuscarNombre_Click(sender, e);
+                nombre = txtNombreFiltro.Text;
+                ListaProductos = ObtenerTodosProductos().Where(
+                    empl => empl.Nombre != null && empl.Nombre.IndexOf(nombre, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+                CargarLista(ListaProductos);
             }
-        }
-
-        protected void btnBuscarNombre_Click(object sender, EventArgs e)
-        {
-            string nombre = txtNombreFiltro.Text;
-            ListaProductos = ObtenerTodosProductos().Where(
-                empl => empl.Nombre != null && empl.Nombre.IndexOf(nombre, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
-            CargarLista(ListaProductos);
-
         }
 
         protected void btnAgregarProducto_Click(object sender, EventArgs e)
@@ -224,7 +218,7 @@ namespace WebApplication1.ViewCommon
                 txtBxDescripcion.Text = prod.Descripcion;
                 imgPreview.ImageUrl = prod.Imagen.DirComp;
 
-                switch (ddlCategorias.SelectedValue)
+                switch (ddlCategoriasModal.SelectedValue)
                 {
                     case "1":   //cafeteria
                         if (prod.Guarnicion)

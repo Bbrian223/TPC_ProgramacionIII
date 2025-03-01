@@ -152,7 +152,7 @@ namespace WebApplication1.ViewsStaff
                 txtBxDescripcion.Text = prod.Descripcion;
                 imgPreview.ImageUrl = prod.Imagen.DirComp;
 
-                switch (ddlCategorias.SelectedValue)
+                switch (ddlCategoriasModal.SelectedValue)
                 {
                     case "1":   //cafeteria
                         if (prod.Guarnicion)

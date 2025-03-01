@@ -48,9 +48,6 @@
                         <div class="input-group mb-3">
                             <asp:TextBox ID="txtNombreFiltro" CssClass="form-control" runat="server" Placeholder="Nombre"
                                 OnTextChanged="txtNombreFiltro_TextChanged" AutoPostBack="true"></asp:TextBox>
-                            <div class="input-group-append">
-                                <asp:Button ID="btnBuscarNombre" CssClass="btn btn-outline-secondary" runat="server" Text="Buscar" OnClick="btnBuscarNombre_Click" />
-                            </div>
                         </div>
                     </div>
 
