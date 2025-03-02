@@ -69,24 +69,6 @@ namespace WebApplication1.ViewsManagment
         protected global::System.Web.UI.WebControls.Button btnGuardarSalonesHab;
 
         /// <summary>
-        /// Control rdbtnTodasMesas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbtnTodasMesas;
-
-        /// <summary>
-        /// Control rdbtnSeleccionar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdbtnSeleccionar;
-
-        /// <summary>
         /// Control ddlSalones.
         /// </summary>
         /// <remarks>

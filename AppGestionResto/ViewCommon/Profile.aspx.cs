@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 using Dominio;
 using Manager;
 
@@ -52,6 +53,8 @@ namespace WebApplication1.ViewCommon
                 GuardarImagen(empl.idusuario);
 
                 Session["Empleado"] = manager.ObtenerPorId(empl.idusuario);
+
+                MostrarModalConfirmacion();
             }
             catch (Exception ex)
             {
@@ -66,6 +69,44 @@ namespace WebApplication1.ViewCommon
             HabilitarEdicion(false);
             EliminarAlarmas();
             CargarDatos();
+        }
+
+        protected void btnCambiarPass_Click(object sender, EventArgs e)
+        {
+            panelModal.Visible = false;
+            txtPassActual.Text = string.Empty;
+            txtNuevaPass.Text = string.Empty;
+            txtConfirmarPass.Text = string.Empty;
+            EliminarAlarmas();
+            MostrarModalEditarPass();
+        }
+
+        protected void btnGuardarEdicion_Click(object sender, EventArgs e)
+        {
+            UsuarioManager manager = new UsuarioManager();
+            Usuario user = (Usuario)Session["User"];
+
+            if (!ValidarDatosPass(user.clave))
+            {
+                MsgErrorModal();
+                MostrarModalEditarPass();
+                return;
+            }
+
+            try
+            {
+                manager.CambiarClave(user, txtNuevaPass.Text);
+
+                user = manager.ObtenerUsuario(user.nombreusuario, txtNuevaPass.Text);
+                Session["User"] = user;
+
+                MostrarModalConfirmacion();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
+
         }
 
 
@@ -187,6 +228,9 @@ namespace WebApplication1.ViewCommon
             txtCodPostal.CssClass = txtCodPostal.CssClass.Replace("error", "").Trim();
             txtEmail.CssClass = txtEmail.CssClass.Replace("error", "").Trim();
             txtTelefono.CssClass = txtTelefono.CssClass.Replace("error", "").Trim();
+            txtPassActual.CssClass = txtTelefono.CssClass.Replace("error", "").Trim();
+            txtNuevaPass.CssClass = txtTelefono.CssClass.Replace("error", "").Trim();
+            txtConfirmarPass.CssClass = txtTelefono.CssClass.Replace("error", "").Trim();
         }
 
         private void MsgError()
@@ -194,6 +238,13 @@ namespace WebApplication1.ViewCommon
             panelMsgLbl.Visible = true;
             lblErrores.Text = "Complete los campos correspondientes...";
             lblErrores.Visible = true;
+        }
+
+        private void MsgErrorModal()
+        {
+            panelModal.Visible = true;
+            lblErrorModal.Text = "Verifique los datos correspondientes";
+            lblErrorModal.Visible = true;
         }
 
         public void GuardarImagen(long id)
@@ -219,6 +270,38 @@ namespace WebApplication1.ViewCommon
                 throw;
             }
 
+        }
+
+        public void MostrarModalEditarPass()
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "Editar", "var modal = new bootstrap.Modal(document.getElementById('modalEditarPass')); modal.show();", true);
+        }
+
+        public void MostrarModalConfirmacion()
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "Confirmar", "var modal = new bootstrap.Modal(document.getElementById('modalConfirmarCambio')); modal.show();", true);
+        }
+
+
+        public bool ValidarDatosPass(string clave)
+        {
+            bool estado = true;
+            EliminarAlarmas();
+
+            if (txtPassActual.Text != clave)
+            {
+                txtPassActual.CssClass += " error";
+                estado = false;
+            }
+
+            if (txtNuevaPass.Text != txtConfirmarPass.Text)
+            {
+                txtNuevaPass.CssClass += " error";
+                txtConfirmarPass.CssClass += " error";
+                estado = false;
+            }
+
+            return estado;
         }
     }
 }

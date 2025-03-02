@@ -53,6 +53,7 @@ namespace WebApplication1.ViewsManagment
                 nuevoEmpleado.Email = !(txtEmail.Text == string.Empty) ? txtEmail.Text : string.Empty;
                 nuevoEmpleado.Telefono = !(txtTelefono.Text == string.Empty) ? txtTelefono.Text : string.Empty;
                 nuevoEmpleado.rol = (UserType)ddlOpciones.SelectedIndex;
+                nuevoEmpleado.nombreusuario = ObtenerNombreUsuario();
 
                 manager.Agregar(nuevoEmpleado);
 
@@ -92,6 +93,7 @@ namespace WebApplication1.ViewsManagment
         {
             bool esValido = true;
             EliminarAlarmas();
+
 
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
@@ -227,6 +229,23 @@ namespace WebApplication1.ViewsManagment
                 throw;
             }
 
+        }
+
+        public string ObtenerNombreUsuario()
+        {
+            string nombre = txtNombre.Text; ;
+            string[] aux = nombre.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            nombre = aux[0];
+
+            string apellido = txtApellido.Text; ;
+            string[] aux2 = apellido.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            apellido = aux2[0];
+
+            char primerCarac = nombre[0];
+
+            string nombreUser = primerCarac + apellido;
+
+            return nombreUser.ToLower();
         }
 
 

@@ -39,10 +39,10 @@
         }
 
         .contenedor-info {
-            border:2px solid lightGray; 
-            border-radius:10px;
-            padding-top:30px;
-            padding-bottom:50px;
+            border: 2px solid lightGray;
+            border-radius: 10px;
+            padding-top: 30px;
+            padding-bottom: 50px;
         }
     </style>
 
@@ -65,10 +65,10 @@
                 </div>
 
                 <%if (HabEdicion)
-                   { %>
+                    { %>
 
                 <asp:FileUpload ID="fileUploadImagen" runat="server" CssClass="form-control" onchange="javascript:__doPostBack('<%= fileUploadImagen.ClientID %>', '');" />
-                
+
                 <%}%>
 
                 <div class="row justify-content-center" style="margin-top: 20px">
@@ -126,18 +126,22 @@
                     {%>
                 <div style="margin-bottom: 20px">
                     <asp:Button ID="btnEditar" Text="Editar" runat="server"
-                        CssClass="btn btn-secondary w-100" OnClick="btnEditar_Click"/>
+                        CssClass="btn btn-secondary w-100" OnClick="btnEditar_Click" />
+                </div>
+                <div style="margin-bottom: 20px">
+                    <asp:Button ID="btnCambiarPass" Text="Cambiar Pass" runat="server"
+                        CssClass="btn btn-secondary w-100" OnClick="btnCambiarPass_Click" />
                 </div>
                 <%}
-                 else
+                    else
                     { %>
                 <div style="margin-bottom: 20px">
                     <asp:Button ID="btnGuardar" Text="Guardar" runat="server"
-                        CssClass="btn btn-primary w-100" OnClick="btnGuardar_Click"/>
+                        CssClass="btn btn-primary w-100" OnClick="btnGuardar_Click" />
                 </div>
                 <div style="margin-bottom: 20px">
                     <asp:Button ID="btnCancelar" Text="Cancelar" runat="server"
-                        CssClass="btn btn-danger w-100" OnClick="btnCancelar_Click"/>
+                        CssClass="btn btn-danger w-100" OnClick="btnCancelar_Click" />
                 </div>
                 <%} %>
             </div>
@@ -145,6 +149,81 @@
 
         </div>
     </div>
+
+
+    <!-- Modal de ver -->
+    <div class="modal fade" id="modalEditarPass" tabindex="-1" aria-labelledby="modalEditarPassLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+
+                    <asp:Panel ID="panelModal" runat="server" CssClass="alert alert-danger">
+                        <asp:Label ID="lblErrorModal" runat="server" Visible="false"></asp:Label>
+                    </asp:Panel>
+
+                    <!--pass actual-->
+                    <div class="row justify-content-center" style="margin-top: 20px">
+                        <div class="col-3">
+                            <label>Contraseña Actual</label>
+                        </div>
+                        <div class="col-3">
+                            <asp:TextBox ID="txtPassActual" runat="server" CssClass="form-control"
+                                placeholder="Contraseña Actual"></asp:TextBox>
+                        </div>
+                    </div>
+                    <!--nuva pass-->
+                    <div class="row justify-content-center" style="margin-top: 20px">
+                        <div class="col-3">
+                            <label>Nueva Contraseña</label>
+                        </div>
+                        <div class="col-3">
+                            <asp:TextBox ID="txtNuevaPass" runat="server" CssClass="form-control"
+                                placeholder="Nueva Contraseña"></asp:TextBox>
+                        </div>
+                    </div>
+                    <!--confirmar pass-->
+                    <div class="row justify-content-center" style="margin-top: 20px">
+                        <div class="col-3">
+                            <label>Confirmar Contraseña</label>
+                        </div>
+                        <div class="col-3">
+                            <asp:TextBox ID="txtConfirmarPass" runat="server" CssClass="form-control"
+                                placeholder="Confirmar Contraseña"></asp:TextBox>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnGuardarEdicion" CssClass="btn btn-primary" runat="server" Text="Guardar" OnClick="btnGuardarEdicion_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmacion -->
+    <div class="modal fade" id="modalConfirmarCambio" tabindex="-1" aria-labelledby="modalConfirmarCambioLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                    <asp:Panel ID="panel1" runat="server" CssClass="alert alert-success">
+                        <h4>Cambio Exitoso!!</h4>
+                    </asp:Panel>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <script>
         function soloNumeros(e) {

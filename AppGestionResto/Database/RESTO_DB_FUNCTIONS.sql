@@ -26,7 +26,8 @@ CREATE PROCEDURE sp_AgregarEmpleado(
 	@pCodPos VARCHAR(5),
 	@pEmail VARCHAR(100),
 	@pTelefono VARCHAR(15),
-	@pIdRol INT
+	@pIdRol INT,
+	@pNombreUser VARCHAR(100)
 	)AS
 BEGIN 
 	
@@ -39,7 +40,7 @@ BEGIN
 	END
 
 	INSERT Usuarios (NOMBRE,CONTRASENIA,IDROL)
-	VALUES (@pDni,@pDni,@pIdRol)
+	VALUES (@pNombreUser,@pDni,@pIdRol)
 
 	INSERT Direcciones (CALLE,NUM_DIRECCION,LOCALIDAD,COD_POSTAL)
 	VALUES (@pCalle,@pNumDir,@pLocalidad,@pCodPos)
@@ -82,6 +83,25 @@ BEGIN
 	
 
 	UPDATE Usuarios SET IDROL = @pIDROL WHERE IDUSUARIO = @pIDUSUARIO
+END
+GO
+-- cambiar contrasenia
+CREATE PROCEDURE sp_CambiarPass(
+	@pIdUsuario BIGINT,
+	@pActualPass VARCHAR(50),
+	@pNuevaPass VARCHAR(50)
+)AS
+BEGIN
+
+	DECLARE @PASS VARCHAR(50)
+
+	SET @PASS = (SELECT CONTRASENIA FROM Usuarios WHERE IDUSUARIO = @pIdUsuario)
+
+	IF(@PASS = @pActualPass)
+	BEGIN
+		UPDATE Usuarios SET CONTRASENIA = @pNuevaPass WHERE IDUSUARIO = @pIdUsuario
+	END
+
 END
 GO
 

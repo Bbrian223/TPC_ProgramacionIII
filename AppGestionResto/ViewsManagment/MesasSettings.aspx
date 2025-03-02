@@ -96,26 +96,6 @@
 
     <!--Habilitaciones de mesas-->
     <div class="container">
-        <div class="row row-cols-3">
-            <div class="col">
-                <!--Radio button todas las mesas-->
-                <div class="form-check col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <asp:RadioButton ID="rdbtnTodasMesas" runat="server" GroupName="opccionesMesas" AutoPostBack="true" />
-                    <label style="font-size: 20px">Habilitar todas</label>
-                </div>
-            </div>
-
-            <div class="col" style="margin-bottom: 40px">
-                <!--Radio Button segmentos de mesas-->
-                <div class="form-check col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <asp:RadioButton ID="rdbtnSeleccionar" runat="server" GroupName="opccionesMesas" AutoPostBack="true" />
-                    <label style="font-size: 20px">Seleccionar</label>
-                </div>
-            </div>
-        </div>
-
-        <%if (rdbtnSeleccionar.Checked)
-            { %>
         <div class="container mt-4">
             <div class="row row-cols-3">
                 <!--DropDownList 1-->
@@ -146,7 +126,6 @@
                 <!-- 5 filas con 5 mesas cada una -->
             </div>
         </div>
-        <%} %>
     </div>
 
 

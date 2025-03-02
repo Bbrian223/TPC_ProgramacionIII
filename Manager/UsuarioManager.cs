@@ -42,14 +42,15 @@ namespace Manager
             }
         }
 
-        public void CambiarClave(string pass,int id) 
+        public void CambiarClave(Usuario user, string NuevaPass) 
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.SetearConsulta("UPDATE Usuarios SET CONTRASENIA = @CONTRA WHERE IDUSUARIO = @ID");
-                datos.SetearParametro("@CONTRA", pass);
-                datos.SetearParametro("@ID", id);
+                datos.SetearConsulta("EXEC sp_CambiarPass @IDUSUARIO,@ACTUALPASS,@NUEVAPASS");
+                datos.SetearParametro("@IDUSUARIO", user.idusuario);
+                datos.SetearParametro("@ACTUALPASS", user.clave);
+                datos.SetearParametro("@NUEVAPASS", NuevaPass);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)
@@ -81,7 +82,6 @@ namespace Manager
                 datos.CerrarConeccion();
             }
         }
-
 
     }
 }

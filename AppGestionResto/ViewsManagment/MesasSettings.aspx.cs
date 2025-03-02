@@ -133,8 +133,6 @@ namespace WebApplication1.ViewsManagment
             ddlSalones.DataValueField = "IdSalon";
             ddlSalones.DataBind();
 
-            rdbtnSeleccionar.Checked = true;
-
             rdBtnHab.Checked = true;
 
             idSalon = 1;

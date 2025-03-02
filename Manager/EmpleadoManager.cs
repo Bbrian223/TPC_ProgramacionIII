@@ -230,7 +230,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("EXEC sp_AgregarEmpleado @Nombre,@Apellido,@Documento,@FechaNac,@Calle,@NumDir,@Localidad,@CodPos,@Email,@Telefono,@Rol");
+                datos.SetearConsulta("EXEC sp_AgregarEmpleado @Nombre,@Apellido,@Documento,@FechaNac,@Calle,@NumDir,@Localidad,@CodPos,@Email,@Telefono,@Rol,@User");
                 datos.SetearParametro("@Nombre", empl.Nombre);
                 datos.SetearParametro("@Apellido", empl.Apellido);
                 datos.SetearParametro("@Documento", empl.Documento);
@@ -242,6 +242,7 @@ namespace Manager
                 datos.SetearParametro("@Email", empl.Email);
                 datos.SetearParametro("@Telefono", empl.Telefono);
                 datos.SetearParametro("@Rol", (int)empl.rol);
+                datos.SetearParametro("@User", (string)empl.nombreusuario);
                 datos.ejecutarAccion();
 
             }
