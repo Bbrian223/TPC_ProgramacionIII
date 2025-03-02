@@ -33,39 +33,6 @@ namespace WebApplication1.ViewsManagment
             }
         }
 
-        protected void btnBuscarDni_Click(object sender, EventArgs e)
-        {
-            string dni = txtDniFiltro.Text;
-            txtApellidoFiltro.Text = string.Empty;
-            txtNombreFiltro.Text = string.Empty;
-
-            listaEmpleados = ObtenerListaEmpl().Where(empl => empl.Documento == dni).ToList();
-            repeaterEmpleados.DataSource = listaEmpleados;
-            repeaterEmpleados.DataBind();
-        }
-
-        protected void btnBuscarApellido_Click(object sender, EventArgs e)
-        {
-            string apellido = txtApellidoFiltro.Text;
-            txtNombreFiltro.Text = string.Empty;
-            txtDniFiltro.Text = string.Empty;
-
-            listaEmpleados = ObtenerListaEmpl().Where(empl => empl.Apellido == apellido).ToList();
-            repeaterEmpleados.DataSource = listaEmpleados;
-            repeaterEmpleados.DataBind();
-        }
-
-        protected void btnBuscarNombre_Click(object sender, EventArgs e)
-        {
-            string nombre = txtNombreFiltro.Text;
-            txtApellidoFiltro.Text = string.Empty;
-            txtDniFiltro.Text = string.Empty;
-
-            listaEmpleados = ObtenerListaEmpl().Where(empl => empl.Nombre == nombre).ToList();
-            repeaterEmpleados.DataSource = listaEmpleados;
-            repeaterEmpleados.DataBind();
-        }
-
         protected void btnEliminarEmpleado_Click(object sender, EventArgs e)
         {
             string idEmpl = hiddenFieldIdEmpleado.Value;
@@ -137,7 +104,12 @@ namespace WebApplication1.ViewsManagment
             }
             else 
             {
-                btnBuscarDni_Click(sender,e);
+                txtApellidoFiltro.Text = string.Empty;
+                txtNombreFiltro.Text = string.Empty;
+
+                listaEmpleados = ObtenerListaEmpl().Where(empl => empl.Documento == dni).ToList();
+                repeaterEmpleados.DataSource = listaEmpleados;
+                repeaterEmpleados.DataBind();
             }
         }
 
@@ -151,7 +123,12 @@ namespace WebApplication1.ViewsManagment
             }
             else
             {
-                btnBuscarApellido_Click(sender, e);
+                txtNombreFiltro.Text = string.Empty;
+                txtDniFiltro.Text = string.Empty;
+
+                listaEmpleados = ObtenerListaEmpl().Where(empl => empl.Apellido.ToUpper() == apellido.ToUpper()).ToList();
+                repeaterEmpleados.DataSource = listaEmpleados;
+                repeaterEmpleados.DataBind();
             }
         }
 
@@ -165,7 +142,12 @@ namespace WebApplication1.ViewsManagment
             }
             else
             {
-                btnBuscarNombre_Click(sender, e);
+                txtApellidoFiltro.Text = string.Empty;
+                txtDniFiltro.Text = string.Empty;
+
+                listaEmpleados = ObtenerListaEmpl().Where(empl => empl.Nombre.ToUpper() == nombre.ToUpper()).ToList();
+                repeaterEmpleados.DataSource = listaEmpleados;
+                repeaterEmpleados.DataBind();
             }
         }
 

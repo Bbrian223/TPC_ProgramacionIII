@@ -48,9 +48,6 @@
                         <div class="input-group mb-3">
                             <asp:TextBox ID="txtDniFiltro" CssClass="form-control" runat="server" Placeholder="DNI"
                                 OnTextChanged="txtDniFiltro_TextChanged" AutoPostBack="true"></asp:TextBox>
-                            <div class="input-group-append">
-                                <asp:Button ID="btnBuscarDni" CssClass="btn btn-outline-secondary" runat="server" Text="Buscar" OnClick="btnBuscarDni_Click" />
-                            </div>
                         </div>
                     </div>
 
@@ -59,9 +56,6 @@
                         <div class="input-group mb-3">
                             <asp:TextBox ID="txtApellidoFiltro" CssClass="form-control" runat="server" Placeholder="Apellido"
                                 OnTextChanged="txtApellidoFiltro_TextChanged" AutoPostBack="true"></asp:TextBox>
-                            <div class="input-group-append">
-                                <asp:Button ID="btnBuscarApellido" CssClass="btn btn-outline-secondary" runat="server" Text="Buscar" OnClick="btnBuscarApellido_Click" />
-                            </div>
                         </div>
                     </div>
 
@@ -70,9 +64,6 @@
                         <div class="input-group mb-3">
                             <asp:TextBox ID="txtNombreFiltro" CssClass="form-control" runat="server" Placeholder="Nombre"
                                 OnTextChanged="txtNombreFiltro_TextChanged" AutoPostBack="true"></asp:TextBox>
-                            <div class="input-group-append">
-                                <asp:Button ID="btnBuscarNombre" CssClass="btn btn-outline-secondary" runat="server" Text="Buscar" OnClick="btnBuscarNombre_Click" />
-                            </div>
                         </div>
                     </div>
                 </div>

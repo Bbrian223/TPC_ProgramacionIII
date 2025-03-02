@@ -24,15 +24,6 @@ namespace WebApplication1.ViewsManagment
         protected global::System.Web.UI.WebControls.TextBox txtDniFiltro;
 
         /// <summary>
-        /// Control btnBuscarDni.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarDni;
-
-        /// <summary>
         /// Control txtApellidoFiltro.
         /// </summary>
         /// <remarks>
@@ -42,15 +33,6 @@ namespace WebApplication1.ViewsManagment
         protected global::System.Web.UI.WebControls.TextBox txtApellidoFiltro;
 
         /// <summary>
-        /// Control btnBuscarApellido.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarApellido;
-
-        /// <summary>
         /// Control txtNombreFiltro.
         /// </summary>
         /// <remarks>
@@ -58,15 +40,6 @@ namespace WebApplication1.ViewsManagment
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombreFiltro;
-
-        /// <summary>
-        /// Control btnBuscarNombre.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarNombre;
 
         /// <summary>
         /// Control btnAgregarEmpleado.

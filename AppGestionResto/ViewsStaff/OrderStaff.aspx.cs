@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -43,7 +44,7 @@ namespace WebApplication1.ViewsStaff
 
         protected void txtFechaFiltro_TextChanged(object sender, EventArgs e)
         {
-            string fecha = txtNroVentaFiltro.Text;
+            string fecha = txtFechaFiltro.Text;
             txtNroVentaFiltro.Text = string.Empty;
             txtMesaFiltro.Text = string.Empty;
             ddlSalones.SelectedValue = "TODOS";
@@ -52,8 +53,13 @@ namespace WebApplication1.ViewsStaff
             {
                 if (fecha != string.Empty)
                 {
-                    repeaterVentas.DataSource = obtenerListaPedidos().Where(vent => vent.Fecha_hora == DateTime.Parse(fecha)).ToList();
-                    repeaterVentas.DataBind();
+                    if (DateTime.TryParseExact(fecha, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime aux))
+                    {
+                        repeaterVentas.DataSource = obtenerListaPedidos()
+                            .Where(vent => vent.Fecha_hora.Date == aux.Date) // Comparación solo por fecha
+                            .ToList();
+                        repeaterVentas.DataBind();
+                    }
                 }
                 else
                 {

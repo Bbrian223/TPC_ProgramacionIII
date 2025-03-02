@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,7 +19,7 @@ namespace WebApplication1.ViewsManagment
 
         protected void txtNroVenta_TextChanged(object sender, EventArgs e)
         {
-            VentasManager manager = new VentasManager();  
+            VentasManager manager = new VentasManager();
             string idVenta = txtNroVentaFiltro.Text;
             txtFechaFiltro.Text = string.Empty;
             txtMesaFiltro.Text = string.Empty;
@@ -44,8 +45,8 @@ namespace WebApplication1.ViewsManagment
 
         protected void txtFechaFiltro_TextChanged(object sender, EventArgs e)
         {
-            VentasManager manager = new VentasManager();  
-            string fecha = txtNroVentaFiltro.Text;
+         VentasManager manager = new VentasManager();
+            string fecha = txtFechaFiltro.Text;
             txtNroVentaFiltro.Text = string.Empty;
             txtMesaFiltro.Text = string.Empty;
             ddlSalones.SelectedValue = "TODOS";
@@ -54,8 +55,13 @@ namespace WebApplication1.ViewsManagment
             {
                 if (fecha != string.Empty)
                 {
-                    repeaterVentas.DataSource = manager.ObtenerTodas().Where(vent => vent.Fecha_hora == DateTime.Parse(fecha)).ToList();
-                    repeaterVentas.DataBind();
+                    if (DateTime.TryParseExact(fecha, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime aux))
+                    {
+                        repeaterVentas.DataSource = manager.ObtenerTodas()
+                            .Where(vent => vent.Fecha_hora.Date == aux.Date) // Comparación solo por fecha
+                            .ToList();
+                        repeaterVentas.DataBind();
+                    }
                 }
                 else
                 {
@@ -150,7 +156,7 @@ namespace WebApplication1.ViewsManagment
             }
             catch (Exception ex)
             {
-                Response.Write("<Script>alert('Error: " + ex.Message +"')</Script>");
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
             }
         }
 
