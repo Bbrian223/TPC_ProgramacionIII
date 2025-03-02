@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
 using Manager;
 
 namespace WebApplication1.ViewsManagment
@@ -121,7 +122,19 @@ namespace WebApplication1.ViewsManagment
 
         protected void btnVerVenta_Click(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
+            string idVenta = btn.CommandArgument;
+            lblModalNroVenta.Text = idVenta;
 
+            try
+            {
+                CargarDatosModal(long.Parse(idVenta));
+                MostrarModal();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
         }
 
         //Funciones
@@ -138,6 +151,36 @@ namespace WebApplication1.ViewsManagment
             catch (Exception ex)
             {
                 Response.Write("<Script>alert('Error: " + ex.Message +"')</Script>");
+            }
+        }
+
+        private void MostrarModal()
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "Visualizar", "var modal = new bootstrap.Modal(document.getElementById('modalVer')); modal.show();", true);
+        }
+
+        public void CargarDatosModal(long idVenta)
+        {
+            VentasManager manager = new VentasManager();
+
+            try
+            {
+                Venta venta = manager.ObtenerVentaPorId(idVenta);
+                venta.Pedido.ListaProd = manager.ObtenerProductos(idVenta);
+
+                txtNroVenta.Text = venta.IdVenta.ToString();
+                txtNroSalon.Text = venta.Pedido.Mesa.IdSalon.ToString();
+                txtNroMesa.Text = venta.Pedido.Mesa.IdMesa.ToString();
+                txtFechaVenta.Text = venta.Fecha_hora.ToString("yyyy-MM-dd");
+                txtEstadoPedido.Text = venta.Pedido.Estado;
+                txtPrecioTotal.Text = venta.Total.ToString("0.0");
+
+                gViewProductos.DataSource = venta.Pedido.ListaProd;
+                gViewProductos.DataBind();
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 

@@ -118,10 +118,28 @@ namespace WebApplication1.ViewsStaff
 
         protected void btnVerVenta_Click(object sender, EventArgs e)
         {
+            Button btn = (Button)sender;
+            string idVenta = btn.CommandArgument;
+            lblModalNroVenta.Text = idVenta;
+
+            try
+            {
+                CargarDatosModal(long.Parse(idVenta));
+                MostrarModal();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
 
         }
 
         //funciones
+
+        private void MostrarModal()
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "Visualizar", "var modal = new bootstrap.Modal(document.getElementById('modalVer')); modal.show();", true);
+        }
 
         private void CargarListaVentas()
         {
@@ -152,8 +170,33 @@ namespace WebApplication1.ViewsStaff
             try
             {
                 lista = manager.ObtenerVentasPorEmpleado(empl.idusuario);
-                
+
                 return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void CargarDatosModal(long idVenta)
+        {
+            VentasManager manager = new VentasManager();
+
+            try
+            {
+                Venta venta = manager.ObtenerVentaPorId(idVenta);
+                venta.Pedido.ListaProd = manager.ObtenerProductos(idVenta);
+
+                txtNroVenta.Text = venta.IdVenta.ToString();
+                txtNroSalon.Text = venta.Pedido.Mesa.IdSalon.ToString();
+                txtNroMesa.Text = venta.Pedido.Mesa.IdMesa.ToString();
+                txtFechaVenta.Text = venta.Fecha_hora.ToString("yyyy-MM-dd");
+                txtEstadoPedido.Text = venta.Pedido.Estado;
+                txtPrecioTotal.Text = venta.Total.ToString("0.0");
+
+                gViewProductos.DataSource = venta.Pedido.ListaProd;
+                gViewProductos.DataBind();
             }
             catch (Exception)
             {

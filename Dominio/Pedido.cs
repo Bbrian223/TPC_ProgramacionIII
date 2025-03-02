@@ -29,6 +29,7 @@ namespace Dominio
         public Producto Producto { get; set; }
         public int Cantidad { get; set; }
         public decimal Subtotal { get; set; }
+        public string Aclaraciones { get; set; }
 
         public DetallePedido()
         {

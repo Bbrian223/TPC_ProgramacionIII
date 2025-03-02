@@ -94,4 +94,75 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal de ver -->
+    <div class="modal fade" id="modalVer" tabindex="-1" aria-labelledby="modalVerLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nro venta: 
+                                    <asp:Label ID="lblModalNroVenta" runat="server" /></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row justify-content-center" style="margin-top: 20px">
+                        <!--Nro de Venta-->
+                        <div class="col-3">
+                            <asp:TextBox ID="txtNroVenta" runat="server" CssClass="form-control" placeholder="Nro Venta"
+                                Enabled="false"></asp:TextBox>
+                        </div>
+                        <!--Salon-->
+                        <div class="col-3">
+                            <asp:TextBox ID="txtNroSalon" CssClass="form-control" runat="server"
+                                Placeholder="Nro Salon" Enabled="false"></asp:TextBox>
+                        </div>
+                        <!--Mesa-->
+                        <div class="col-3">
+                            <asp:TextBox ID="txtNroMesa" CssClass="form-control" runat="server"
+                                Placeholder="Nro Mesa" Enabled="false"></asp:TextBox>
+                        </div>
+                        <!--Fecha-->
+                        <div class="col-3">
+                            <asp:TextBox ID="txtFechaVenta" CssClass="form-control" runat="server"
+                                Placeholder="Fecha" Enabled="false" TextMode="Date"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-start" style="margin-top: 20px">
+                        <!--Estado-->
+                        <div class="col-3">
+                            <asp:TextBox ID="txtEstadoPedido" CssClass="form-control" runat="server"
+                                Placeholder="Estado Pedido" Enabled="false"></asp:TextBox>
+                        </div>
+                        <!--Total-->
+                        <div class="col-3">
+                            <asp:TextBox ID="txtPrecioTotal" CssClass="form-control" runat="server"
+                                Placeholder="Total" Enabled="false"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-start" style="margin-top: 20px">
+                        <h5 style="margin-bottom:20px; margin-top:20px;">Detalles:</h5>
+
+                        <asp:GridView ID="gViewProductos" runat="server" CssClass="table table-striped table-bordered text-center"
+                            AutoGenerateColumns="False">
+                            <Columns>
+                                <asp:BoundField DataField="Producto.IdProducto" HeaderText="ID" ItemStyle-Width="50px" />
+                                <asp:BoundField DataField="Producto.Categoria.Nombre" HeaderText="Categoria" ItemStyle-Width="100px" />
+                                <asp:BoundField DataField="Producto.Nombre" HeaderText="Nombre" ItemStyle-Width="100px" />
+                                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-Width="100px" />
+                                <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" ItemStyle-Width="100px" />
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>

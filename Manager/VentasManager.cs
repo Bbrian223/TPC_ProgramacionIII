@@ -82,7 +82,81 @@ namespace Manager
                 throw;
             }
         }
-        
+
+        public Venta ObtenerVentaPorId(long idVenta)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Venta venta = new Venta();
+
+            try
+            {
+                datos.SetearConsulta("SELECT IDVENTA,IDPEDIDO,IDSALON,IDMESA,IDUSUARIO,FECHA,ESTADO,TOTAL FROM vw_ListaVentas WHERE IDVENTA = @IDVENTA");
+                datos.SetearParametro("@IDVENTA", idVenta);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    venta.IdVenta = (long)datos.Lector["IDVENTA"];
+                    venta.Pedido.IdPedido = (long)datos.Lector["IDPEDIDO"];
+                    venta.Pedido.Mesa.IdSalon = (long)datos.Lector["IDSALON"];
+                    venta.Pedido.Mesa.IdMesa = (long)datos.Lector["IDMESA"];
+                    venta.Pedido.Empleado.idusuario = (long)datos.Lector["IDUSUARIO"];
+                    venta.Fecha_hora = (DateTime)datos.Lector["FECHA"];
+                    venta.Pedido.Estado = (string)datos.Lector["ESTADO"];
+                    venta.Total = (decimal)datos.Lector["TOTAL"];
+                }
+
+                return venta;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public List<DetallePedido> ObtenerProductos(long idventa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<DetallePedido> lista = new List<DetallePedido>();
+
+            try
+            {
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGNOMBRE,NOMBRE,PRECIO,CANTIDAD,ACLARACIONES,SUBTOTAL FROM fn_ObtenerProductoPedido(@IDVENTA)");
+                datos.SetearParametro("@IDVENTA",idventa);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    DetallePedido detalle = new DetallePedido();
+
+                    detalle.Producto.IdProducto = (long)datos.Lector["IDPRODUCTO"];
+                    detalle.Producto.Categoria.IdCategoria = (long)datos.Lector["IDCATEGORIA"];
+                    detalle.Producto.Categoria.Nombre = (string)datos.Lector["CATEGNOMBRE"];
+                    detalle.Producto.Nombre = (string)datos.Lector["NOMBRE"];
+                    detalle.Producto.Precio = (decimal)datos.Lector["PRECIO"];
+                    detalle.Cantidad = (int)datos.Lector["CANTIDAD"];
+                    detalle.Aclaraciones = (string)datos.Lector["ACLARACIONES"];
+                    detalle.Subtotal = (decimal)datos.Lector["SUBTOTAL"];
+
+                    lista.Add(detalle);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
         public List<decimal> ObtenerVentaSemanal()
         {
             AccesoDatos datos = new AccesoDatos();
