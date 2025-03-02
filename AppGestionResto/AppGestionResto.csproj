@@ -118,6 +118,42 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Database\Imagenes\Perfiles\Usuario-1.jpg" />
+    <Content Include="Database\Imagenes\Perfiles\Usuario-2.jpg" />
+    <Content Include="Database\Imagenes\Perfiles\Usuario-3.jpg" />
+    <Content Include="Database\Imagenes\Perfiles\Usuario-4.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-1.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-10.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-11.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-12.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-13.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-14.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-15.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-16.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-17.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-18.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-19.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-2.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-20.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-21.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-22.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-23.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-24.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-25.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-26.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-27.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-28.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-29.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-3.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-36.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-37.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-4.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-5.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-6.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-7.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-8.jpg" />
+    <Content Include="Database\Imagenes\Productos\producto-9.jpg" />
+    <Content Include="Database\Imagenes\Productos\sin-imagen.jpg" />
     <Content Include="Database\RESTO_DB.sql" />
     <Content Include="Database\RESTO_DB_FUNCTIONS.sql" />
     <Content Include="favicon.ico" />
@@ -156,6 +192,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="ViewCommon\orderDetail.aspx" />
+    <Content Include="ViewCommon\Profile.aspx" />
     <Content Include="ViewsManagment\AddProduct.aspx" />
     <Content Include="ViewCommon\Login.aspx" />
     <Content Include="ViewsManagment\AssignTable.aspx" />
@@ -188,6 +225,13 @@
     </Compile>
     <Compile Include="ViewCommon\orderDetail.aspx.designer.cs">
       <DependentUpon>orderDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewCommon\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewCommon\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewsManagment\AddProduct.aspx.cs">
       <DependentUpon>AddProduct.aspx</DependentUpon>
@@ -304,8 +348,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Database\Imagenes\Perfiles\" />
-    <Folder Include="Database\Imagenes\Productos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

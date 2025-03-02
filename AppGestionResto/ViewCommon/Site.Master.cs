@@ -13,10 +13,15 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Seguridad.sesionActiva(Session["User"])) 
+            if (!Seguridad.sesionActiva(Session["User"]))
             {
-                Response.Redirect("~/ViewCommon/Login.aspx",false);
+                Response.Redirect("~/ViewCommon/Login.aspx", false);
             }
+            else
+            {
+                CargarImagen();
+            }
+
         }
 
         protected void btnCerrarSesion_OnClick(object sender, EventArgs e)
@@ -30,6 +35,11 @@ namespace WebApplication1
             Session.Clear();
 
             Response.Redirect("~/ViewCommon/Login.aspx", false);
+        }
+
+        public void CargarImagen()
+        {
+            imgUser.ImageUrl = ((Empleado)Session["Empleado"]).Imagen.DirComp;
         }
     }
 }

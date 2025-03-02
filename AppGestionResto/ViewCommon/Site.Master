@@ -57,6 +57,17 @@
             width: calc(100% - 30px);
             margin: auto 15px 15px;
         }
+
+        .image-User {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            background-color: #f8f9fa;
+            background-size: cover;
+            background-position: center;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
@@ -68,21 +79,18 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Servicios</a>
-                        </li>
-                    </ul>
                     <!-- Mi perfil -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto d-flex align-content-center">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Mi Perfil</a>
+                            <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewCommon/Profile.aspx") %>">Mi Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <asp:Image ID="imgUser" CssClass="image-User mb-3" runat="server" />
                         </li>
                     </ul>
+
                 </div>
+
             </div>
         </nav>
 
