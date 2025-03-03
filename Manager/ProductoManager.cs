@@ -180,6 +180,47 @@ namespace Manager
 
         }
 
+        public List<Producto> ObtenerAdicionales()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Producto> lista = new List<Producto>();
+
+            try
+            {
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO,GUARNICION FROM vw_ListaAdicionales ORDER BY IDCATEGORIA ASC");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto prod = new Producto();
+
+                    prod.IdProducto = (long)datos.Lector["IDPRODUCTO"];
+                    prod.Categoria.IdCategoria = (long)datos.Lector["IDCATEGORIA"];
+                    prod.Categoria.Nombre = (string)datos.Lector["CATEGORIA"];
+                    prod.Nombre = (string)datos.Lector["NOMBRE"];
+                    prod.Precio = (decimal)datos.Lector["PRECIO"];
+                    prod.Descripcion = (string)datos.Lector["DESCRIPCION"];
+                    prod.Imagen.IdImagen = (long)datos.Lector["IDIMAGEN"];
+                    prod.Imagen.NombreArch = (string)datos.Lector["ARCHNOMB"];
+                    prod.Estado = (bool)datos.Lector["ESTADO"];
+                    prod.Guarnicion = (bool)datos.Lector["GUARNICION"];
+
+                    lista.Add(prod);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+
         public List<Producto> ObtenerProductosConBajoStock(int min)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -378,7 +419,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO,GUARNICION  from vw_ListaProductos WHERE IDCATEGORIA < 6 AND IDPRODUCTO = @IDPRODUCTO");
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO,GUARNICION  from vw_ListaProductos WHERE IDPRODUCTO = @IDPRODUCTO");
                 datos.SetearParametro("@IDPRODUCTO", idProd);
                 datos.EjecutarLectura();
 
@@ -585,8 +626,9 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("EXEC sp_EditarProducto @IDPRODUCTO,@PRECIO,@STOCK,@DESCRIPCION");
+                datos.SetearConsulta("EXEC sp_EditarProducto @IDPRODUCTO,@PRECIO,@STOCK,@DESCRIPCION,@NOMBRE");
                 datos.SetearParametro("@IDPRODUCTO",prod.IdProducto);
+                datos.SetearParametro("@NOMBRE", prod.Nombre);
                 datos.SetearParametro("@PRECIO", prod.Precio);
                 datos.SetearParametro("@STOCK", prod.stock);
                 datos.SetearParametro("@DESCRIPCION", prod.Descripcion);

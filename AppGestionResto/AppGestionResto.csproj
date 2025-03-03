@@ -198,6 +198,7 @@
     <Content Include="ViewsManagment\AssignTable.aspx" />
     <Content Include="ViewsManagment\Dashboard.aspx" />
     <Content Include="ViewsManagment\MesasSettings.aspx" />
+    <Content Include="ViewsManagment\ProdextraSetting.aspx" />
     <Content Include="ViewsManagment\ProductSettings.aspx" />
     <Content Include="ViewCommon\Site.Master" />
     <Content Include="ViewsManagment\AddUser.aspx" />
@@ -267,6 +268,13 @@
     </Compile>
     <Compile Include="ViewsManagment\MesasSettings.aspx.designer.cs">
       <DependentUpon>MesasSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewsManagment\ProdextraSetting.aspx.cs">
+      <DependentUpon>ProdextraSetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewsManagment\ProdextraSetting.aspx.designer.cs">
+      <DependentUpon>ProdextraSetting.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewsManagment\ProductSettings.aspx.cs">
       <DependentUpon>ProductSettings.aspx</DependentUpon>

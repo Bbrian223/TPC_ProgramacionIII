@@ -145,6 +145,7 @@ namespace WebApplication1.ViewCommon
             {
                 Producto prod = new Producto();
                 prod.IdProducto = long.Parse(idProd);
+                prod.Nombre = txtNombre.Text;
                 prod.Precio = decimal.Parse(txtPrecio.Text);
                 prod.stock = int.Parse(txtStock.Text);
                 prod.Descripcion = txtBxDescripcion.Text;
