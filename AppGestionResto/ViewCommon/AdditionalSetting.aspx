@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ViewCommon/Site.Master" AutoEventWireup="true" CodeBehind="ProdextraSetting.aspx.cs" Inherits="WebApplication1.ViewsManagment.ProdextraSetting" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ViewCommon/Site.Master" AutoEventWireup="true" CodeBehind="AdditionalSetting.aspx.cs" Inherits="WebApplication1.ViewsManagment.ProdextraSetting" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -64,11 +64,14 @@
 
                 </div>
 
+                <%if (Dominio.Seguridad.NivelAcceso == Dominio.UserType.Gerente)
+                    {  %>
                 <!-- Botón de Agregar Producto -->
                 <div class="button" style="margin-bottom: 20px;">
                     <asp:Button ID="btnAgregarAdicional" Text="+ Agregar Adicional" runat="server" CssClass="btn btn-primary btn-sm"
                         OnClick="btnAgregarAdicional_Click" />
                 </div>
+                <%} %>
 
                 <!-- Repeater -->
                 <div class="text-center">
@@ -91,13 +94,19 @@
                                 <td><%# Eval("IdProducto") %></td>
                                 <td><%# Eval("Categoria.Nombre") %></td>
                                 <td><%# Eval("Nombre") %></td>
-                                <td><%# Eval("Estado") %></td>
+                                <td><%# (bool)Eval("Estado") ? "Activo" : "No Activo" %></td>
                                 <td>
                                     <asp:Button ID="btnVerAdicional" class="btn btn-primary btn-sm" Text="Detalles" runat="server"
                                         CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnVerAdicional_Click" />
+                                    <%if (Dominio.Seguridad.NivelAcceso == Dominio.UserType.Gerente)
+                                        { %>
+                                    
                                     <asp:Button ID="btnBajaAdicional" class="btn btn-danger btn-sm" Text="Deshabilitar" runat="server"
-                                        CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnBajaAdicional_Click" />
-
+                                        CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnBajaAdicional_Click" Visible='<%# (bool)Eval("Estado") %>' />
+                                    
+                                    <asp:Button ID="btnHabilitarAd" class="btn btn-success btn-sm" Text="    Habilitar    " runat="server"
+                                        CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnHabilitarAd_Click" Visible='<%# !(bool)Eval("Estado") %>' />
+                                    <%} %>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -117,7 +126,8 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalEliminarLabel">Confirmar Eliminación</h5>
+                    <h5 class="modal-title" id="modalEliminarLabel">Confirmar Eliminación Producto:
+                        <asp:Label ID="lblIdProdBaja" runat="server" /></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body alert alert-danger">
@@ -191,7 +201,11 @@
 
                     %>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+                    <%if (Dominio.Seguridad.NivelAcceso == Dominio.UserType.Gerente)
+                        {  %>
                     <asp:Button ID="btnEditarAdicional" CssClass="btn btn-primary" runat="server" Text="Editar" OnClick="btnEditarAdicional_Click" />
+                    <%} %>
+
                     <%}
                         else
                         {  %>

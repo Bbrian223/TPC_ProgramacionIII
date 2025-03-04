@@ -33,9 +33,19 @@ namespace WebApplication1.ViewsManagment
             }
         }
 
+        protected void btnValidarBaja_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string id = btn.CommandArgument;
+
+            lblModalIdBaja.Text = id;
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Eliminar", "var modal = new bootstrap.Modal(document.getElementById('modalEliminar')); modal.show();", true);
+        }
+
         protected void btnEliminarEmpleado_Click(object sender, EventArgs e)
         {
-            string idEmpl = hiddenFieldIdEmpleado.Value;
+            string idEmpl = lblModalIdBaja.Text;
 
             EmpleadoManager manager = new EmpleadoManager();
 
@@ -192,6 +202,24 @@ namespace WebApplication1.ViewsManagment
 
             CargarListaEnPantalla();
             btnVerEmpleado_Click(sender,e);
+        }
+
+        protected void btnHabilitar_Click(object sender, EventArgs e)
+        {
+            EmpleadoManager manager = new EmpleadoManager();
+            Button btn = (Button)sender;
+            string id = btn.CommandArgument;
+
+            try
+            {
+                manager.Alta(int.Parse(id));
+                CargarListaEnPantalla();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
+
         }
 
         // Funciones

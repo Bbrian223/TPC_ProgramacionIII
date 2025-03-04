@@ -51,6 +51,15 @@ namespace WebApplication1.ViewCommon
         protected global::System.Web.UI.WebControls.Repeater repeaterProductos;
 
         /// <summary>
+        /// Control lblModalIdBaja.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModalIdBaja;
+
+        /// <summary>
         /// Control btnEliminarProd.
         /// </summary>
         /// <remarks>
@@ -58,15 +67,6 @@ namespace WebApplication1.ViewCommon
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEliminarProd;
-
-        /// <summary>
-        /// Control hiddenFieldIdEmpleado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenFieldIdEmpleado;
 
         /// <summary>
         /// Control lblModalNumUsuario.

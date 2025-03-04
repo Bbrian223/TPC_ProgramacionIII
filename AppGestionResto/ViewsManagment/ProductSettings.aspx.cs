@@ -78,10 +78,20 @@ namespace WebApplication1.ViewCommon
             }
         }
 
+        protected void btnConfirmarBaja_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string id = btn.CommandArgument;
+
+            lblModalIdBaja.Text = id;
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Baja", "var modal = new bootstrap.Modal(document.getElementById('modalEliminar')); modal.show();", true);
+        }
+
         protected void btnEliminarProd_Click(object sender, EventArgs e)
         {
             ProductoManager manager = new ProductoManager();
-            string idProd = hiddenFieldIdEmpleado.Value;
+            string idProd = lblModalIdBaja.Text;
             try
             {
                 manager.Baja(int.Parse(idProd));
@@ -159,6 +169,23 @@ namespace WebApplication1.ViewCommon
 
             CargarLista();
             btnVerProducto_Click(sender, e);
+        }
+
+        protected void btnHabilitarProd_Click(object sender, EventArgs e)
+        {
+            ProductoManager manager = new ProductoManager();
+            Button btn = (Button)sender;
+            string id = btn.CommandArgument;
+
+            try
+            {
+                manager.Alta(long.Parse(id));
+                CargarLista();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
         }
 
         //funciones

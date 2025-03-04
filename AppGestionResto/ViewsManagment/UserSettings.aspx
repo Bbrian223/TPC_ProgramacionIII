@@ -3,20 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        $(document).on('click', '.btnEliminar', function () {
-            // Obtener el valor del atributo data-id
-            var idEmpleado = $(this).data('id');
-
-            // Abrir el modal y mostrar el valor
-            $('#modalEliminar').modal('show');
-            $('#idEmpleadoSeleccionado').text(idEmpleado);
-
-            // Almacenar el valor en el campo oculto
-            $('#<%= hiddenFieldIdEmpleado.ClientID %>').val(idEmpleado);
-        });
-    </script>
-
     <style>
         .image-circle {
             width: 150px;
@@ -102,15 +88,16 @@
                             <td><%# Eval("Documento") %></td>
                             <td><%# Eval("FechaIng", "{0:dd/MM/yyyy}") %></td>
                             <td><%# Eval("rol") %></td>
-                            <td><%# Eval("estado") %></td>
+                            <td><%# (bool)Eval("estado") ? "Activo" : "No Activo" %></td>
                             <td>
-                                <asp:Button ID="btnVerEmpleado" class="btn btn-primary btn-sm" Text="Ver" runat="server"
+                                <asp:Button ID="btnVerEmpleado" class="btn btn-primary btn-sm" Text="Detalles" runat="server"
                                     CommandArgument='<%# Eval("IdUsuario") %>' OnClick="btnVerEmpleado_Click" />
-                                <button type="button" class="btn btn-danger btn-sm btnEliminar"
-                                    data-id='<%# Eval("IdEmpleado") %>'>
-                                    Eliminar
-                               
-                                </button>
+
+                                <asp:Button ID="btnValidarBaja" class="btn btn-danger btn-sm" Text="Deshabiltar" runat="server"
+                                    CommandArgument='<%# Eval("IdUsuario") %>' OnClick="btnValidarBaja_Click" Visible='<%# (bool)Eval("Estado") %>'/>
+
+                                <asp:Button ID="btnHabilitar" class="btn btn-success btn-sm" Text="    Habilitar    " runat="server"
+                                    CommandArgument='<%# Eval("IdUsuario") %>' OnClick="btnHabilitar_Click" Visible='<%# !(bool)Eval("Estado") %>'/>
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -124,16 +111,15 @@
 
                 <!-- Modal de confirmación -->
                 <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="modalEliminarLabel">Confirmar Eliminación</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                ¿Está seguro de que desea eliminar al empleado con ID 
-                               
-                                <span id="idEmpleadoSeleccionado"></span>?
+                            <div class="modal-body alert alert-danger">
+                                
+                                <h3>¿Está seguro de que desea dar de baja al empleado con ID: <asp:Label ID="lblModalIdBaja" runat="server" /> </h3>
                            
                             </div>
                             <div class="modal-footer">
@@ -233,8 +219,6 @@
                     </div>
                 </div>
 
-                <!-- Campo oculto para enviar al servidor -->
-                <asp:HiddenField ID="hiddenFieldIdEmpleado" runat="server" />
 
             </div>
         </div>

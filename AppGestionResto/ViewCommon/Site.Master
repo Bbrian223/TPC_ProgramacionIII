@@ -122,7 +122,7 @@
                     <div class="collapse" id="collapseInventario">
                         <ul class="nav flex-column ps-3">
                             <li><a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/ProductSettings.aspx") %>">Productos</a></li>
-                            <li><a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/ProdextraSetting.aspx") %>">Adicionales</a></li>
+                            <li><a class="nav-link text-white" href="<%= ResolveUrl("~/ViewCommon/AdditionalSetting.aspx") %>">Adicionales</a></li>
                         </ul>
                     </div>
                 </li>
@@ -146,7 +146,7 @@
                     <div class="collapse" id="collapseInventarioStaff">
                         <ul class="nav flex-column ps-3">
                             <li><a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsStaff/ProductsList.aspx") %>">Productos</a></li>
-                            <li><a class="nav-link text-white" href="#">Extras</a></li>
+                            <li><a class="nav-link text-white" href="<%= ResolveUrl("~/ViewCommon/AdditionalSetting.aspx") %>">Adicionales</a></li>
                         </ul>
                     </div>
                 </li>

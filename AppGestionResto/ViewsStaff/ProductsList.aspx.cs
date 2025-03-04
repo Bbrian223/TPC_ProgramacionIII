@@ -72,7 +72,7 @@ namespace WebApplication1.ViewsStaff
             ProductoManager manager = new ProductoManager();
             Button btn = (Button)sender;
             string idProd = (string.IsNullOrWhiteSpace(btn.CommandArgument)) ? (string)Session["IdProducto"] : btn.CommandArgument;
-            lblModalNumUsuario.Text = idProd;
+            lblModalNumProd.Text = idProd;
 
             if (Session["IdProducto"] is null)
                 Session.Add("IdProducto", idProd);

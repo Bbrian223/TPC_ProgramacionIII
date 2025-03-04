@@ -105,8 +105,8 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Ver Usuario
-                                <asp:Label ID="lblModalNumUsuario" runat="server" /></h5>
+                    <h5 class="modal-title">Ver Producto
+                                <asp:Label ID="lblModalNumProd" runat="server" /></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -233,7 +233,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-close" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

@@ -60,6 +60,15 @@ namespace WebApplication1.ViewsManagment
         protected global::System.Web.UI.WebControls.Repeater repeaterEmpleados;
 
         /// <summary>
+        /// Control lblModalIdBaja.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblModalIdBaja;
+
+        /// <summary>
         /// Control btnEliminarEmpleado.
         /// </summary>
         /// <remarks>
@@ -220,14 +229,5 @@ namespace WebApplication1.ViewsManagment
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardarEdicion;
-
-        /// <summary>
-        /// Control hiddenFieldIdEmpleado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddenFieldIdEmpleado;
     }
 }

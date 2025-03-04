@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.WebSockets;
 using Dominio;
 using Manager;
 using Microsoft.Win32;
@@ -104,6 +105,8 @@ namespace WebApplication1.ViewsManagment
             Button btn = (Button)sender;
             string idProd = btn.CommandArgument;
 
+            lblIdProdBaja.Text = idProd;
+
             try
             {
                 lblModalBajaAdicional.Text = ObtenerNombreProd(long.Parse(idProd));
@@ -117,7 +120,18 @@ namespace WebApplication1.ViewsManagment
 
         protected void btnConfirmarBaja_Click(object sender, EventArgs e)
         {
-            // realizar baja en db
+            ProductoManager manager = new ProductoManager();
+            string id = lblIdProdBaja.Text;
+
+            try
+            {
+                manager.Baja(long.Parse(id));
+                CargarDatonPantalla();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
         }
 
         protected void btnEditarAdicional_Click(object sender, EventArgs e)
@@ -155,6 +169,23 @@ namespace WebApplication1.ViewsManagment
                 HabilitarEdicion(false);
                 CargarDatonPantalla();
                 CargarModalDetalles();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
+        }
+
+        protected void btnHabilitarAd_Click(object sender, EventArgs e)
+        {
+            ProductoManager manager = new ProductoManager();
+            Button btn = (Button)sender;
+            string id = btn.CommandArgument;
+
+            try
+            {
+                manager.Alta(long.Parse(id));
+                CargarDatonPantalla();
             }
             catch (Exception ex)
             {
@@ -271,6 +302,7 @@ namespace WebApplication1.ViewsManagment
 
             return estaodo;
         }
+
 
     }
 }

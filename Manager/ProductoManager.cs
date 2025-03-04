@@ -61,7 +61,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaGuarniciones");
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaGuarniciones WHERE ESTADO = '1'");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -103,7 +103,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaLeches");
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaLeches WHERE ESTADO = '1'");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -145,7 +145,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaTazas");
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaTazas WHERE ESTADO = '1'");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -219,7 +219,6 @@ namespace Manager
                 datos.CerrarConeccion();
             }
         }
-
 
         public List<Producto> ObtenerProductosConBajoStock(int min)
         {
@@ -372,6 +371,26 @@ namespace Manager
             {
                 datos.SetearConsulta("UPDATE Productos SET ESTADO = '0' WHERE IDPRODUCTO = @IdProducto");
                 datos.SetearParametro("@IdProducto",idProd);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public void Alta(long idProd)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("UPDATE Productos SET ESTADO = '1' WHERE IDPRODUCTO = @IdProducto");
+                datos.SetearParametro("@IdProducto", idProd);
                 datos.ejecutarAccion();
             }
             catch (Exception)

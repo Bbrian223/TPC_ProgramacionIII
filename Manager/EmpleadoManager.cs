@@ -304,6 +304,26 @@ namespace Manager
             }
         }
 
+        public void Alta(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("UPDATE Usuarios SET ESTADO = 1 WHERE IDUSUARIO = @Id");
+                datos.SetearParametro("@Id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
         public long UltimoId()
         {
             AccesoDatos datos = new AccesoDatos();

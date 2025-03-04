@@ -3,20 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        $(document).on('click', '.btnEliminar', function () {
-            // Obtener el valor del atributo data-id
-            var idEmpleado = $(this).data('id');
-
-            // Abrir el modal y mostrar el valor
-            $('#modalEliminar').modal('show');
-            $('#idEmpleadoSeleccionado').text(idEmpleado);
-
-            // Almacenar el valor en el campo oculto
-            $('#<%= hiddenFieldIdEmpleado.ClientID %>').val(idEmpleado);
-        });
-    </script>
-
     <style>
         .image-circle {
             width: 150px;
@@ -96,14 +82,16 @@
                             <td><%# Eval("Nombre") %></td>
                             <td><%# Eval("Categoria.Nombre") %></td>
                             <td><%# Eval("Stock") %></td>
-                            <td><%# Eval("Estado") %></td>
+                            <td><%# (bool)Eval("Estado") ? "Activo" : "No Activo" %></td>
                             <td>
-                                <asp:Button ID="btnVerProducto" class="btn btn-primary btn-sm" Text="Ver" runat="server"
+                                <asp:Button ID="btnVerProducto" CssClass="btn btn-primary btn-sm" Text="Detalles" runat="server"
                                     CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnVerProducto_Click" />
-                                <button type="button" class="btn btn-danger btn-sm btnEliminar"
-                                    data-id='<%# Eval("IdProducto") %>'>
-                                    Eliminar
-                                </button>
+                                
+                                <asp:Button ID="btnConfirmarBaja" CssClass="btn btn-danger btn-sm" Text="Deshabilitar"
+                                    runat="server" CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnConfirmarBaja_Click" Visible='<%# (bool)Eval("Estado") %>'/>
+                                
+                                <asp:Button ID="btnHabilitarProd" CssClass="btn btn-success btn-sm" Text="    Habilitar    "
+                                    runat="server" CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnHabilitarProd_Click" Visible='<%# !(bool)Eval("Estado") %>' />
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -115,35 +103,33 @@
                     </FooterTemplate>
                 </asp:Repeater>
 
-                <!-- Modal de confirmación -->
-                <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalEliminarLabel">Confirmar Eliminación</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                ¿Está seguro de que desea eliminar al Producto con ID 
-                           
-                            <span id="idEmpleadoSeleccionado"></span>?
-                       
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <asp:Button ID="btnEliminarProd" CssClass="btn btn-danger" runat="server" Text="Eliminar" OnClick="btnEliminarProd_Click" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Campo oculto para enviar al servidor -->
-                <asp:HiddenField ID="hiddenFieldIdEmpleado" runat="server" />
-
             </div>
         </div>
     </div>
 
+
+    <!-- Modal de confirmación -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEliminarLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body alert alert-danger">
+
+                    <h3>¿Está seguro de que desea dar de baja al Producto con ID:
+                        <asp:Label ID="lblModalIdBaja" runat="server" />
+                    </h3>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnEliminarProd" CssClass="btn btn-danger" runat="server" Text="Eliminar" OnClick="btnEliminarProd_Click" />
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal de ver -->
     <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
@@ -217,7 +203,8 @@
                             { %>
 
                         <div class="col-6">
-                            <label style="font-size: 20px"> Entrada:  
+                            <label style="font-size: 20px">
+                                Entrada:  
                                 <asp:Label ID="lblEntrada" runat="server" Font-Size="20px" />
                             </label>
                         </div>
@@ -227,7 +214,8 @@
                             { %>
 
                         <div class="col-6">
-                            <label style="font-size: 20px">Contiene Guarnicion:  
+                            <label style="font-size: 20px">
+                                Contiene Guarnicion:  
                                 <asp:Label ID="lblContieneGuarnicion" runat="server" Font-Size="20px" />
                             </label>
                         </div>
@@ -237,13 +225,15 @@
                         <%if (string.Compare(ddlCategoriasModal.SelectedValue, "4") == 0)
                             { %>
                         <div class="col-4">
-                            <label style="font-size: 20px">Azucar agregada:    
+                            <label style="font-size: 20px">
+                                Azucar agregada:    
                                 <asp:Label ID="lblAzucar" runat="server" Font-Size="20px" />
                             </label>
                         </div>
 
                         <div class="col-4">
-                            <label style="font-size: 20px">Contiene Gluten:    
+                            <label style="font-size: 20px">
+                                Contiene Gluten:    
                                 <asp:Label ID="lblGluten" runat="server" Font-Size="20px" />
                             </label>
                         </div>
@@ -258,7 +248,8 @@
                                 onkeypress="return soloNumeros(event)" Enabled="false"></asp:TextBox>
                         </div>
                         <div class="col-6">
-                            <label style="font-size: 20px">Contiene Alcohol:  
+                            <label style="font-size: 20px">
+                                Contiene Alcohol:  
                                 <asp:Label ID="lblAlcohol" runat="server" Font-Size="20px" />
                             </label>
                         </div>
@@ -281,13 +272,13 @@
                     <%if ((bool)Session["EditarProducto"] == false)
                         { %>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
-                    <asp:Button ID="btnEditarUsuario" CssClass="btn btn-primary" runat="server" Text="Editar" OnClick="btnEditarUsuario_Click"/>
+                    <asp:Button ID="btnEditarUsuario" CssClass="btn btn-primary" runat="server" Text="Editar" OnClick="btnEditarUsuario_Click" />
                     <%
                         }
                         else
                         { %>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <asp:Button ID="btnGuardarEdicion" CssClass="btn btn-primary" runat="server" Text="Guardar" OnClick="btnGuardarEdicion_Click"/>
+                    <asp:Button ID="btnGuardarEdicion" CssClass="btn btn-primary" runat="server" Text="Guardar" OnClick="btnGuardarEdicion_Click" />
                     <%} %>
                 </div>
             </div>
