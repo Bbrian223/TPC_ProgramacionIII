@@ -42,6 +42,12 @@ namespace WebApplication1.ViewsManagment
 
             try
             {
+                if (manager.EmpleadoExitente(txtDocumento.Text))
+                {
+                    MostrarModalErrorDni();
+                    return;
+                }
+
                 nuevoEmpleado.Nombre = txtNombre.Text;
                 nuevoEmpleado.Apellido = txtApellido.Text;
                 nuevoEmpleado.Documento = txtDocumento.Text;
@@ -214,6 +220,8 @@ namespace WebApplication1.ViewsManagment
 
             try
             {
+                if (Session["fileUser"] is null) return;
+
                 FileUpload file = (FileUpload)Session["fileUser"];
 
                 rutaCarpeta = Server.MapPath("~/Database/Imagenes/Perfiles/"); // Carpeta en el servidor
@@ -248,6 +256,12 @@ namespace WebApplication1.ViewsManagment
             return nombreUser.ToLower();
         }
 
+        public void MostrarModalErrorDni()
+        {
+            lblModalErrorDni.Text = "El dni ingresado '" + txtDocumento.Text +"' ya esta registrado en la base de datos...";
+
+            ClientScript.RegisterStartupScript(this.GetType(), "Error", "var modal = new bootstrap.Modal(document.getElementById('modalError')); modal.show();", true);
+        }
 
     }
 }

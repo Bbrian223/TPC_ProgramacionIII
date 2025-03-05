@@ -85,7 +85,7 @@
                             <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewCommon/Profile.aspx") %>">Mi Perfil</a>
                         </li>
                         <li class="nav-item">
-                            <asp:Image ID="imgUser" CssClass="image-User mb-3" runat="server" />
+                            <asp:Image ID="imgUser" CssClass="image-User mb-3" runat="server" onerror="this.onerror=null; this.src='/Database/Imagenes/Perfiles/sin-imagen.jpg';"/>
                         </li>
                     </ul>
 

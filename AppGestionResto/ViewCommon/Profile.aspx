@@ -61,7 +61,7 @@
                 </asp:Panel>
 
                 <div class="d-flex justify-content-center">
-                    <asp:Image ID="imgPreview" CssClass="image-circle mb-3" runat="server" />
+                    <asp:Image ID="imgPreview" CssClass="image-circle mb-3" runat="server" onerror="this.onerror=null; this.src='/Database/Imagenes/Perfiles/sin-imagen.jpg';"/>
                 </div>
 
                 <%if (HabEdicion)

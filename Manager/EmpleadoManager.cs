@@ -224,6 +224,33 @@ namespace Manager
             }
         }
 
+        public bool EmpleadoExitente(string dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool existe = false;
+            try
+            {
+                datos.SetearConsulta("SELECT dbo.fn_VerificarExisteUsuario(@DNI) as existe;");
+                datos.SetearParametro("@DNI", dni);
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    existe = (bool)datos.Lector["existe"];
+                }
+
+                return existe;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
         public void Agregar(Empleado empl) 
         {
             AccesoDatos datos = new AccesoDatos();

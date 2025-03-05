@@ -247,3 +247,4 @@ AS
 		  OR IDCATEGORIA = '7'
 		  OR IDCATEGORIA = '8'
 GO
+

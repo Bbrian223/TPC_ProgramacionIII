@@ -82,7 +82,7 @@
                         <tr>
                             <td><%# Eval("IdEmpleado") %></td>
                             <td>
-                                <asp:Image ID="imgUser" runat="server" CssClass="img-thumbnail" Width="80px" Height="80px" ImageUrl='<%# ResolveUrl(Eval("Imagen.DirComp").ToString()) %>' /></td>
+                                <asp:Image ID="imgUser" runat="server" CssClass="img-thumbnail" Width="80px" Height="80px" ImageUrl='<%# ResolveUrl(Eval("Imagen.DirComp").ToString()) %>' onerror="this.onerror=null; this.src='/Database/Imagenes/Perfiles/sin-imagen.jpg';"/></td>
                             <td><%# Eval("Nombre") %></td>
                             <td><%# Eval("Apellido") %></td>
                             <td><%# Eval("Documento") %></td>
@@ -147,7 +147,7 @@
                                 </asp:Panel>
 
                                 <div class="d-flex justify-content-center">
-                                    <asp:Image ID="imgPreview" CssClass="image-circle mb-3" runat="server" />
+                                    <asp:Image ID="imgPreview" CssClass="image-circle mb-3" runat="server" onerror="this.onerror=null; this.src='/Database/Imagenes/Perfiles/sin-imagen.jpg';" />
                                 </div>
 
                                 <div class="row justify-content-center" style="margin-top: 20px">

@@ -105,6 +105,21 @@ BEGIN
 END
 GO
 
+-- funcion para vertificar si el dni ingresado ya existe en la db
+CREATE FUNCTION fn_VerificarExisteUsuario(@DNI VARCHAR(50))
+RETURNS BIT
+AS
+BEGIN
+	DECLARE @EXISTE BIT = 0;
+
+	IF EXISTS (SELECT 1 FROM Empleados WHERE DOCUMENTO = @DNI)
+	BEGIN
+		SET @EXISTE = 1;
+	END
+
+	RETURN @EXISTE
+END
+GO
 
 /*		Productos		*/
 

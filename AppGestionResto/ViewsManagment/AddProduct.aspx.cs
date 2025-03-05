@@ -152,6 +152,13 @@ namespace WebApplication1.ViewCommon
                 esValido = false;
             }
 
+            if(Session["file"] == null)
+            {
+                imgPreview.CssClass += " error";
+                fileUploadImagen.CssClass += " error";
+                esValido = false;
+            }
+
             return esValido;
         }
 
@@ -163,6 +170,8 @@ namespace WebApplication1.ViewCommon
             txtVolumen.CssClass = txtVolumen.CssClass.Replace("error", "").Trim();
             chkIndividual.CssClass = chkIndividual.CssClass.Replace("error", "").Trim();
             ddlCategorias.CssClass = ddlCategorias.CssClass.Replace("error", "").Trim();
+            imgPreview.CssClass = imgPreview.CssClass.Replace("error", "").Trim();
+            fileUploadImagen.CssClass = fileUploadImagen.CssClass.Replace("error", "").Trim();
         }
 
         private void MsgError()

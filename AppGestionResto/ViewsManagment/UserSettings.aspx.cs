@@ -360,6 +360,6 @@ namespace WebApplication1.ViewsManagment
             lblErrores.Visible = true;
         }
 
-
     }
+
 }
