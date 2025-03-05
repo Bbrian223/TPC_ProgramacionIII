@@ -363,6 +363,31 @@ namespace Manager
             }
         }
 
+        public void AgregarProdExtra(Producto prod)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("EXEC sp_AgregarProdExtra @IDCATEGORIA,@NOMBRE,@PRECIO,@STOCK,@DESCRIPCION");
+                datos.SetearParametro("@IDCATEGORIA",prod.Categoria.IdCategoria);
+                datos.SetearParametro("@Nombre", prod.Nombre);
+                datos.SetearParametro("@Precio", prod.Precio);
+                datos.SetearParametro("@STOCK",1200);
+                datos.SetearParametro("@Descripcion", prod.Descripcion);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
         public void Baja(long idProd) 
         {
             AccesoDatos datos = new AccesoDatos();

@@ -384,7 +384,7 @@ WHERE CAST(FECHA_HORA AS DATE) = CAST(GETDATE() AS DATE)
 	  AND P.ESTADO = 'COMPLETADO'
 GO
 
-SELECT TOTAL FROM vs_TotalRecaudadoDia
+
 -- Tabla para obtener el pedido pendiente para la mesa indicada
 CREATE FUNCTION fn_ObtenerPedido(@IDMESA BIGINT)
 RETURNS TABLE

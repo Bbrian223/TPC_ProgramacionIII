@@ -197,9 +197,7 @@
                 </div>
                 <div class="modal-footer">
                     <%if (!EditarAdicional)
-                        {
-
-                    %>
+                      {%>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
                     <%if (Dominio.Seguridad.NivelAcceso == Dominio.UserType.Gerente)
                         {  %>
@@ -212,6 +210,66 @@
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     <asp:Button ID="btnGuardarEdicion" CssClass="btn btn-primary" runat="server" Text="Guardar" OnClick="btnGuardarEdicion_Click" />
                     <%} %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+        <!-- Modal de ver -->
+    <div class="modal fade" id="modalNuevoAd" tabindex="-1" aria-labelledby="modalNuevoAdLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar Adicional: </h5>
+                </div>
+                <div class="modal-body">
+
+                    <asp:Panel ID="panleModalAgregar" runat="server" CssClass="alert alert-danger">
+                        <asp:Label ID="lblModalAgregar" runat="server" Visible="false"></asp:Label>
+                    </asp:Panel>
+
+                    <div class="row justify-content-center" style="margin-top: 20px">
+                        <!--Categoria-->
+                        <div class="col-4">
+                            <asp:DropDownList ID="ddlModalAgregar" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
+                                BackColor="white" ForeColor="black" Font-Size="Large" Width="180px" Height="40px">
+                                <asp:ListItem Text="Seleccione una opcion" Value="0" />
+                                <asp:ListItem Text="Guarniciones" Value="6" />
+                                <asp:ListItem Text="Tipo de Leche" Value="7" />
+                                <asp:ListItem Text="Tipo de Taza" Value="8" />
+                            </asp:DropDownList>
+                        </div>
+
+                        <!--Nombre-->
+                        <div class="col-4">
+                            <asp:TextBox ID="txtNombreModalAgregar" runat="server" CssClass="form-control" 
+                                placeholder="Nombre"></asp:TextBox>
+                        </div>
+
+                        <!--Precio-->
+                        <div class="col-4">
+                            <asp:TextBox ID="txtPrecioModalAgregar" CssClass="form-control" runat="server"
+                                Placeholder="Precio" onkeypress="return soloNumeros(event);"></asp:TextBox>
+                        </div>
+
+                    </div>
+
+                    <div class="row justify-content-center" style="margin-top: 20px">
+                        <!--Descripcion-->
+                        <div class="input-group">
+                            <span class="input-group-text">Descripcion</span>
+                            <asp:TextBox ID="txtDescripcionModalAgregar" runat="server" CssClass="form-control"
+                                Font-Names="Arial" Height="80px" TextMode="MultiLine" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <asp:Button ID="btnGuardarNuevoAdicional" CssClass="btn btn-primary" runat="server" Text="Guardar" 
+                        OnClick="btnGuardarNuevoAdicional_Click" />
                 </div>
             </div>
         </div>

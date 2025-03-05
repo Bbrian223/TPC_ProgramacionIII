@@ -69,7 +69,8 @@ namespace WebApplication1.ViewsManagment
 
         protected void btnAgregarAdicional_Click(object sender, EventArgs e)
         {
-            // agregar adicional
+            LimpiarEntradas();
+            CargarModalAgregar();
         }
 
         protected void btnVerAdicional_Click(object sender, EventArgs e)
@@ -193,6 +194,38 @@ namespace WebApplication1.ViewsManagment
             }
         }
 
+        protected void btnGuardarNuevoAdicional_Click(object sender, EventArgs e)
+        {
+            ProductoManager manager = new ProductoManager();
+            string idCategoria = ddlModalAgregar.SelectedValue;
+
+            if (!ValidarCamposModalAgregar())
+            {
+                MsgErrorModalAgregar();
+                CargarModalAgregar();
+                return;
+            }
+
+
+            try
+            {
+                Producto prod = new Producto();
+
+                prod.Categoria.IdCategoria = long.Parse(idCategoria);
+                prod.Nombre = txtNombreModalAgregar.Text;
+                prod.Precio = decimal.Parse(txtPrecioModalAgregar.Text);
+                prod.Descripcion = txtDescripcionModalAgregar.Text;
+
+                manager.AgregarProdExtra(prod);
+
+                CargarDatonPantalla();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
+        }
+
         //funciones 
 
         public void CargarDatonPantalla() 
@@ -241,6 +274,11 @@ namespace WebApplication1.ViewsManagment
             ClientScript.RegisterStartupScript(this.GetType(), "eliminar", "var modal = new bootstrap.Modal(document.getElementById('modalEliminar')); modal.show();", true);
         }
 
+        public void CargarModalAgregar()
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "agregar", "var modal = new bootstrap.Modal(document.getElementById('modalNuevoAd')); modal.show();", true);
+        }
+
         public string ObtenerNombreProd(long idprod)
         {
             try
@@ -267,6 +305,11 @@ namespace WebApplication1.ViewsManagment
             txtNombre.CssClass = txtNombre.CssClass.Replace("error", "").Trim();
             txtPrecio.CssClass = txtPrecio.CssClass.Replace("error", "").Trim();
             ddlCategoriasModalVer.CssClass = ddlCategorias.CssClass.Replace("error", "").Trim();
+
+            //eliminar alarmas modal agregar
+            txtNombreModalAgregar.CssClass = txtNombreModalAgregar.CssClass.Replace("error", "").Trim();
+            txtPrecioModalAgregar.CssClass = txtPrecioModalAgregar.CssClass.Replace("error", "").Trim();
+            ddlModalAgregar.CssClass = ddlModalAgregar.CssClass.Replace("error", "").Trim();
         }
 
         private void MsgError()
@@ -294,15 +337,57 @@ namespace WebApplication1.ViewsManagment
                 estaodo = false;
             }
 
-            if (string.IsNullOrWhiteSpace(txtBxDescripcion.Text))
+            if (ddlCategoriasModalVer.SelectedValue == "0")
             {
-                txtBxDescripcion.CssClass += " error";
+                ddlCategoriasModalVer.CssClass += " error";
+                estaodo = false;
+            }
+
+
+            return estaodo;
+        }
+
+        public bool ValidarCamposModalAgregar()
+        {
+            bool estaodo = true;
+
+            EliminarAlarmas();
+
+            if (string.IsNullOrWhiteSpace(txtNombreModalAgregar.Text))
+            {
+                txtNombreModalAgregar.CssClass += " error";
+                estaodo = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPrecioModalAgregar.Text))
+            {
+                txtPrecioModalAgregar.CssClass += " error";
+                estaodo = false;
+            }
+
+            if (ddlModalAgregar.SelectedValue == "0")
+            {
+                ddlModalAgregar.CssClass += " error";
                 estaodo = false;
             }
 
             return estaodo;
         }
 
+        public void LimpiarEntradas()
+        {
+            txtNombreModalAgregar.Text = string.Empty;
+            txtPrecioModalAgregar.Text = string.Empty;
+            txtDescripcionModalAgregar.Text = string.Empty;
+            ddlModalAgregar.SelectedValue = "0";
+            panleModalAgregar.Visible = false;
+        }
 
+        private void MsgErrorModalAgregar()
+        {
+            panleModalAgregar.Visible = true;
+            lblModalAgregar.Text = "Complete los campos correspondientes...";
+            lblModalAgregar.Visible = true;
+        }
     }
 }
