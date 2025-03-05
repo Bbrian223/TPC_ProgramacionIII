@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|c:\\users\\cristal barrera\\documents\\proyectos brian\\tpc_programacioniii\\appgestionresto\\viewsmanagment\\addproduct.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|solutionrelative:viewsmanagment\\addproduct.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|c:\\users\\cristal barrera\\documents\\proyectos brian\\tpc_programacioniii\\appgestionresto\\viewsmanagment\\productsettings.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|solutionrelative:viewsmanagment\\productsettings.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|c:\\users\\cristal barrera\\documents\\proyectos brian\\tpc_programacioniii\\appgestionresto\\viewsmanagment\\addproduct.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|solutionrelative:viewsmanagment\\addproduct.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|c:\\users\\cristal barrera\\documents\\proyectos brian\\tpc_programacioniii\\appgestionresto\\viewsmanagment\\productsettings.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{B5CFE943-70BA-43DB-84F7-07B377D41740}|AppGestionResto.csproj|solutionrelative:viewsmanagment\\productsettings.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +18,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 219,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AddProduct.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\AddProduct.aspx.cs",
-              "RelativeDocumentMoniker": "ViewsManagment\\AddProduct.aspx.cs",
-              "ToolTip": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\AddProduct.aspx.cs",
-              "RelativeToolTip": "ViewsManagment\\AddProduct.aspx.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAA5wK0AAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-05T02:00:50.741Z",
+              "DocumentIndex": 1,
+              "Title": "ProductSettings.aspx",
+              "DocumentMoniker": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\ProductSettings.aspx",
+              "RelativeDocumentMoniker": "ViewsManagment\\ProductSettings.aspx",
+              "ToolTip": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\ProductSettings.aspx",
+              "RelativeToolTip": "ViewsManagment\\ProductSettings.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-03-05T04:17:18.304Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AddProduct.aspx",
-              "DocumentMoniker": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\AddProduct.aspx",
-              "RelativeDocumentMoniker": "ViewsManagment\\AddProduct.aspx",
-              "ToolTip": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\AddProduct.aspx",
-              "RelativeToolTip": "ViewsManagment\\AddProduct.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-03-05T02:00:47.067Z",
+              "DocumentIndex": 0,
+              "Title": "ProductSettings.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\ProductSettings.aspx.cs",
+              "RelativeDocumentMoniker": "ViewsManagment\\ProductSettings.aspx.cs",
+              "ToolTip": "C:\\Users\\Cristal Barrera\\Documents\\proyectos Brian\\TPC_ProgramacionIII\\AppGestionResto\\ViewsManagment\\ProductSettings.aspx.cs",
+              "RelativeToolTip": "ViewsManagment\\ProductSettings.aspx.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAArwJAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-05T04:17:30.009Z",
+              "IsPinned": true,
               "EditorCaption": ""
             }
           ]

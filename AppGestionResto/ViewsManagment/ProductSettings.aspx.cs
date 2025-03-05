@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using Manager;
 using Dominio;
 using System.Runtime.Versioning;
+using System.IO;
 
 namespace WebApplication1.ViewCommon
 {
@@ -161,6 +162,7 @@ namespace WebApplication1.ViewCommon
                 prod.Descripcion = txtBxDescripcion.Text;
 
                 manager.Editar(prod);
+                GuardarImagen(prod.IdProducto);
             }
             catch (Exception ex)
             {
@@ -368,6 +370,29 @@ namespace WebApplication1.ViewCommon
             lblErrores.Visible = true;
         }
 
+        public void GuardarImagen(long id)
+        {
+            string rutaCarpeta, nombreArchivo, rutaCompleta;
 
+            if (!fileUploadImagen.HasFile) return;
+
+            try
+            {
+                FileUpload file = fileUploadImagen;
+
+                rutaCarpeta = Server.MapPath("~/Database/Imagenes/Productos/"); // Carpeta en el servidor
+                nombreArchivo = "producto-" + id.ToString() + ".jpg";
+                rutaCompleta = Path.Combine(rutaCarpeta, nombreArchivo);
+
+                // Guardar la imagen en la carpeta del servidor
+                file.SaveAs(rutaCompleta);
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
     }
 }

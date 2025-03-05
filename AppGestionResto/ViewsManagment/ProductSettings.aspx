@@ -151,6 +151,10 @@
                         <asp:Image ID="imgPreview" CssClass="image-circle mb-3" runat="server" />
                     </div>
 
+                    <%if ((bool)Session["EditarProducto"] == true)
+                      { %>
+                        <asp:FileUpload ID="fileUploadImagen" runat="server" CssClass="form-control"/>
+                    <%} %>
                     <div class="row justify-content-center" style="margin-top: 20px">
                         <!--Categoria-->
                         <div class="col-3">

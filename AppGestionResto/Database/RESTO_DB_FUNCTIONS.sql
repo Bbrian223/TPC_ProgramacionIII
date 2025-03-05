@@ -105,6 +105,20 @@ BEGIN
 END
 GO
 
+-- Restablecer contrasenia
+CREATE PROCEDURE sp_RestablecerPass(
+	@pIDUSUARIO BIGINT
+)AS
+BEGIN
+	DECLARE @DNI VARCHAR(10);
+
+	SET @DNI = (SELECT DOCUMENTO FROM Empleados WHERE IDUSUARIO = @pIDUSUARIO)
+
+	UPDATE Usuarios SET CONTRASENIA = @DNI WHERE IDUSUARIO = @pIDUSUARIO
+
+END
+GO
+
 -- funcion para vertificar si el dni ingresado ya existe en la db
 CREATE FUNCTION fn_VerificarExisteUsuario(@DNI VARCHAR(50))
 RETURNS BIT

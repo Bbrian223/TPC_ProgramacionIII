@@ -202,7 +202,6 @@
 
                             </div>
                             <div class="modal-footer">
-
                                 <%if ((bool)Session["EditarUsuario"] == false)
                                     { %>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
@@ -211,6 +210,11 @@
                                     }
                                     else
                                     { %>
+                                <div class="me-auto">
+                                    <asp:Button ID="btnRestablecerPass" CssClass="btn btn-secondary btn-sm" Text="Restablecer Contraseña" 
+                                        runat="server" OnClick="btnRestablecerPass_Click"/>
+                                </div>
+
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                                 <asp:Button ID="btnGuardarEdicion" CssClass="btn btn-primary" runat="server" Text="Guardar" OnClick="btnGuardarEdicion_Click" />
                                 <%} %>

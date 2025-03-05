@@ -222,6 +222,15 @@ namespace WebApplication1.ViewsManagment
         protected global::System.Web.UI.WebControls.Button btnEditarUsuario;
 
         /// <summary>
+        /// Control btnRestablecerPass.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRestablecerPass;
+
+        /// <summary>
         /// Control btnGuardarEdicion.
         /// </summary>
         /// <remarks>

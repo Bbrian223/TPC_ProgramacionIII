@@ -63,14 +63,14 @@ namespace Manager
             }
         }
 
-        public void BajaUsuario(int id) 
+        public void RestablecerPass(long id) 
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.SetearConsulta("UPDATE Usuarios SET ESTADO = 0 WHERE IDUSUARIO = @ID");
-                datos.SetearParametro("@ID", id);
+                datos.SetearConsulta("EXEC sp_RestablecerPass @IDUSUARIO");
+                datos.SetearParametro("@IDUSUARIO", id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

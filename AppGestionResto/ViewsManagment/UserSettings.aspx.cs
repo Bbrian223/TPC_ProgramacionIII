@@ -222,6 +222,24 @@ namespace WebApplication1.ViewsManagment
 
         }
 
+        protected void btnRestablecerPass_Click(object sender, EventArgs e)
+        {
+            UsuarioManager manager = new UsuarioManager();
+            string idUsuario = (string)Session["IDUSUARIO"];
+
+            try
+            {
+                manager.RestablecerPass(long.Parse(idUsuario));
+                CargarListaEnPantalla();
+                btnVerEmpleado_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
+
+        }
+
         // Funciones
 
         private void CargarListaEnPantalla()
