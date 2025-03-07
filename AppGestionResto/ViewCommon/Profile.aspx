@@ -44,6 +44,10 @@
             padding-top: 30px;
             padding-bottom: 50px;
         }
+
+        .lblModal {
+            font-size: 10px;
+        }
     </style>
 
 
@@ -61,7 +65,7 @@
                 </asp:Panel>
 
                 <div class="d-flex justify-content-center">
-                    <asp:Image ID="imgPreview" CssClass="image-circle mb-3" runat="server" onerror="this.onerror=null; this.src='/Database/Imagenes/Perfiles/sin-imagen.jpg';"/>
+                    <asp:Image ID="imgPreview" CssClass="image-circle mb-3" runat="server" onerror="this.onerror=null; this.src='/Database/Imagenes/Perfiles/sin-imagen.jpg';" />
                 </div>
 
                 <%if (HabEdicion)
@@ -73,16 +77,20 @@
 
                 <div class="row justify-content-center" style="margin-top: 20px">
                     <div class="col-3">
+                        <label for="txtNombre" class="lblModal">Nombre:</label>
                         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre" Enabled="false"></asp:TextBox>
                     </div>
                     <div class="col-3">
+                        <label for="txtApellido" class="lblModal">Apellido:</label>
                         <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Apellido" Enabled="false"></asp:TextBox>
                     </div>
                     <div class="col-3">
+                        <label for="txtDocumento" class="lblModal">Documento:</label>
                         <asp:TextBox ID="txtDocumento" CssClass="form-control" runat="server"
                             Placeholder="DNI" Enabled="false"></asp:TextBox>
                     </div>
                     <div class="col-3">
+                        <label for="txtFechaNac" class="lblModal">Fecha Nacimiento:</label>
                         <asp:TextBox ID="txtFechaNac" runat="server" CssClass="form-control" placeholder="Fecha Nac"
                             type="date" Enabled="false"></asp:TextBox>
                     </div>
@@ -90,16 +98,20 @@
 
                 <div class="row justify-content-center" style="margin-top: 20px">
                     <div class="col-3">
+                        <label for="txtCalle" class="lblModal">Calle:</label>
                         <asp:TextBox ID="txtCalle" runat="server" CssClass="form-control" placeholder="Calle"></asp:TextBox>
                     </div>
                     <div class="col-3">
+                        <label for="txtNumDir" class="lblModal">Numero:</label>
                         <asp:TextBox ID="txtNumDir" CssClass="form-control" runat="server"
                             Placeholder="Numero" onkeypress="return soloNumeros(event);"></asp:TextBox>
                     </div>
                     <div class="col-3">
+                        <label for="txtLocalidad" class="lblModal">Localidad:</label>
                         <asp:TextBox ID="txtLocalidad" runat="server" CssClass="form-control" placeholder="Localidad"></asp:TextBox>
                     </div>
                     <div class="col-3">
+                        <label for="txtCodPostal" class="lblModal">Codigo Postal:</label>
                         <asp:TextBox ID="txtCodPostal" runat="server" CssClass="form-control" placeholder="Cod Postal"></asp:TextBox>
                     </div>
                 </div>
@@ -107,13 +119,16 @@
 
                 <div class="row justify-content-center" style="margin-top: 20px">
                     <div class="col-4">
+                        <label for="txtEmail" class="lblModal">Email:</label>
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Email" TextMode="Email"></asp:TextBox>
                     </div>
                     <div class="col-4">
+                        <label for="txtTelefono" class="lblModal">Telefono:</label>
                         <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server"
                             Placeholder="Telefono" onkeypress="return soloNumeros(event);"></asp:TextBox>
                     </div>
                     <div class="col-4">
+                        <label for="txtOpciones" class="lblModal">Categoria:</label>
                         <asp:TextBox ID="txtOpciones" CssClass="form-control" runat="server"
                             Placeholder="Categoria" Enabled="false"></asp:TextBox>
                     </div>

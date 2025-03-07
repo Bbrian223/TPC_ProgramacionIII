@@ -2,6 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <style>
+        .lblModal {
+            font-size: 10px;
+        }
+    </style>
+
+
     <h2>Lista de Ventas</h2>
 
     <hr class="my-4" />
@@ -133,21 +140,25 @@
                     <div class="row justify-content-center" style="margin-top: 20px">
                         <!--Nro de Venta-->
                         <div class="col-3">
+                            <label for="txtNroVenta" class="lblModal">ID Venta:</label>
                             <asp:TextBox ID="txtNroVenta" runat="server" CssClass="form-control" placeholder="Nro Venta"
                                 Enabled="false"></asp:TextBox>
                         </div>
                         <!--Salon-->
                         <div class="col-3">
+                            <label for="txtNroSalon" class="lblModal">Numero Salon:</label>
                             <asp:TextBox ID="txtNroSalon" CssClass="form-control" runat="server"
                                 Placeholder="Nro Salon" Enabled="false"></asp:TextBox>
                         </div>
                         <!--Mesa-->
                         <div class="col-3">
+                            <label for="txtNroMesa" class="lblModal">Numero Mesa:</label>
                             <asp:TextBox ID="txtNroMesa" CssClass="form-control" runat="server"
                                 Placeholder="Nro Mesa" Enabled="false"></asp:TextBox>
                         </div>
                         <!--Fecha-->
                         <div class="col-3">
+                            <label for="txtFechaVenta" class="lblModal">Fecha pedido:</label>
                             <asp:TextBox ID="txtFechaVenta" CssClass="form-control" runat="server"
                                 Placeholder="Fecha" Enabled="false" TextMode="Date"></asp:TextBox>
                         </div>
@@ -156,11 +167,13 @@
                     <div class="row justify-content-start" style="margin-top: 20px">
                         <!--Estado-->
                         <div class="col-3">
+                            <label for="txtEstadoPedido" class="lblModal">Estado Pedido:</label>
                             <asp:TextBox ID="txtEstadoPedido" CssClass="form-control" runat="server"
                                 Placeholder="Estado Pedido" Enabled="false"></asp:TextBox>
                         </div>
                         <!--Total-->
                         <div class="col-3">
+                            <label for="txtPrecioTotal" class="lblModal">Precio Final:</label>
                             <asp:TextBox ID="txtPrecioTotal" CssClass="form-control" runat="server"
                                 Placeholder="Total" Enabled="false"></asp:TextBox>
                         </div>

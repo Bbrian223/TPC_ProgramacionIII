@@ -18,6 +18,10 @@
             border: 2px solid red;
             background-color: #ffe6e6;
         }
+
+        .lblModal {
+            font-size: 10px;
+        }
     </style>
 
     <h2>Lista de Productos</h2>
@@ -86,10 +90,10 @@
                             <td>
                                 <asp:Button ID="btnVerProducto" CssClass="btn btn-primary btn-sm" Text="Detalles" runat="server"
                                     CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnVerProducto_Click" />
-                                
+
                                 <asp:Button ID="btnConfirmarBaja" CssClass="btn btn-danger btn-sm" Text="Deshabilitar"
-                                    runat="server" CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnConfirmarBaja_Click" Visible='<%# (bool)Eval("Estado") %>'/>
-                                
+                                    runat="server" CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnConfirmarBaja_Click" Visible='<%# (bool)Eval("Estado") %>' />
+
                                 <asp:Button ID="btnHabilitarProd" CssClass="btn btn-success btn-sm" Text="    Habilitar    "
                                     runat="server" CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnHabilitarProd_Click" Visible='<%# !(bool)Eval("Estado") %>' />
                             </td>
@@ -152,12 +156,14 @@
                     </div>
 
                     <%if ((bool)Session["EditarProducto"] == true)
-                      { %>
-                        <asp:FileUpload ID="fileUploadImagen" runat="server" CssClass="form-control"/>
+                        { %>
+                    <label for="fileUploadImagen" class="lblModal">Cargar foto:</label>
+                    <asp:FileUpload ID="fileUploadImagen" runat="server" CssClass="form-control" />
                     <%} %>
                     <div class="row justify-content-center" style="margin-top: 20px">
                         <!--Categoria-->
                         <div class="col-3">
+                            <label for="ddlCategoriasModal" class="lblModal">Categoria:</label>
                             <asp:DropDownList ID="ddlCategoriasModal" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
                                 BackColor="white" ForeColor="black" Font-Size="Large" Enabled="false" Width="180px" Height="40px">
                                 <asp:ListItem Text="Cafeteria" Value="1" />
@@ -170,18 +176,21 @@
 
                         <!--Nombre-->
                         <div class="col-3">
+                            <label for="txtNombre" class="lblModal">Nombre:</label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre"
                                 Enabled="false"></asp:TextBox>
                         </div>
 
                         <!--Precio-->
                         <div class="col-3">
+                            <label for="txtPrecio" class="lblModal">Precio:</label>
                             <asp:TextBox ID="txtPrecio" CssClass="form-control" runat="server"
                                 Placeholder="Precio" onkeypress="return soloNumeros(event);"></asp:TextBox>
                         </div>
 
                         <!--Stock-->
                         <div class="col-3">
+                            <label for="txtStock" class="lblModal">Stock:</label>
                             <asp:TextBox ID="txtStock" CssClass="form-control" runat="server"
                                 Placeholder="Stock" onkeypress="return soloNumeros(event);"></asp:TextBox>
                         </div>

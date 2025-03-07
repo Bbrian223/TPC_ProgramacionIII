@@ -33,6 +33,10 @@
             border: 2px solid red;
             background-color: #ffe6e6;
         }
+
+        .lblModal {
+            font-size: 10px;
+        }
     </style>
 
     <h2>Lista de Adicionales</h2>
@@ -100,10 +104,10 @@
                                         CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnVerAdicional_Click" />
                                     <%if (Dominio.Seguridad.NivelAcceso == Dominio.UserType.Gerente)
                                         { %>
-                                    
+
                                     <asp:Button ID="btnBajaAdicional" class="btn btn-danger btn-sm" Text="Deshabilitar" runat="server"
                                         CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnBajaAdicional_Click" Visible='<%# (bool)Eval("Estado") %>' />
-                                    
+
                                     <asp:Button ID="btnHabilitarAd" class="btn btn-success btn-sm" Text="    Habilitar    " runat="server"
                                         CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnHabilitarAd_Click" Visible='<%# !(bool)Eval("Estado") %>' />
                                     <%} %>
@@ -145,7 +149,7 @@
     </div>
 
 
-    <!-- Modal de ver -->
+    <!-- Modal de Editar / ver-->
     <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -162,7 +166,8 @@
 
                     <div class="row justify-content-center" style="margin-top: 20px">
                         <!--Categoria-->
-                        <div class="col-4">
+                        <div class="col-3">
+                            <label for="ddlCategoriasModalVer" class="lblModal">Categoria:</label>
                             <asp:DropDownList ID="ddlCategoriasModalVer" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
                                 BackColor="white" ForeColor="black" Font-Size="Large" Enabled="false" Width="180px" Height="40px">
                                 <asp:ListItem Text="Guarniciones" Value="6" />
@@ -172,13 +177,15 @@
                         </div>
 
                         <!--Nombre-->
-                        <div class="col-4">
+                        <div class="col-5">
+                            <label for="txtNombre" class="lblModal">Nombre:</label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre"
                                 Enabled="false"></asp:TextBox>
                         </div>
 
                         <!--Precio-->
                         <div class="col-4">
+                            <label for="txtPrecio" class="lblModal">Precio:</label>
                             <asp:TextBox ID="txtPrecio" CssClass="form-control" runat="server"
                                 Placeholder="Precio" onkeypress="return soloNumeros(event);"></asp:TextBox>
                         </div>
@@ -197,7 +204,7 @@
                 </div>
                 <div class="modal-footer">
                     <%if (!EditarAdicional)
-                      {%>
+                        {%>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
                     <%if (Dominio.Seguridad.NivelAcceso == Dominio.UserType.Gerente)
                         {  %>
@@ -217,7 +224,7 @@
 
 
 
-        <!-- Modal de ver -->
+    <!-- Modal NUEVO -->
     <div class="modal fade" id="modalNuevoAd" tabindex="-1" aria-labelledby="modalNuevoAdLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -244,7 +251,7 @@
 
                         <!--Nombre-->
                         <div class="col-4">
-                            <asp:TextBox ID="txtNombreModalAgregar" runat="server" CssClass="form-control" 
+                            <asp:TextBox ID="txtNombreModalAgregar" runat="server" CssClass="form-control"
                                 placeholder="Nombre"></asp:TextBox>
                         </div>
 
@@ -268,7 +275,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <asp:Button ID="btnGuardarNuevoAdicional" CssClass="btn btn-primary" runat="server" Text="Guardar" 
+                    <asp:Button ID="btnGuardarNuevoAdicional" CssClass="btn btn-primary" runat="server" Text="Guardar"
                         OnClick="btnGuardarNuevoAdicional_Click" />
                 </div>
             </div>

@@ -17,6 +17,10 @@
             border: 2px solid red;
             background-color: #ffe6e6;
         }
+
+        .lblModal {
+            font-size: 10px;
+        }
     </style>
 
     <h2>Lista de Productos</h2>
@@ -79,7 +83,7 @@
                             <td><%# Eval("Stock") %></td>
                             <td><%# Eval("Estado") %></td>
                             <td>
-                                <asp:Button ID="btnVerProducto" class="btn btn-primary btn-sm" Text="Ver" runat="server"
+                                <asp:Button ID="btnVerProducto" class="btn btn-primary btn-sm" Text="Detalles" runat="server"
                                     CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnVerProducto_Click" />
                             </td>
                         </tr>
@@ -119,6 +123,7 @@
                     <div class="row justify-content-center" style="margin-top: 20px">
                         <!--Categoria-->
                         <div class="col-3">
+                            <label for="ddlCategoriasModal" class="lblModal">Categoria:</label>
                             <asp:DropDownList ID="ddlCategoriasModal" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
                                 BackColor="white" ForeColor="black" Font-Size="Large" Enabled="false" Width="180px" Height="40px">
                                 <asp:ListItem Text="Cafeteria" Value="1" />
@@ -131,18 +136,21 @@
 
                         <!--Nombre-->
                         <div class="col-3">
+                            <label for="txtNombre" class="lblModal">Nombre:</label>
                             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre"
                                 Enabled="false"></asp:TextBox>
                         </div>
 
                         <!--Precio-->
                         <div class="col-3">
+                            <label for="txtPrecio" class="lblModal">Precio:</label>
                             <asp:TextBox ID="txtPrecio" CssClass="form-control" runat="server"
                                 Placeholder="Precio" Enabled="false"></asp:TextBox>
                         </div>
 
                         <!--Stock-->
                         <div class="col-3">
+                            <label for="txtStock" class="lblModal">Stock:</label>
                             <asp:TextBox ID="txtStock" CssClass="form-control" runat="server"
                                 Placeholder="Stock" Enabled="false"></asp:TextBox>
                         </div>
@@ -227,7 +235,7 @@
                         <div class="input-group">
                             <span class="input-group-text">Descripcion</span>
                             <asp:TextBox ID="txtBxDescripcion" runat="server" CssClass="form-control"
-                                Font-Names="Arial" Height="80px" TextMode="MultiLine" Enabled="false"/>
+                                Font-Names="Arial" Height="80px" TextMode="MultiLine" Enabled="false" />
                         </div>
                     </div>
 

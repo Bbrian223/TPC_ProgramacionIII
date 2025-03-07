@@ -54,6 +54,47 @@ namespace Manager
            
         }
 
+        public List<Producto> ObtnerTodosHabilitados()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Producto> lista = new List<Producto>();
+
+            try
+            {
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO,GUARNICION  from vw_ListaProductos WHERE ESTADO = 1 AND IDCATEGORIA < 6");
+                datos.EjecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Producto prod = new Producto();
+                    prod.IdProducto = (long)datos.Lector["IDPRODUCTO"];
+                    prod.Categoria.IdCategoria = (long)datos.Lector["IDCATEGORIA"];
+                    prod.Categoria.Nombre = (string)datos.Lector["CATEGORIA"];
+                    prod.Nombre = (string)datos.Lector["NOMBRE"];
+                    prod.Precio = (decimal)datos.Lector["PRECIO"];
+                    prod.stock = (int)datos.Lector["STOCK"];
+                    prod.Descripcion = (datos.Lector["DESCRIPCION"] is DBNull) ? string.Empty : (string)datos.Lector["DESCRIPCION"];
+                    prod.Imagen.IdImagen = (long)datos.Lector["IDIMAGEN"];
+                    prod.Imagen.NombreArch = (string)datos.Lector["ARCHNOMB"];
+                    prod.Estado = (bool)datos.Lector["ESTADO"];
+                    prod.Guarnicion = (bool)datos.Lector["GUARNICION"];
+
+                    lista.Add(prod);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
         public List<Producto> ObtnerGuarniciones()
         {
             AccesoDatos datos = new AccesoDatos();

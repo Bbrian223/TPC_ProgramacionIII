@@ -223,7 +223,7 @@ namespace WebApplication1.ViewCommon
 
             try
             {
-                aux = manager.ObtnerTodos();
+                aux = manager.ObtnerTodosHabilitados();
             }
             catch (Exception ex)
             {

@@ -28,7 +28,7 @@
             justify-content: center;
             width: 60px;
             height: 60px;
-            background-color: dodgerblue; /* Verde para disponible */
+            background-color: dodgerblue; /* Azul para asignado */
             color: white;
             font-weight: bold;
             border-radius: 8px;
@@ -37,7 +37,7 @@
         }
 
         .mesa-cerrada {
-            background-color: #6c757d; /* Gris para cerrada */
+            background-color: #6c757d; /* Gris para sin asignar*/
         }
 
 
@@ -56,19 +56,34 @@
     <div class="container">
         <div class="row justify-content-center" style="padding-top: 10px">
             <div class="container-fluid">
+
                 <!--DropDownList Salones-->
                 <div class="row button-row mb-5">
-                    <div class="form-check col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-check col-lg-2">
                         <asp:DropDownList ID="ddlSalones" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
                             BackColor="white" ForeColor="black" Font-Size="Large" AutoPostBack="true" OnSelectedIndexChanged="ddlSalones_SelectedIndexChanged">
                         </asp:DropDownList>
                     </div>
+
                     <!--Botones-->
-                    <div class="form-check col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-check col-6">
                         <asp:CheckBox ID="chkAsignarMesa" runat="server" AutoPostBack="true" />
                         <label style="font-size: 20px">Asignar Mesa</label>
                     </div>
+
+                    <!--Etiquetas estado-->
+                    <div class="col col-2 d-flex align-items-center">
+                        <div class="me-2" style="width: 20px; height: 20px; background-color: dodgerblue;"></div>
+                        <asp:Label runat="server" Text="Asignado"></asp:Label>
+                    </div>
+                    <div class="col col-2 d-flex align-items-center">
+                        <div class="me-2" style="width: 20px; height: 20px; background-color: #6c757d;"></div>
+                        <asp:Label runat="server" Text="Sin Asignar"></asp:Label>
+                    </div>
+
                 </div>
+
+
                 <!--Mesas-->
                 <div class="row" id="ContenedorMesas" runat="server" style="margin-top: 20px;">
                     <!-- 5 filas con 5 mesas cada una -->
@@ -133,13 +148,14 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Empleados asignados a la mesa:  <asp:Label ID="lblModalMesa" runat="server" /></h5>
+                    <h5 class="modal-title">Empleados asignados a la mesa: 
+                        <asp:Label ID="lblModalMesa" runat="server" /></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body d-flex flex-column gap-3" role="alert">
 
                     <div class="col-12 scroll-grid-container">
-                        <asp:Label ID="lblModalError" runat="server" Font-Size="20PX"/>
+                        <asp:Label ID="lblModalError" runat="server" Font-Size="20PX" />
                         <asp:GridView ID="gViewMesaEmpleados" runat="server" CssClass="table table-striped table-bordered text-center"
                             AutoGenerateColumns="False" DataKeyNames="IdEmpleado" OnRowCommand="gViewMesaEmpleados_RowCommand">
                             <Columns>

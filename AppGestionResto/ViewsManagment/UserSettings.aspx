@@ -18,6 +18,11 @@
             border: 2px solid red;
             background-color: #ffe6e6;
         }
+
+        .lblModal {
+            font-size:10px;
+        }
+
     </style>
 
     <h2>Lista de Usuarios</h2>
@@ -150,18 +155,22 @@
                                     <asp:Image ID="imgPreview" CssClass="image-circle mb-3" runat="server" onerror="this.onerror=null; this.src='/Database/Imagenes/Perfiles/sin-imagen.jpg';" />
                                 </div>
 
-                                <div class="row justify-content-center" style="margin-top: 20px">
+                                <div class="row justify-content-center" >
                                     <div class="col-3">
+                                        <label for="txtNombre" class="lblModal">Nombre:</label>
                                         <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" placeholder="Nombre" Enabled="false"></asp:TextBox>
                                     </div>
                                     <div class="col-3">
+                                        <label for="txtApellido" class="lblModal">Apellido:</label>
                                         <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" placeholder="Apellido" Enabled="false"></asp:TextBox>
                                     </div>
                                     <div class="col-3">
+                                        <label for="txtDocumento" class="lblModal">Documento:</label>
                                         <asp:TextBox ID="txtDocumento" CssClass="form-control" runat="server"
                                             Placeholder="DNI" onkeypress="return soloNumeros(event);" Enabled="false"></asp:TextBox>
                                     </div>
                                     <div class="col-3">
+                                        <label for="txtFechaNac" class="lblModal">Fecha Nacimiento:</label>
                                         <asp:TextBox ID="txtFechaNac" runat="server" CssClass="form-control" placeholder="Fecha Nac"
                                             type="date" Enabled="false"></asp:TextBox>
                                     </div>
@@ -169,16 +178,20 @@
 
                                 <div class="row justify-content-center" style="margin-top: 20px">
                                     <div class="col-3">
+                                        <label for="txtCalle" class="lblModal">Calle:</label>
                                         <asp:TextBox ID="txtCalle" runat="server" CssClass="form-control" placeholder="Calle"></asp:TextBox>
                                     </div>
                                     <div class="col-3">
+                                        <label for="txtNumDir" class="lblModal">Numero:</label>
                                         <asp:TextBox ID="txtNumDir" CssClass="form-control" runat="server"
                                             Placeholder="Numero" onkeypress="return soloNumeros(event);"></asp:TextBox>
                                     </div>
                                     <div class="col-3">
+                                        <label for="txtLocalidad" class="lblModal">Localidad:</label>
                                         <asp:TextBox ID="txtLocalidad" runat="server" CssClass="form-control" placeholder="Localidad"></asp:TextBox>
                                     </div>
                                     <div class="col-3">
+                                        <label for="txtCodPostal" class="lblModal">Codigo Postal:</label>
                                         <asp:TextBox ID="txtCodPostal" runat="server" CssClass="form-control" placeholder="Cod Postal"></asp:TextBox>
                                     </div>
                                 </div>
@@ -186,13 +199,16 @@
 
                                 <div class="row justify-content-center" style="margin-top: 20px">
                                     <div class="col-4">
+                                        <label for="txtEmail" class="lblModal">Email:</label>
                                         <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="Email" TextMode="Email"></asp:TextBox>
                                     </div>
                                     <div class="col-4">
+                                        <label for="txtTelefono" class="lblModal">Telefono:</label>
                                         <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server"
                                             Placeholder="Telefono" onkeypress="return soloNumeros(event);"></asp:TextBox>
                                     </div>
                                     <div class="col-4">
+                                        <label for="ddlOpciones" class="lblModal">Nivel Acceso:</label>
                                         <asp:DropDownList ID="ddlOpciones" runat="server" CssClass="form-select" Enabled="false">
                                             <asp:ListItem Text="Gerente" Value="1" />
                                             <asp:ListItem Text="Mozo" Value="2" />

@@ -70,7 +70,7 @@
     </div>
 
     <!--Contenedor etiquetas y botones-->
-    <div class="container" style="margin-top: 50px">
+    <div class="footer-bottom" style="margin-top: 50px">
 
         <!--Etiqutas indicador de colores-->
         <div class="pagination justify-content-start">

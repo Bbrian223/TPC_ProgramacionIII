@@ -190,5 +190,9 @@ namespace WebApplication1.ViewsManagment
             }
         }
 
+        protected void btnDevolverStock_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

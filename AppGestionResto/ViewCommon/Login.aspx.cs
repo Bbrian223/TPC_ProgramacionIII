@@ -15,7 +15,7 @@ namespace WebApplication1.ViewCommon
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session.Clear();
         }
 
         protected void btnValidate_Click(object sender, EventArgs e)

@@ -30,15 +30,14 @@ namespace WebApplication1
         }
 
         public void CerrarSesion()
-        {
+        {   
             Seguridad.CerrarSesion();
-            Session.Clear();
 
             Response.Redirect("~/ViewCommon/Login.aspx", false);
         }
 
         public void CargarImagen()
-        {
+        {   
             imgUser.ImageUrl = ((Empleado)Session["Empleado"]).Imagen.DirComp;
         }
     }
