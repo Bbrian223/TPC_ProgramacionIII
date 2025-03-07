@@ -31,7 +31,8 @@ namespace WebApplication1.ViewsManagment
             {
                 if (!string.IsNullOrWhiteSpace(nombre))
                 {
-                    repeaterAdicionales.DataSource = ObtenerLista().Where(prod => prod.Nombre.ToLower() == nombre.ToLower()).ToList();
+                    repeaterAdicionales.DataSource = ObtenerLista().Where(
+                    empl => empl.Nombre != null && empl.Nombre.IndexOf(nombre, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
                     repeaterAdicionales.DataBind();
                 }
                 else
@@ -87,6 +88,7 @@ namespace WebApplication1.ViewsManagment
                 Producto prod = manager.Obtener(long.Parse(id));
                 txtNombre.Text = prod.Nombre;
                 txtPrecio.Text = prod.Precio.ToString("0.0");
+                txtStock.Text = prod.stock.ToString();
                 txtBxDescripcion.Text = prod.Descripcion;
                 ddlCategoriasModalVer.SelectedValue = prod.Categoria.IdCategoria.ToString();
 
@@ -162,6 +164,7 @@ namespace WebApplication1.ViewsManagment
                 prod.IdProducto = long.Parse(lblModalNumAdicional.Text);
                 prod.Nombre = txtNombre.Text;
                 prod.Precio = decimal.Parse(txtPrecio.Text);
+                prod.stock = int.Parse(txtStock.Text);
                 prod.Descripcion = txtBxDescripcion.Text;
                 prod.Categoria.IdCategoria = long.Parse(ddlCategoriasModalVer.SelectedValue);
 
@@ -215,6 +218,7 @@ namespace WebApplication1.ViewsManagment
                 prod.Nombre = txtNombreModalAgregar.Text;
                 prod.Precio = decimal.Parse(txtPrecioModalAgregar.Text);
                 prod.Descripcion = txtDescripcionModalAgregar.Text;
+                prod.stock = int.Parse(txtStockModalAgregar.Text);
 
                 manager.AgregarProdExtra(prod);
 
@@ -297,6 +301,7 @@ namespace WebApplication1.ViewsManagment
             txtNombre.Enabled = estado;
             txtPrecio.Enabled = estado;
             txtBxDescripcion.Enabled = estado;
+            txtStock.Enabled = estado;
             panelMsgLbl.Visible = false;
         }
 

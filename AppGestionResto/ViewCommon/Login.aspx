@@ -22,8 +22,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color:darkcyan;
-            background-size: cover;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGNqzrRh9q1-gKROxgS23bbqRDcmaU7WS6uPKtlCmT3PBvV3SgcG0HNEsDNHVj5L4ToZM&usqp=CAU');
             background-position: center;
             opacity: 0.7;
             z-index: -1;
@@ -83,6 +82,11 @@
             display: none;
             font-size: 0.875em;
         }
+
+        .btnLogin {
+            margin-top:20px;
+        
+        }
     </style>
 </head>
 
@@ -107,7 +111,7 @@
                     <span id="errorMessage" runat="server" class="error-message">Contraseña incorrecta. Intente nuevamente.</span>
                 </div>
 
-                <asp:Button ID="btnValidate" CssClass="btn btn-hospital w-100" Text="Iniciar sesión" OnClick="btnValidate_Click" runat="server" />
+                <asp:Button ID="btnValidate" CssClass="btn btn-hospital w-100 btnLogin" Text="Iniciar sesión" OnClick="btnValidate_Click" runat="server" />
 
             </div>
         </div>

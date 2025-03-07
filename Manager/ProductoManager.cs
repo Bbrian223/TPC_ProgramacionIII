@@ -102,7 +102,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaGuarniciones WHERE ESTADO = '1'");
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaGuarniciones WHERE ESTADO = '1' AND STOCK > 0");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -144,7 +144,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaLeches WHERE ESTADO = '1'");
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaLeches WHERE ESTADO = '1' AND STOCK > 0");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -186,7 +186,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaTazas WHERE ESTADO = '1'");
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO  from vw_ListaTazas WHERE ESTADO = '1' AND STOCK > 0");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())
@@ -414,7 +414,7 @@ namespace Manager
                 datos.SetearParametro("@IDCATEGORIA",prod.Categoria.IdCategoria);
                 datos.SetearParametro("@Nombre", prod.Nombre);
                 datos.SetearParametro("@Precio", prod.Precio);
-                datos.SetearParametro("@STOCK",1200);
+                datos.SetearParametro("@STOCK",prod.stock);
                 datos.SetearParametro("@Descripcion", prod.Descripcion);
                 datos.ejecutarAccion();
 

@@ -490,15 +490,15 @@ namespace WebApplication1.ViewCommon
                         break;
 
                     case 3:     //COMIDAS
-                        if ((bool)Session["GUARNICION"])
-                        {
-                            if (string.IsNullOrWhiteSpace(txtBxDescripcion.Text))
-                                aclaraciones = "Guarnicion: " + ddlGuarniciones.SelectedItem.Text;
-                            else
-                                aclaraciones += "; Guarnicion: " + ddlGuarniciones.SelectedItem.Text;
-                        }
 
                         ordManager.AgregarProdAlPedido(idProd, cantidad, idUser, aclaraciones);
+
+                        if ((bool)Session["GUARNICION"])
+                        {
+                            int id = int.Parse(ddlGuarniciones.SelectedValue);
+                            ordManager.AgregarProdAlPedido(id,1,idUser,"Guarnicion");                           
+                        }
+
 
                         break;
 
@@ -513,7 +513,6 @@ namespace WebApplication1.ViewCommon
                 throw;
             }
         }
-
 
     }
 }

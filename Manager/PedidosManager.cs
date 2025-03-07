@@ -219,7 +219,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("DELETE DetallesPedido WHERE IDDETALLE = @IDDETALLE");
+                datos.SetearConsulta("EXEC sp_EliminarProdDePedido @IDDETALLE");
                 datos.SetearParametro("@IDDETALLE", idDetalle);
                 datos.ejecutarAccion();
             }

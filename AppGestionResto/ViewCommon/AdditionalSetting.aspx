@@ -191,6 +191,14 @@
                         </div>
 
                     </div>
+                    <!--Stock-->
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-4">
+                            <label for="txtStock" class="lblModal">Stock:</label>
+                            <asp:TextBox ID="txtStock" CssClass="form-control" runat="server" Enabled="false"
+                                Placeholder="Stock" onkeypress="return soloNumeros(event);"></asp:TextBox>
+                        </div>
+                    </div>
 
                     <div class="row justify-content-center" style="margin-top: 20px">
                         <!--Descripcion-->
@@ -261,6 +269,13 @@
                                 Placeholder="Precio" onkeypress="return soloNumeros(event);"></asp:TextBox>
                         </div>
 
+                    </div>
+
+                    <div class="row justify-content-center" style="margin-top: 20px">
+                        <div class="col-4">
+                            <asp:TextBox ID="txtStockModalAgregar" CssClass="form-control" runat="server"
+                                Placeholder="Stock" onkeypress="return soloNumeros(event);"></asp:TextBox>
+                        </div>
                     </div>
 
                     <div class="row justify-content-center" style="margin-top: 20px">
