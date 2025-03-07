@@ -330,6 +330,45 @@ namespace Manager
             }
         }
 
+        public void LiberarTodasLasMesas()
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("DELETE Mesas_X_Empleados");
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
+        public void LiberarMesa(long mesa)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.SetearConsulta("DELETE Mesas_X_Empleados WHERE IDMESA = @IDMESA");
+                datos.SetearParametro("@IDMESA", mesa);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                datos.CerrarConeccion();
+            }
+        }
+
         public List<int> CantidadMesasPorEstado()
         {
             AccesoDatos datos = new AccesoDatos();

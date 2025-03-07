@@ -66,7 +66,12 @@
                     </div>
 
                     <!--Botones-->
-                    <div class="form-check col-6">
+                    <div class="form-check col-3">
+                        <asp:Button ID="btnLiberarTodasMesas" Text="Liberar Todas" CssClass="btn btn-primary"
+                            runat="server" OnClick="btnLiberarTodasMesas_Click" />
+                    </div>
+
+                    <div class="form-check col-3">
                         <asp:CheckBox ID="chkAsignarMesa" runat="server" AutoPostBack="true" />
                         <label style="font-size: 20px">Asignar Mesa</label>
                     </div>
@@ -171,6 +176,10 @@
 
                 </div>
                 <div class="modal-footer">
+                    <div class="me-3">
+                        <asp:Button ID="btnLiberarMesaModal" Text="Liberar Mesa" CssClass="btn btn-primary btn-sm" 
+                            runat="server" OnClick="btnLiberarMesaModal_Click " />
+                    </div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
 

@@ -159,6 +159,38 @@ namespace WebApplication1.ViewsManagment
             }
         }
 
+        protected void btnLiberarTodasMesas_Click(object sender, EventArgs e)
+        {
+            MesasManager manager = new MesasManager();
+
+            try
+            {
+                manager.LiberarTodasLasMesas();
+                ObtenerMesas();
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
+        }
+
+        protected void btnLiberarMesaModal_Click(object sender, EventArgs e)
+        {
+            MesasManager manager = new MesasManager();
+            string mesa = lblModalMesa.Text;
+
+            try
+            {
+                manager.LiberarMesa(long.Parse(mesa));
+                MostrarModal(mesa);
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
+        }
+
         //Funciones
         private void CargarGridView()
         {
@@ -317,6 +349,7 @@ namespace WebApplication1.ViewsManagment
             EmpleadoManager manager = new EmpleadoManager();
             List<Empleado> lista = new List<Empleado>();
             lblModalError.Text = string.Empty;
+            btnLiberarMesaModal.Visible = true;
 
             try
             {
@@ -326,8 +359,11 @@ namespace WebApplication1.ViewsManagment
                 gViewMesaEmpleados.DataBind();
                 lblModalMesa.Text = mesa;
 
-                if (lista.Count == 0) lblModalError.Text = "SIN MESAS ASIGNADAS";
-
+                if (lista.Count == 0)
+                {
+                    btnLiberarMesaModal.Visible = false;
+                    lblModalError.Text = "SIN MESAS ASIGNADAS";
+                }
                 ObtenerMesas();
             }
             catch (Exception)
@@ -360,5 +396,6 @@ namespace WebApplication1.ViewsManagment
 
         }
 
+ 
     }
 }

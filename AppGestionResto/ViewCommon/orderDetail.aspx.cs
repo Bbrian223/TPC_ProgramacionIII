@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -17,20 +18,20 @@ namespace WebApplication1.ViewCommon
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
 
             if (Seguridad.NivelAcceso == UserType.invalid)
             {
-                Response.Redirect("~/ViewsManagment/HomeManagment.aspx", false);                
+                Response.Redirect("~/ViewsManagment/HomeManagment.aspx", false);
             }
 
             if (!IsPostBack)
             {
-                if (Request.QueryString["mesa"] != null) 
+                if (Request.QueryString["mesa"] != null)
                 {
-                    string mesa = Request.QueryString["mesa"]; 
+                    string mesa = Request.QueryString["mesa"];
                     lblIdMesa.Text = mesa;
-                    Session.Add("idMesa",int.Parse(mesa));
+                    Session.Add("idMesa", int.Parse(mesa));
                 }
 
             }
@@ -45,8 +46,8 @@ namespace WebApplication1.ViewCommon
             {
                 Response.Redirect("~/ViewsManagment/HomeManagment.aspx", false);
             }
-            else 
-            { 
+            else
+            {
                 Response.Redirect("~/ViewsStaff/HomeStaff.aspx", false);
             }
 
@@ -65,11 +66,11 @@ namespace WebApplication1.ViewCommon
             {
                 if (ordManager.ObtenerEstadoMesa((int)Session["idMesa"]) != "PENDIENTE")
                 {
-                    CargarModal(int.Parse(idProducto),false);
+                    CargarModal(int.Parse(idProducto), false);
                     CargarDatosLabel(idProducto);
                     Session["GUARNICION"] = ordManager.ObtenerGuarnicion(int.Parse(idProducto));
                 }
-                else 
+                else
                 {
                     CargarModalError("Habilite la mesa antes de registrar un pedido", false);
                 }
@@ -79,7 +80,7 @@ namespace WebApplication1.ViewCommon
                 Response.Write("<script>alert('Error: " + ex.Message + "');</script>");
             }
 
-            Session.Add("idProducto",int.Parse(idProducto));
+            Session.Add("idProducto", int.Parse(idProducto));
         }
 
         protected void btnAgregarProd_Click(object sender, EventArgs e)
@@ -100,7 +101,7 @@ namespace WebApplication1.ViewCommon
                 else
                 {
                     lblErrores.Text = "Stock insuficiente, cantidad disponible: " + stock;
-                    CargarModal(idProd,true);
+                    CargarModal(idProd, true);
                 }
             }
             catch (Exception ex)
@@ -149,7 +150,7 @@ namespace WebApplication1.ViewCommon
             // SOLICITA CONFIRMACION POR CARTEL MODAL
             try
             {
-                CargarModalError("Esta seguro que desea Cancelar este Pedido?",true);
+                CargarModalError("Esta seguro que desea Cancelar este Pedido?", true);
             }
             catch (Exception ex)
             {
@@ -186,6 +187,31 @@ namespace WebApplication1.ViewCommon
             }
 
             Response.Redirect(Request.Url.AbsoluteUri);
+        }
+
+        protected void ddlCategorias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string idCategoria = ddlCategorias.SelectedValue;
+
+            try
+            {
+                if (idCategoria != "0")
+                {
+                    List<Producto> lista = ObtenerTodosProductos().
+                        Where(prod => prod.Categoria.IdCategoria == long.Parse(idCategoria)).ToList();
+
+                    CargarLista(lista);
+                }
+                else 
+                {
+                    CargarLista();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<Script>alert('Error: " + ex.Message + "')</Script>");
+            }
+
         }
 
         //funciones
@@ -233,7 +259,7 @@ namespace WebApplication1.ViewCommon
             return aux;
         }
 
-        public void CargarProdSeleccionado(int id) 
+        public void CargarProdSeleccionado(int id)
         {
             List<Producto> ProdSeleccionado = ObtenerTodosProductos().Where(emp => emp.IdProducto == id).ToList();
 
@@ -243,7 +269,7 @@ namespace WebApplication1.ViewCommon
             IdCategoria = ProdSeleccionado[0].Categoria.IdCategoria;
         }
 
-        public void CargarDropDownList() 
+        public void CargarDropDownList()
         {
             ProductoManager manager = new ProductoManager();
 
@@ -271,7 +297,7 @@ namespace WebApplication1.ViewCommon
             }
         }
 
-        public void VerificarEstadoMesa() 
+        public void VerificarEstadoMesa()
         {
             if (Session["idMesa"] is null)
                 return;
@@ -297,7 +323,7 @@ namespace WebApplication1.ViewCommon
                         // Mesa En espera
                         MostrarDatosMesa();
                         HabilitarBotonesEstado(false);
-                        if(ordManager.Mesa.Habilitado == true)
+                        if (ordManager.Mesa.Habilitado == true)
                             btnMesaHabilitada.Visible = true;
                         else
                             btnMesaHabilitada.Visible = false;
@@ -317,16 +343,16 @@ namespace WebApplication1.ViewCommon
 
         }
 
-        public void MostrarDatosMesa() 
+        public void MostrarDatosMesa()
         {
             Empleado empl = (Empleado)Session["Empleado"];
 
             try
             {
-                lblFecha.Text = DateTime.Now.ToString();
-                lblNumeroMesa.Text = ordManager.Mesa.IdMesa.ToString();
-                lblEstadoMesa.Text = ordManager.Mesa.EstadoMesa;
-                lblNroEmpleado.Text = empl.IdEmpleado.ToString();
+                txtFecha.Text = DateTime.Now.ToString();
+                txtNumeroMesa.Text = ordManager.Mesa.IdMesa.ToString();
+                txtEstadoMesa.Text = ordManager.Mesa.EstadoMesa;
+                txtNroEmpleado.Text = empl.IdEmpleado.ToString();
             }
             catch (Exception ex)
             {
@@ -335,7 +361,7 @@ namespace WebApplication1.ViewCommon
 
         }
 
-        public void MostrarDetallePedido() 
+        public void MostrarDetallePedido()
         {
             MostrarDatosMesa();
 
@@ -343,7 +369,7 @@ namespace WebApplication1.ViewCommon
             {
                 repeaterDetalles.DataSource = ordManager.Pedido.ListaProd;
                 repeaterDetalles.DataBind();
-                lblMontoTotal.Text = "$ " + ordManager.ObtenerMontoTotal().ToString();
+                txtMontoTotal.Text = "$ " + ordManager.ObtenerMontoTotal().ToString();
             }
             catch (Exception ex)
             {
@@ -364,17 +390,17 @@ namespace WebApplication1.ViewCommon
             CargarProdSeleccionado(idProducto);
             CargarDropDownList();
             btnModalAceptar.Visible = false;
-            pnlError.Visible = error; 
+            pnlError.Visible = error;
             lblErrores.Visible = error;
             txtCantidad.Text = "1";
 
             ClientScript.RegisterStartupScript(this.GetType(), "VistaPrevia", "var modal = new bootstrap.Modal(document.getElementById('modalDetalles')); modal.show();", true);
         }
 
-        public void CargarModalError(string msg,bool btnEstado)
+        public void CargarModalError(string msg, bool btnEstado)
         {
             btnModalAceptar.Visible = btnEstado;
-            lblModalError.Text = msg;   
+            lblModalError.Text = msg;
             ClientScript.RegisterStartupScript(this.GetType(), "Error", "var modal = new bootstrap.Modal(document.getElementById('modalError')); modal.show();", true);
         }
 
@@ -461,8 +487,8 @@ namespace WebApplication1.ViewCommon
                         if (ddlTamanio.SelectedIndex != 0)
                             ordManager.AgregarProdAlPedido(int.Parse(ddlTamanio.SelectedValue), 1, idUser, string.Empty);
 
-                    break;  
-                    
+                        break;
+
                     case 3:     //COMIDAS
                         if ((bool)Session["GUARNICION"])
                         {
@@ -474,22 +500,20 @@ namespace WebApplication1.ViewCommon
 
                         ordManager.AgregarProdAlPedido(idProd, cantidad, idUser, aclaraciones);
 
-                    break;
-                    
+                        break;
+
                     default:    //ENTRADAS,POSTRES,BEBIDAS
                         ordManager.AgregarProdAlPedido(idProd, cantidad, idUser, aclaraciones);
 
-                    break;
+                        break;
                 }
-
-                
-
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
+
+
     }
 }

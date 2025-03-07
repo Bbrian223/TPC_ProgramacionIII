@@ -42,6 +42,15 @@ namespace WebApplication1.ViewCommon
         protected global::System.Web.UI.WebControls.Label lblIdMesa;
 
         /// <summary>
+        /// Control ddlCategorias.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategorias;
+
+        /// <summary>
         /// Control repeaterProductos.
         /// </summary>
         /// <remarks>
@@ -51,40 +60,40 @@ namespace WebApplication1.ViewCommon
         protected global::System.Web.UI.WebControls.Repeater repeaterProductos;
 
         /// <summary>
-        /// Control lblFecha.
+        /// Control txtFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFecha;
+        protected global::System.Web.UI.WebControls.TextBox txtFecha;
 
         /// <summary>
-        /// Control lblNumeroMesa.
+        /// Control txtNumeroMesa.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNumeroMesa;
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroMesa;
 
         /// <summary>
-        /// Control lblEstadoMesa.
+        /// Control txtEstadoMesa.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEstadoMesa;
+        protected global::System.Web.UI.WebControls.TextBox txtEstadoMesa;
 
         /// <summary>
-        /// Control lblNroEmpleado.
+        /// Control txtNroEmpleado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNroEmpleado;
+        protected global::System.Web.UI.WebControls.TextBox txtNroEmpleado;
 
         /// <summary>
         /// Control pnlMonto.
@@ -96,13 +105,13 @@ namespace WebApplication1.ViewCommon
         protected global::System.Web.UI.WebControls.Panel pnlMonto;
 
         /// <summary>
-        /// Control lblMontoTotal.
+        /// Control txtMontoTotal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMontoTotal;
+        protected global::System.Web.UI.WebControls.TextBox txtMontoTotal;
 
         /// <summary>
         /// Control btnCerrarPedido.

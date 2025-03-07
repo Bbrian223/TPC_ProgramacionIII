@@ -24,6 +24,15 @@ namespace WebApplication1.ViewsManagment
         protected global::System.Web.UI.WebControls.DropDownList ddlSalones;
 
         /// <summary>
+        /// Control btnLiberarTodasMesas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLiberarTodasMesas;
+
+        /// <summary>
         /// Control chkAsignarMesa.
         /// </summary>
         /// <remarks>
@@ -103,5 +112,14 @@ namespace WebApplication1.ViewsManagment
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gViewMesaEmpleados;
+
+        /// <summary>
+        /// Control btnLiberarMesaModal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLiberarMesaModal;
     }
 }

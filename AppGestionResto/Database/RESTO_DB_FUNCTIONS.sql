@@ -164,6 +164,14 @@ AS
 SELECT* FROM vw_ListaProductos WHERE IDCATEGORIA = 8
 GO
 
+CREATE VIEW vw_ListaAdicionales
+AS
+	SELECT*FROM vw_ListaProductos 
+	WHERE IDCATEGORIA = '6'
+		  OR IDCATEGORIA = '7'
+		  OR IDCATEGORIA = '8'
+GO
+
 -- Agregar producto
 CREATE PROCEDURE sp_AgregarProd(
 	@pIdCategoria BIGINT,

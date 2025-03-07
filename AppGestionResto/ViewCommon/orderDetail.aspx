@@ -124,6 +124,19 @@
             <div class="row h-100">
                 <!-- Columna izquierda (70%) con scroll independiente -->
                 <div class="col-8 text-white" style="background-color: gray; height: 100%; overflow-y: auto;">
+
+                    <div class="col-3" style="margin-top:20px">
+                        <asp:DropDownList ID="ddlCategorias" runat="server" CssClass="btn btn-secondary btn-lg dropdown-toggle"
+                            BackColor="white" ForeColor="black" Font-Size="Large" AutoPostBack="true" OnSelectedIndexChanged="ddlCategorias_SelectedIndexChanged">
+                            <asp:ListItem Text="Todos las categorias" Value="0" />
+                            <asp:ListItem Text="Cafeteria" Value="1" />
+                            <asp:ListItem Text="Entradas" Value="2" />
+                            <asp:ListItem Text="Comidas" Value="3" />
+                            <asp:ListItem Text="Postres" Value="4" />
+                            <asp:ListItem Text="Bebidas" Value="5" />
+                        </asp:DropDownList>
+                    </div>
+
                     <div class="card-container">
                         <asp:Repeater ID="repeaterProductos" runat="server">
                             <ItemTemplate>
@@ -153,7 +166,7 @@
                             <asp:Label Text="Fecha y hora: " runat="server" />
                         </div>
                         <div class="col-6">
-                            <asp:Label ID="lblFecha" runat="server" />
+                            <asp:TextBox ID="txtFecha" CssClass="form-control" runat="server" Enabled="false" />
                         </div>
                     </div>
 
@@ -162,7 +175,7 @@
                             <asp:Label Text="Numero de Mesa: " runat="server" />
                         </div>
                         <div class="col-6">
-                            <asp:Label ID="lblNumeroMesa" runat="server" />
+                            <asp:TextBox ID="txtNumeroMesa" CssClass="form-control" runat="server" Enabled="false" />
                         </div>
                     </div>
 
@@ -171,7 +184,7 @@
                             <asp:Label Text="Estado: " runat="server" />
                         </div>
                         <div class="col-6">
-                            <asp:Label ID="lblEstadoMesa" runat="server" />
+                            <asp:TextBox ID="txtEstadoMesa" CssClass="form-control" runat="server" Enabled="false" />
                         </div>
                     </div>
 
@@ -180,7 +193,7 @@
                             <asp:Label Text="Nro Empleado: " runat="server" />
                         </div>
                         <div class="col-6">
-                            <asp:Label ID="lblNroEmpleado" runat="server" />
+                            <asp:TextBox ID="txtNroEmpleado" CssClass="form-control" runat="server" Enabled="false" />
                         </div>
                     </div>
 
@@ -189,7 +202,7 @@
                             <asp:Label Text="Monto Total: " runat="server" />
                         </div>
                         <div class="col-6">
-                            <asp:Label ID="lblMontoTotal" runat="server" Text="$ 1563.3" />
+                            <asp:TextBox ID="txtMontoTotal" CssClass="form-control" runat="server" Enabled="false" />
                         </div>
 
                     </asp:Panel>
