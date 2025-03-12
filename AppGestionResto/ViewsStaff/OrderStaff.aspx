@@ -164,7 +164,7 @@
                                 <asp:BoundField DataField="Producto.Categoria.Nombre" HeaderText="Categoria" ItemStyle-Width="100px" />
                                 <asp:BoundField DataField="Producto.Nombre" HeaderText="Nombre" ItemStyle-Width="100px" />
                                 <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" ItemStyle-Width="100px" />
-                                <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" ItemStyle-Width="100px" />
+                                <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" DataFormatString="{0:F1}" ItemStyle-Width="100px" />
                             </Columns>
                         </asp:GridView>
                     </div>

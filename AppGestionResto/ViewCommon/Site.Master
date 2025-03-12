@@ -85,7 +85,7 @@
                             <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewCommon/Profile.aspx") %>">Mi Perfil</a>
                         </li>
                         <li class="nav-item">
-                            <asp:Image ID="imgUser" CssClass="image-User mb-3" runat="server" onerror="this.onerror=null; this.src='/Database/Imagenes/Perfiles/sin-imagen.jpg';"/>
+                            <asp:Image ID="imgUser" CssClass="image-User mb-3" runat="server" onerror="this.onerror=null; this.src='/Database/Imagenes/Perfiles/sin-imagen.jpg';" />
                         </li>
                     </ul>
 
@@ -101,6 +101,11 @@
                 <!-- Salon -->
                 <%if (Dominio.Seguridad.NivelAcceso == Dominio.UserType.Gerente)
                     { %>
+                <!-- Opcion de Dashboard-->
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/Dashboard.aspx") %>">Panel General</a>
+                </li>
+                <!--Opcion de Salon-->
                 <li class="nav-item">
                     <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/HomeManagment.aspx") %>">Salón</a>
                 </li>
@@ -130,11 +135,6 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/ViewSales.aspx") %>">Ventas</a>
                 </li>
-                <!-- Opcion de Dashboard-->
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="<%= ResolveUrl("~/ViewsManagment/Dashboard.aspx") %>">Panel General</a>
-                </li>
-
                 <%}
                     else
                     {%>

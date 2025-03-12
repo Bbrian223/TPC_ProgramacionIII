@@ -147,7 +147,7 @@ namespace WebApplication1.ViewsStaff
             {
                 ddlCategoriasModal.SelectedValue = prod.Categoria.IdCategoria.ToString();
                 txtNombre.Text = prod.Nombre;
-                txtPrecio.Text = prod.Precio.ToString();
+                txtPrecio.Text = prod.Precio.ToString("0.0");
                 txtStock.Text = prod.stock.ToString();
                 txtBxDescripcion.Text = prod.Descripcion;
                 imgPreview.ImageUrl = prod.Imagen.DirComp;

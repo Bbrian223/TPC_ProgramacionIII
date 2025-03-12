@@ -61,7 +61,7 @@ namespace Manager
 
             try
             {
-                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO,GUARNICION  from vw_ListaProductos WHERE ESTADO = 1 AND IDCATEGORIA < 6");
+                datos.SetearConsulta("SELECT IDPRODUCTO,IDCATEGORIA,CATEGORIA,NOMBRE,PRECIO,STOCK,DESCRIPCION,IDIMAGEN,ARCHNOMB,ESTADO,GUARNICION  from vw_ListaProductos WHERE ESTADO = 1 AND IDCATEGORIA < 6 AND STOCK > 0");
                 datos.EjecutarLectura();
 
                 while (datos.Lector.Read())

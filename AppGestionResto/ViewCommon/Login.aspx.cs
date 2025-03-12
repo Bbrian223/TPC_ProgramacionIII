@@ -34,7 +34,7 @@ namespace WebApplication1.ViewCommon
                         break;
                     case UserType.Gerente:
                         
-                        Response.Redirect("~/ViewsManagment/HomeManagment.aspx", false);
+                        Response.Redirect("~/ViewsManagment/Dashboard.aspx", false);
                         break;
                     case UserType.Mozo:
 

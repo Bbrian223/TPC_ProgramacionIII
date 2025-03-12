@@ -81,7 +81,7 @@
                             <td><%# Eval("Nombre") %></td>
                             <td><%# Eval("Categoria.Nombre") %></td>
                             <td><%# Eval("Stock") %></td>
-                            <td><%# Eval("Estado") %></td>
+                            <td><%# (bool)Eval("Estado") ? "Activo" : "No Activo" %></td>
                             <td>
                                 <asp:Button ID="btnVerProducto" class="btn btn-primary btn-sm" Text="Detalles" runat="server"
                                     CommandArgument='<%# Eval("IdProducto") %>' OnClick="btnVerProducto_Click" />
